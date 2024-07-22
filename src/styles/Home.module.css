@@ -1,0 +1,31 @@
+
+  .hero {
+    background: url('/pathToBackgroundImg.jpg') no-repeat center center;
+    background-size: cover;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+    text-align: center;
+    flex-grow: 1;
+    gap: 1rem;
+  }
+
+  .heroTitle {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  
+  
+  .description {
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 600px) {
+    .container {
+      padding: 4rem;
+    }
+  }

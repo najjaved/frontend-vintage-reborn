@@ -129,14 +129,15 @@ address - String
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to your trello board](https://trello.com/b/gMSFpBQn/fintech-reborn)
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](http://github.com)
-[Server repository Link](http://github.com)
+[Client repository Link](https://github.com/najjaved/frontend-vintage-reborn)
+
+[Server repository Link](https://github.com/SantiMora06/FintechRebornBackEnd)
 
 [Deploy Link](http://heroku.com)
 

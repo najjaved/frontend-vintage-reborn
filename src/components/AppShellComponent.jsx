@@ -13,7 +13,7 @@ const AppShellComponent= ()=> {
           padding="md"
           header={{ height: 60 }}
           navbar={{
-          width: 300,
+          width: 250,
           breakpoint: 'sm'
         }}
           footer={{ height: 100 }}

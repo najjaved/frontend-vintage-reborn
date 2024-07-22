@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { MantineProvider, Paper } from '@mantine/core'; // ColorSchemeProvider, ColorScheme,
+import { MantineProvider, Paper} from '@mantine/core'; // ColorSchemeProvider, ColorScheme,
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 import LightDarkModeButton from './components/LightDarkModeButton.jsx';
 import { BrowserRouter } from 'react-router-dom';

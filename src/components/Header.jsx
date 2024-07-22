@@ -8,19 +8,17 @@ import cart from "../assets/images/cartIcon.png"
 const Header = () => {
   return (
     <Box className={classes.header}>
-      <Text className={classes.logo}>Logo</Text>
+      
+
+      
+      <Link to="/" className={classes.logo}>Logo</Link>
       <Title order={2} className={classes.title}>Our Store Name</Title>
-      {/*
       <Link to="/cart">
-        <img
-            className="cart"
-            src={'cart}
-            alt="cart icon"
-        />
-     </Link> */}
-     <Button className={classes.cartButton}>Cart</Button>
-     
+        <img className={classes.cart} src={cart} alt="cart icon" />
+      </Link>
+      <Link to="/login">Login</Link>
     </Box>
   );
 };
+
 export default Header;

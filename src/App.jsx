@@ -8,7 +8,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage'
-import AdminPage from './pages/AdminPage';
+import AdminDashboard from './pages/AdminDashboard';
 import AllProductsPage from './pages/AllProductsPage';
 
 
@@ -33,7 +33,7 @@ function App() {
           path="/cart"
           element={
             <PrivateRoute>
-              <CartPage />
+              {<h1>Cart page placeholder</h1>}
             </PrivateRoute>
           }
         />
@@ -41,7 +41,7 @@ function App() {
 
         <Route path="/admin" element={
           <AdminRoute>
-            <AdminPage />
+            <AdminDashboard />
           </AdminRoute>
         }/>
 

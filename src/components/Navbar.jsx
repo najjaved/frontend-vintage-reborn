@@ -1,16 +1,17 @@
 import React from 'react';
-import { Container, Group, Text, Anchor, Stack } from '@mantine/core';
-import styles from '../styles/Navbar.module.css';
+import { Container, Group, Text, Stack } from '@mantine/core';
+import classes from '../styles/Navbar.module.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-      <Container className={styles.navbar}>
+      <Container className={classes.navbar}>
         <Group position="apart">
           <Text>Our Store</Text>
           <Group  position="center" spacing="sm" direction="column">
-            <Anchor href="#" className={styles.navLink}>Home</Anchor>
-            <Anchor href="#featured" className={styles.navLink}>Featured</Anchor>
-            <Anchor href="#contact" className={styles.navLink}>Contact</Anchor>
+            <Link to="#" className={classes.navLink}>Home</Link>
+            <Link to="#featured" className={classes.navLink}>Featured</Link>
+            <Link to="/#about" className={classes.navLink}>About Us</Link>
           </Group >
         </Group>
       </Container>

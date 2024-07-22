@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import MainContent from './components/MainContent';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';

@@ -1,15 +1,15 @@
 import React from 'react';
-import { Anchor, Container, Text} from '@mantine/core';
-import styles from '../styles/Footer.module.css';
+import { Container, Text} from '@mantine/core';
+import classes from '../styles/Footer.module.css';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className={styles.footer}>
+    <div className={classes.footer}>
       <Container>
         <Text align="center">© 2024  Our Store. All rights reserved.</Text>
         <Text align="center">
-        <Anchor href="#contact" className={styles.footerLink}>Contact Us</Anchor>
+        <Link to="#contact" className={classes.footerLink}>Contact Us</Link>
         </Text>
       </Container>
     </div>

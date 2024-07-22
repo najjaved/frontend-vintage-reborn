@@ -13,7 +13,7 @@ const HeroSection = () => {
             <Text size="md" className={styles.description}>
               Discover unique, pre-loved items and give them a second chance!
             </Text>
-            <Button variant="outline" color="blue" size="md">
+            <Button variant="outline" color="teal" size="xl" radius = 'md' classNames={{label: styles.buttonLabel}}> {/* classNames  prop: access different portions of a mantine component */}
               Shop Now
             </Button>
           </Container>

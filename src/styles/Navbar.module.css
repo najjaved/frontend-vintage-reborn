@@ -1,5 +1,4 @@
 .navbar {
-    background-color: rgb(181, 184, 181);
     border-bottom: 1px solid #ddd;
     padding: 1rem 0;
     height: 100vh;
@@ -7,7 +6,6 @@
   }
   
   .navLink {
-    color: #333;
     text-decoration: none;
     font-size: 1rem;
   }
@@ -15,4 +13,3 @@
   .navLink:hover {
     text-decoration: underline;
   }
-  

@@ -1,10 +1,12 @@
 import React from 'react';
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+import { lightTheme, darkTheme } from '../styles/theme';
 
 const LightDarkModeButton = () => {
   const {colorScheme, toggleColorScheme} = useMantineColorScheme();
   const dark = colorScheme  == 'dark';
+  colorScheme === 'dark' ? darkTheme : lightTheme
 
   return (
     <ActionIcon

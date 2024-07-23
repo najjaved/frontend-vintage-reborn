@@ -8,22 +8,21 @@ import SessionContextProvider from './contexts/SessionContext.jsx';
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css'
 import './styles/global.css'
-import theme from './styles/theme.js';
+import baseTheme from './styles/theme'; 
 import AppShellComponent from './components/AppShellComponent.jsx';
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+
+ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <BrowserRouter>
         <SessionContextProvider>
-          {/*<ColorSchemeProvider colorScheme= {colorScheme} toggleColorScheme =  {toggleColorScheme}>*/}
-            <MantineProvider theme={{ theme }} defaultColorScheme="auto"> //color scheme value will be controlled by the user OS
+            <MantineProvider theme={baseTheme} defaultColorScheme= 'auto'> //color scheme based on user OS
               <Paper padding = "md" radious = {0} style = {{minHeight: "100vh"}}>
                 <AppShellComponent /> 
-              </Paper>
-            
+              </Paper>        
             </MantineProvider>
-          {/*</ColorSchemeProvider>*/}
         </SessionContextProvider>
       </BrowserRouter>
     </React.StrictMode>
-  )
+);
+

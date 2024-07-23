@@ -5,6 +5,7 @@ import classes from '../styles/App.module.css';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import App from "../App";
+import ThemedButton from './ThemedButtonExample';
 
 const AppShellComponent= ()=> {
  
@@ -20,7 +21,7 @@ const AppShellComponent= ()=> {
       >
         <AppShell.Header zIndex={200}>{<Header />}</AppShell.Header>
         <AppShell.Navbar zIndex={100}>{<Navbar />}</AppShell.Navbar>
-        <AppShell.Main className={classes.app}> 
+        <AppShell.Main className={classes.app}>
           <App />
         </AppShell.Main>
         <AppShell.Footer zIndex={200}>{<Footer />}</AppShell.Footer>

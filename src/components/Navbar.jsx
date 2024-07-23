@@ -10,13 +10,6 @@ const Navbar = () => {
             <Link to="#" className={classes.navLink}>Home</Link>
             <Link to="#featured" className={classes.navLink}>Featured</Link>
             <Link to="/#about" className={classes.navLink}>About Us</Link>
-            <label>Theme:
-              <select id="colorTheme">
-                <option value="💻">system</option>
-                <option value="☀️">lightmode</option>
-                <option value="🌑">darkmode</option>
-              </select>
-            </label>
             {/* 
             <Select id="#theme"
               label="Chose color scheme"

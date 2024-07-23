@@ -2,7 +2,6 @@
   .hero {
     background: url('/pathToBackgroundImg.jpg') no-repeat center center;
     background-size: cover;
-    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;

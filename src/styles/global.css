@@ -1,42 +1,8 @@
 /* this is for defining global style */
-:root {
-  --base: #333b3c ;
-  --text:#efefec; 
-}
-
-html {
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --base: #efefec;
-    --text: #333b3c; 
-
-  }
-}
-
-/* CSS-only solution using :has() */
-
-:root:has(#colorTheme [value="☀️"]:checked) {
-color-scheme: light;
---base: #efefec;
---text: #333b3c;
-}
-
-:root:has(#colorTheme [value="🌑"]:checked) {
-color-scheme: dark;
---base: #333b3c;
---text: #efefec;
-}
-
-  
 body {
     margin: 0;
     font-family: system-ui;
     font-size: 1rem;
-    color: var(--text);
-    background-color: var(--base);
   }
   
 * {

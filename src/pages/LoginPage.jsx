@@ -1,15 +1,19 @@
 import { useContext, useState } from 'react'
 import { SessionContext } from '../contexts/SessionContext'
+import { Container, Box, Title, Button, PasswordInput, TextInput } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const { setToken } = useContext(SessionContext)
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = async event => {
+const handleSubmit = async event => {
     event.preventDefault()
-    const payload = { username, password }
+    const payload = formData
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
         method: 'POST',
@@ -28,25 +32,46 @@ const LoginPage = () => {
     }
   }
 
-  return (
+// toDo: move handleChange and handleCancel into helper functions
+const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({...prevData, [name]: value,}));
+  };
+
+  const handleCancel = () => {
+    navigate("/");
+  };
+
+return (
     <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username
-          <input value={username} onChange={event => setUsername(event.target.value)} required />
-        </label>
-        <label>
-          Password
-          <input
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-            required
-            type='password'
-          />
-        </label>
-        <button type='submit'>Log In</button>
-      </form>
+    <Container size="xs" >
+      <Title align="center" size="xl" weight={700} mb="xl">
+        Sign In
+      </Title>
+      <Box component="form" onSubmit={handleSubmit}>
+        <TextInput
+          label="Username"
+          name="username"
+          placeholder="Enter your username"
+          required
+          value={formData.username}
+          onChange={handleChange}
+        />
+        <Space h="sm" />
+        <PasswordInput
+          label="Password"
+          name="password"
+          placeholder="Enter your password"
+          required
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <Group position="center">
+          <Button type="submit" color="blue"> Login </Button>
+          <Button type="button" onClick={handleCancel}> Cancel </Button>
+        </Group>
+      </Box>
+    </Container>
     </>
   )
 }

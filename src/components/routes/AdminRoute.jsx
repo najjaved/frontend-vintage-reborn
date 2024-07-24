@@ -8,7 +8,7 @@ const AdminRoute = ({ children }) => {
   const { user, isLoading } = useContext(SessionContext);
 
   if (isLoading) {
-    return <Title>Loading...</Title>
+    return <Title align="center" size="xl" mb="lg">Loading...</Title>
   }
 
   if (!user || user.role !== 'admin') {

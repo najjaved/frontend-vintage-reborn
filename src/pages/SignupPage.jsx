@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   TextInput,
   PasswordInput,
-  Title,
   Group,
   Select,
   Button,
@@ -12,6 +11,7 @@ import {
   Divider,
   Textarea,
   useMantineTheme,
+  Modal,
 } from '@mantine/core';
 
 
@@ -25,8 +25,7 @@ const resetInitialStates = () => ({
 
 })
 
-//toDO: make it sign up form  pop-up instead of a new page
-const SignupPage = () => {
+const SignupPage = ({isOpen, onClose}) => {
 
   const theme = useMantineTheme();
   const navigate = useNavigate();
@@ -54,6 +53,7 @@ const handleSubmit = async event => {
       const userData = await response.json()
       console.log("User data: ", userData)
       setFormData(resetInitialStates()) // reinitialize entries after submitting form
+      onClose(); // Close the form on successful signup
       navigate("/"); // navigate to ??
     }
   } catch (error) {
@@ -62,12 +62,12 @@ const handleSubmit = async event => {
 }
 
 const handleCancel = () => {
+  onClose(); //form closes on cancel
   navigate("/");
 };
 
   return (
-    <>
-      <Title align="center" size="xl" mb="lg" > Sign Up </Title>
+    <Modal opened={isOpen} onClose={onClose} title='Sign Up'>
       <form onSubmit={handleSubmit}>
         <Grid grow gutter="xl"> {/*grow prop to fill the remaining space in the row, gutter prop to control spacing between columns*/}
           <Grid.Col span={6}> {/* 50% of row width */}
@@ -146,7 +146,7 @@ const handleCancel = () => {
           <Button type="button" size="md" radius="md" onClick={handleCancel}> Cancel </Button>
         </Group>
         </form>
-    </>
+    </Modal>
   )
 }
 

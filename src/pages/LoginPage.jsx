@@ -2,18 +2,18 @@ import { useContext, useState } from 'react'
 import { SessionContext } from '../contexts/SessionContext'
 import { useNavigate } from "react-router-dom";
 import { 
-  Container, 
-  Box, Title, 
+  Box, 
   Button, 
   PasswordInput, 
   TextInput, 
   Space, 
   Group,
-  Divider 
+  Divider, 
+  Modal
 } from "@mantine/core";
 
 
-const LoginPage = () => {
+const LoginPage = ({isOpen, onClose}) => {
   const { setToken } = useContext(SessionContext)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -36,6 +36,7 @@ const handleSubmit = async event => {
         const data = await response.json()
         console.log(data)
         setToken(data.token) // object with token property, check how is it named on BE
+        onClose(); // Close the form on successful login
       }
     } catch (error) {
       console.log(error)
@@ -49,15 +50,13 @@ const handleChange = (event) => {
   };
 
   const handleCancel = () => {
+    onClose(); 
     navigate("/");
   };
 
 return (
     <>
-    <Container size="xs" >
-      <Title align="center" size="xl" weight={700} mb="xl">
-        Sign In
-      </Title>
+     <Modal opened={isOpen} onClose={onClose} title='Log In'>
       <Box component="form" onSubmit={handleSubmit}>
         <TextInput
           label="Username"
@@ -82,7 +81,7 @@ return (
           <Button type="button" onClick={handleCancel}> Cancel </Button>
         </Group>
       </Box>
-    </Container>
+    </Modal>
     </>
   )
 }

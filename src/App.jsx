@@ -18,8 +18,6 @@ function App() {
     <Fragment>
       <Routes>
         <Route path="/" element={<HomePage />}/>
-        <Route path='/signup' element={<SignupPage />} />
-        <Route path='/login' element={<LoginPage />} />
 
         <Route path="/profile/:userId" 
               element={
@@ -46,14 +44,6 @@ function App() {
 
         <Route path='/products' element= {<AllProductsPage/>} />
         <Route path='/products/:productId' element={<h1>ProductDetailsPage</h1>}/>
-        <Route
-          path='/products/new'
-          element={
-            <PrivateRoute>
-              {<h1>New Product Form</h1>}
-            </PrivateRoute>
-          }
-        />
         <Route path="*" element={<NotFoundPage />}/>
       </Routes>
     </Fragment>  

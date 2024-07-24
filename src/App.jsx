@@ -4,9 +4,9 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRoute from './components/routes/AdminRoute';
 import PrivateRoute from './components/routes/PrivateRoute';
-import ProfilePage from './pages/ProfilePage'
+import ProfilePage from './pages/member/ProfilePage'
 import AllProductsPage from './pages/AllProductsPage';
-import CartPage from './pages/CartPage';
+import CartPage from './pages/member/CartPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';

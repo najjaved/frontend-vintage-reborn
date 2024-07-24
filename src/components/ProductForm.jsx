@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, TextInput, NumberInput, Select, Textarea, Button, Group, Divider, Grid, Space } from "@mantine/core";
-import { SessionContext } from "../contexts/SessionContext"; // Adjusted import based on your actual context file
+import { SessionContext } from "../contexts/SessionContext";
 
 const resetInitialStates = () => ({
   category: "",
@@ -13,12 +13,15 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-  const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  const { getAllProducts, token } = useContext(SessionContext);
   const [product, setProduct] = useState(resetInitialStates());
 
   useEffect(() => {
     if (initialProduct) {
-      setProduct(initialProduct);
+      setProduct({
+        ...resetInitialStates(),
+        ...initialProduct
+      });
     } else {
       setProduct(resetInitialStates());
     }
@@ -37,7 +40,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
       if (response.ok) {
         await response.json();
         setProduct(resetInitialStates());
-        getAllProducts();
+        await getAllProducts(); // Ensure this is awaited
         onClose();
       }
     } catch (error) {
@@ -61,7 +64,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <Select
               label="Product Category"
               name="category"
-              value={product.category}
+              value={product.category || ""}
               onChange={(value) => setProduct({ ...product, category: value })}
               data={[
                 { value: "Samsung", label: "Samsung" },
@@ -76,7 +79,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <TextInput
               label="Name"
               name="name"
-              value={product.name}
+              value={product.name || ""}
               onChange={handleChange}
               style={{ width: "100%" }}
             />
@@ -84,7 +87,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <NumberInput
               label="Price"
               name="price"
-              value={product.price}
+              value={product.price || 0}
               onChange={(value) => setProduct({ ...product, price: value })}
               style={{ width: "100%" }}
               hideControls
@@ -93,7 +96,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <Select
               label="Discount"
               name="discount"
-              value={product.discount.toString()}
+              value={product.discount.toString() || "0"}
               onChange={(value) => setProduct({ ...product, discount: parseFloat(value) })}
               data={[
                 { value: "0", label: "0%" },
@@ -117,7 +120,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <TextInput
               label="Product Image URL"
               name="images"
-              value={product.images[0]}
+              value={product.images[0] || ""}
               onChange={handleChange}
               style={{ width: "100%" }}
             />
@@ -134,7 +137,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <Textarea
               label="Description"
               name="description"
-              value={product.description}
+              value={product.description || ""}
               onChange={handleChange}
               rows={5}
               cols={25}
@@ -144,7 +147,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <NumberInput
               label="Stock"
               name="stock"
-              value={product.stock}
+              value={product.stock || 0}
               onChange={(value) => setProduct({ ...product, stock: value })}
               style={{ width: "100%" }}
               hideControls

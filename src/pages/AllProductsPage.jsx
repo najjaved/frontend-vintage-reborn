@@ -1,37 +1,30 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Button } from '@mantine/core';
+import ProductsComponent from '../components/ProductsComponent';
+import ProductForm from '../components/ProductForm';
 
 const AllProductsPage = () => {
-  const [products, setProducts] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
-  const getAllProducts = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`)
-      if (response.ok) {
-        const productsData = await response.json()
-        setProducts(productsData)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const handleOpenModal = (product) => {
+    setEditingProduct(product);
+    setIsModalOpen(true);
+  };
 
-  useEffect(() => {
-    getAllProducts()
-  }, [])
+  const handleCloseModal = () => {
+    setEditingProduct(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <>
-      <h1>All products</h1> {/*toDO: add skeleton as placeholder while data is loading */}
-      <ul>
-        {products.map(currentProduct => (
-          <li key={currentProduct._id}>
-            <Link to={`/recipes/${currentProduct._id}`}>{currentProduct.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <h1>All Products</h1>
+      <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
+      <ProductsComponent onEdit={handleOpenModal} />
+      <ProductForm isOpen={isModalOpen} onClose={handleCloseModal} product={editingProduct} />
     </>
-  )
-}
+  );
+};
 
 export default AllProductsPage;

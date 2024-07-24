@@ -1,37 +1,37 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react';
+import { Button } from '@mantine/core';
+import ProductsComponent from '../components/ProductsComponent';
+import ProductForm from '../components/ProductForm';
+import { SessionContext } from '../contexts/SessionContext';
 
 const AllProductsPage = () => {
-  const [products, setProducts] = useState([])
+  const { isAuthenticated } = useContext(SessionContext)
 
-  const getAllProducts = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`)
-      if (response.ok) {
-        const productsData = await response.json()
-        setProducts(productsData)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
 
-  useEffect(() => {
-    getAllProducts()
-  }, [])
+  const handleOpenModal = (product) => {
+    setEditingProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setEditingProduct(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <>
-      <h1>All products</h1> {/*toDO: add skeleton as placeholder while data is loading */}
-      <ul>
-        {products.map(currentProduct => (
-          <li key={currentProduct._id}>
-            <Link to={`/recipes/${currentProduct._id}`}>{currentProduct.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <h1>All Products</h1>
+      {/*add product button shown if user is authenticated, same should be for Edit button*/}
+      {isAuthenticated && (
+                <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
+      )}
+
+      <ProductsComponent onEdit={handleOpenModal} />
+      {isModalOpen &&  <ProductForm isOpen={isModalOpen} onClose={handleCloseModal} product={editingProduct} />}
     </>
-  )
-}
+  );
+};
 
 export default AllProductsPage;

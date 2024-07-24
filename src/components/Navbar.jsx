@@ -48,11 +48,8 @@ const Navbar = () => {
 
             {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}
             & await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)*/}
-            {isAuthenticated && (
-              <>        
-                {/*<Button component= {Link} to='/products/new'> Add a new product</Button> this button on ApplProductsPage, add product only if user is authenticated*/}
+            {isAuthenticated && (     
                 <Button type='button' onClick={handleLogout}> Logout </Button>
-              </>
             )}
 
             {/* 

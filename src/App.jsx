@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
-import AdminRoute from './components/AdminRoute';
-import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/routes/AdminRoute';
+import PrivateRoute from './components/routes/PrivateRoute';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage'

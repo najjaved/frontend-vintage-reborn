@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { SessionContext } from '../contexts/SessionContext'
+import { SessionContext } from '../../contexts/SessionContext'
 import { Navigate } from 'react-router-dom'
 
 const PrivateRoute = ({ children }) => {

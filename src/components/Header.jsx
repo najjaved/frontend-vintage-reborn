@@ -9,9 +9,9 @@ import LightDarkModeButton from './LightDarkModeButton';
 const Header = () => {
   return (
     <Box className={classes.header}>
-      <Text className={classes.logo}>Logo</Text>
-      <Title order={2} className={classes.title}>Our Store Name</Title>
-      <LightDarkModeButton/>
+      <Text className={classes.logo}><img src='./src/assets/images/Reborn.png' alt='Reborn Logo' /></Text>
+      <Title order={2} className={classes.title}>Home</Title>
+      <LightDarkModeButton />
       {/*
       <Link to="/cart">
         <img
@@ -20,8 +20,9 @@ const Header = () => {
             alt="cart icon"
         />
      </Link> */}
-     <Button className={classes.cartButton}>Cart</Button>
-     
+      <Button className={classes.signupButton}>Signup</Button>
+      <Button className={classes.cartButton}>Cart</Button>
+
     </Box>
   );
 };

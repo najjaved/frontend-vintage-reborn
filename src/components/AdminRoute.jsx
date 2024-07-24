@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import { Navigate } from "react-router-dom";
 
+//toDO: check user role
 const AdminRoute = ({ children }) => {
   const { isAdmin, isLoading } = useContext(SessionContext);
 

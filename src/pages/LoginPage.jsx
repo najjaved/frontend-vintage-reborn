@@ -1,7 +1,17 @@
 import { useContext, useState } from 'react'
 import { SessionContext } from '../contexts/SessionContext'
-import { Container, Box, Title, Button, PasswordInput, TextInput } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
+import { 
+  Container, 
+  Box, Title, 
+  Button, 
+  PasswordInput, 
+  TextInput, 
+  Space, 
+  Group,
+  Divider 
+} from "@mantine/core";
+
 
 const LoginPage = () => {
   const { setToken } = useContext(SessionContext)
@@ -25,7 +35,7 @@ const handleSubmit = async event => {
       if (response.ok) {
         const data = await response.json()
         console.log(data)
-        setToken(data.token)
+        setToken(data.token) // object with token property, check how is it named on BE
       }
     } catch (error) {
       console.log(error)
@@ -66,6 +76,7 @@ return (
           value={formData.password}
           onChange={handleChange}
         />
+        <Divider my="lg" />
         <Group position="center">
           <Button type="submit" color="blue"> Login </Button>
           <Button type="button" onClick={handleCancel}> Cancel </Button>

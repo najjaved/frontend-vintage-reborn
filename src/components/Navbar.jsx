@@ -4,8 +4,8 @@ import { Container, Stack, Select, Button, Text } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext'
-import SignupPage from '../pages/SignupPage';
-import LoginPage from '../pages/LoginPage';
+import SignupForm from './SignupForm';
+import LoginForm from './LoginForm';
 
 const Navbar = () => {
   //const [user, setUser] = useState({}) //toDo:put in context
@@ -35,7 +35,7 @@ const Navbar = () => {
           <Stack  position="center" spacing="sm" direction="column">
             <Link to="/" className={classes.navLink}>Home</Link>
             <Link to="#featured" className={classes.navLink}>Featured</Link>
-            <Link to="/#about" className={classes.navLink}>About</Link>
+            <Link to="/about" className={classes.navLink}>About</Link>
 
             {!isAuthenticated && (
               <>        
@@ -43,14 +43,14 @@ const Navbar = () => {
                 <Button onClick={handleOpenLogin}>Login Test</Button>              
               </>
             )}
-            {isSignUpOpen && <SignupPage isOpen={isSignUpOpen} onClose={handleCloseModal} />}
-            {isLoginOpen && <LoginPage isOpen={isLoginOpen} onClose={handleCloseLogin} />}
+            {isSignUpOpen && <SignupForm isOpen={isSignUpOpen} onClose={handleCloseModal} />}
+            {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
 
             {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}
             & await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)*/}
             {isAuthenticated && (
               <>        
-                {/*<Button component= {Link} to='/products/new'> Add a new product</Button>*/}
+                {/*<Button component= {Link} to='/products/new'> Add a new product</Button> this button on ApplProductsPage, add product only if user is authenticated*/}
                 <Button type='button' onClick={handleLogout}> Logout </Button>
               </>
             )}

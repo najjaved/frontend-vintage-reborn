@@ -13,7 +13,7 @@ import {
 } from "@mantine/core";
 
 
-const LoginPage = ({isOpen, onClose}) => {
+const LoginForm = ({isOpen, onClose}) => {
   const { setToken } = useContext(SessionContext)
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -86,4 +86,4 @@ return (
   )
 }
 
-export default LoginPage;
+export default LoginForm;

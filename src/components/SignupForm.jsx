@@ -25,7 +25,7 @@ const resetInitialStates = () => ({
 
 })
 
-const SignupPage = ({isOpen, onClose}) => {
+const SignupForm = ({isOpen, onClose}) => {
 
   const theme = useMantineTheme();
   const navigate = useNavigate();
@@ -150,4 +150,4 @@ const handleCancel = () => {
   )
 }
 
-export default SignupPage;
+export default SignupForm;

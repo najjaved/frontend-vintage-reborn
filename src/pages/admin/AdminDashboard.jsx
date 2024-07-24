@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { SessionContext } from "../contexts/SessionContext";
 import { Button } from "@mantine/core";
+import { SessionContext } from "../../contexts/SessionContext";
 
 const AdminDashboard = () => {
   const { currentUser, fetchWithToken } = useContext(SessionContext);

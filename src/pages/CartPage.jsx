@@ -1,5 +1,7 @@
+import { Title } from "@mantine/core";
+
 const CartPage = () => {
-    return ( <h1> This is cart page</h1> );
+    return ( <Title> This is cart page</Title> );
 }
  
 export default CartPage;

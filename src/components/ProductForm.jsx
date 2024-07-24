@@ -13,7 +13,7 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-  const { getAllProducts } = useContext(SessionContext); // Use your actual context
+  const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
   const [product, setProduct] = useState(resetInitialStates());
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
     try {
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
         body: JSON.stringify(product),
       });
       if (response.ok) {

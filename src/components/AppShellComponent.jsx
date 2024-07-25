@@ -5,7 +5,6 @@ import classes from '../styles/App.module.css';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import App from "../App";
-import ThemedButton from './ThemedButtonExample';
 
 const AppShellComponent= ()=> {
  

@@ -27,7 +27,7 @@ const MainContent = () => {
           <Text>{data.description}</Text>
         </Stack>
       ) : (
-        <Stack>
+        <Stack gap={10}>
           <Skeleton height={40} animate={true} />
           <Skeleton height={20} width="80%" animate={true} />
           <Skeleton height={20} width="60%" animate={true} />

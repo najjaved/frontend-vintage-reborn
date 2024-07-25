@@ -13,14 +13,10 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-<<<<<<< HEAD
-  const { getAllProducts, token } = useContext(SessionContext);
-=======
   const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
   /* toDo use fetchWithToken from context: 
   const { fetchWithToken } = useContext(SessionContext)
   */
->>>>>>> fe-Najma
   const [product, setProduct] = useState(resetInitialStates());
 
   useEffect(() => {

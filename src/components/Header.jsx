@@ -14,31 +14,13 @@ const Header = () => {
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
       <LightDarkModeButton/>
-      {/*
-      <Link to="/cart">
-        <img
-            className="cart"
-            src={'cart}
-            alt="cart icon"
-        />
-     </Link> */}
-     <Link to="/cart" > {/* Set the desired path here */}
-      <Button
-        variant="outline"
-        color="teal"
-        size="xl"
-        radius="md"
-        
-      >
+     <Link to="/cart" > 
         <Image
-          src={cart} // Set the path to your image here
-          alt="Shop Now"
-          width={24} // Set the width of the image
-          height={24} // Set the height of the image
-          
+          src={cart} 
+          alt="Shopping cart"
+          width={24} 
+          height={24}        
         />
-        Cart
-      </Button>
     </Link>
      
     </Box>

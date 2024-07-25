@@ -14,6 +14,9 @@ const resetInitialStates = () => ({
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
   const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  /* toDo use fetchWithToken from context: 
+  const { fetchWithToken } = useContext(SessionContext)
+  */
   const [product, setProduct] = useState(resetInitialStates());
 
   useEffect(() => {
@@ -26,6 +29,11 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    /* OR amke own functions for specific endpoints if different behaviour is expected
+    const payload = product
+    fetchWithToken(`/products${initialProduct ? `/${initialProduct._id}` : ""}`, {initialProduct ? "PUT" : "POST"}, payload)
+    */
+
     const url = `http://localhost:5006/api/products${initialProduct ? `/${initialProduct._id}` : ""}`;
     const method = initialProduct ? "PUT" : "POST";
     try {

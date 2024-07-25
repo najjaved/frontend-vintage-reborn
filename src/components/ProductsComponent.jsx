@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Link } from 'react-router-dom';
+import { SessionContext } from '../contexts/SessionContext';
 
-const ProductsComponent = () => {
+const ProductsComponent = ({ onEdit }) => {
+  const { token } = useContext(SessionContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,6 +25,23 @@ const ProductsComponent = () => {
 
     fetchProducts(); // Call the fetch function
   }, []);
+
+  const handleDelete = async (productId) => {
+    const url = `http://localhost:5006/api/products/${productId}`;
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` },
+      });
+      if (response.ok) {
+        setProducts(products.filter(product => product._id !== productId)); // Remove the deleted product from state
+      } else {
+        console.error('Failed to delete product, response status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error deleting product', error);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -47,6 +67,15 @@ const ProductsComponent = () => {
             <Text weight={700} size="lg">{product.price}</Text>
             <Button variant="light" color="blue">
               Add to Cart
+            </Button>
+            <Button variant="light" color="blue" onClick={() => onEdit(product)}>
+              Edit
+            </Button>
+            <Button variant="light" color="red" onClick={() => handleDelete(product._id)}>
+              Delete
+            </Button>
+            <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
+              View Details
             </Button>
           </Group>
         </Card>

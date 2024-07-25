@@ -1,7 +1,17 @@
-import { Title } from "@mantine/core";
+import React from 'react';
+import { Container, Title, Space } from '@mantine/core';
+import ProductDetails from '../components/ProductDetails';
 
 const ProductDetailsPage = () => {
-    return ( <Title> here detailed of selected product</Title> );
-}
- 
+  return (
+    <Container>
+      <Title align="center" order={1} mt="md">
+        Product Details
+      </Title>
+      <Space h="md" />
+      <ProductDetails />
+    </Container>
+  );
+};
+
 export default ProductDetailsPage;

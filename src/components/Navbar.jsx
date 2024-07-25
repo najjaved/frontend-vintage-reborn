@@ -9,7 +9,7 @@ import LoginForm from './LoginForm';
 
 const Navbar = () => {
   //const [user, setUser] = useState({}) //toDo:put in context
-  const { isAuthenticated, handleLogout } = useContext(SessionContext)
+  const { isAuthenticated, handleLogout, user } = useContext(SessionContext)
 
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -48,8 +48,12 @@ const Navbar = () => {
 
             {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}
             & await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)*/}
-            {isAuthenticated && (     
+            {isAuthenticated && (
+              <>
+                {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
+                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link>  
                 <Button type='button' onClick={handleLogout}> Logout </Button>
+              </>
             )}
 
             {/* 

@@ -3,7 +3,7 @@ import { SessionContext } from "../../contexts/SessionContext";
 import { Navigate } from "react-router-dom";
 import { Title } from "@mantine/core";
 
-//toDO: check user role
+//toDO: route to check for user roles. From verify route, get token and access userId from payload and get user role
 const AdminRoute = ({ children }) => {
   const { user, isLoading } = useContext(SessionContext);
 

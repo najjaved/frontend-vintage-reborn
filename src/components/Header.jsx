@@ -11,6 +11,7 @@ import LightDarkModeButton from './LightDarkModeButton';
 const Header = () => {
   return (
     <Box className={classes.header}>
+
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
       <LightDarkModeButton/>
@@ -23,6 +24,9 @@ const Header = () => {
         />
     </Link>
      
+
+      <Button className={classes.cartButton}>Cart</Button>
+
     </Box>
   );
 };

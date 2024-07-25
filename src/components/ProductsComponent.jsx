@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 
 const ProductsComponent = ({ onEdit }) => {
@@ -72,6 +73,9 @@ const ProductsComponent = ({ onEdit }) => {
             </Button>
             <Button variant="light" color="red" onClick={() => handleDelete(product._id)}>
               Delete
+            </Button>
+            <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
+              View Details
             </Button>
           </Group>
         </Card>

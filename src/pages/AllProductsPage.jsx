@@ -24,7 +24,7 @@ const AllProductsPage = () => {
     <>
       <h1>All Products</h1>
       {/*add product button shown if user is authenticated, same should be for Edit button*/}
-      {isAuthenticated && (
+      {/*isAuthenticated &&*/(
                 <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
       )}
 

@@ -133,9 +133,10 @@ const handleCancel = () => {
             name="role"
             value={formData.role}
             placeholder="Select your role"
-            data={['guest', 'customer', 'admin']}       
+            data={['customer', 'admin']}
+            defaultValue="customer"
+            clearable       
             onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
-            required
           />
          </Grid.Col>
         </Grid>

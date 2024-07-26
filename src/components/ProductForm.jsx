@@ -37,7 +37,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
     fetchWithToken(`/products${initialProduct ? `/${initialProduct._id}` : ""}`, {initialProduct ? "PUT" : "POST"}, payload)
     */
 
-    const url = `http://localhost:5006/api/products${initialProduct ? `/${initialProduct._id}` : ""}`;
+    const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
     const method = initialProduct ? "PUT" : "POST";
     try {
       const response = await fetch(url, {

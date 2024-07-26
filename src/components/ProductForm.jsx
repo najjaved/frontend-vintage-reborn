@@ -13,7 +13,8 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-  const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  const { getAllProducts, token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  console.log(token)
   /* toDo use fetchWithToken from context: 
   const { fetchWithToken } = useContext(SessionContext)
   */
@@ -128,14 +129,14 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <TextInput
               label="Product Image URL"
               name="images"
-              value={product.images[0] || ""}
+              value={product.images || ""}
               onChange={handleChange}
               style={{ width: "100%" }}
             />
-            {product.images.length > 0 && product.images[0] && (
+            {product.images.length > 0 && product.images && (
               <div className="image-preview">
                 <img
-                  src={product.images[0]}
+                  src={product.images}
                   alt="Product preview"
                   style={{ maxHeight: "200px", maxWidth: "100%" }}
                 />

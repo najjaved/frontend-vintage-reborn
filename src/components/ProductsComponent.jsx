@@ -52,7 +52,7 @@ const ProductsComponent = ({ onEdit }) => {
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
           <Card.Section>
-            <Image src={product.image} alt={product.name} height={160} /> {/* Using Mantine Image component */}
+            <Image src={product.images} alt={product.name} height={160} /> {/* Using Mantine Image component */}
           </Card.Section>
           <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
             <Text weight={500}>{product.name}</Text>

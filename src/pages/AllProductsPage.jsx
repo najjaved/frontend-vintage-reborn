@@ -24,12 +24,12 @@ const AllProductsPage = () => {
     <>
       <h1>All Products</h1>
       {/*add product button shown if user is authenticated, same should be for Edit button*/}
-      {/*isAuthenticated &&*/(
-                <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
+      {isAuthenticated && (
+        <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
       )}
 
       <ProductsComponent onEdit={handleOpenModal} />
-      {isModalOpen &&  <ProductForm isOpen={isModalOpen} onClose={handleCloseModal} product={editingProduct} />}
+      {isModalOpen && <ProductForm isOpen={isModalOpen} onClose={handleCloseModal} product={editingProduct} />}
     </>
   );
 };

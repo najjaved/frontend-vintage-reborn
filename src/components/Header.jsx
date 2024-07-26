@@ -14,18 +14,15 @@ const Header = () => {
 
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
-      <LightDarkModeButton/>
-     <Link to="/cart" > 
+      <LightDarkModeButton />
+      <Link to="/cart" >
         <Image
-          src={cart} 
+          src={cart}
           alt="Shopping cart"
-          width={24} 
-          height={24}        
+          width={24}
+          height={24}
         />
-    </Link>
-     
-
-      <Button className={classes.cartButton}>Cart</Button>
+      </Link>
 
     </Box>
   );

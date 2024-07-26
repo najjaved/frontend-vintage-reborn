@@ -9,7 +9,7 @@ const resetInitialStates = () => ({
   price: 0,
   discount: 0,
   stock: 0,
-  images: [""]
+  images:""
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
@@ -58,10 +58,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setProduct((prevProduct) => ({
-      ...prevProduct,
-      [name]: name === "images" ? [value] : value,
-    }));
+    setProduct((prevData) => ({...prevData, [name]: value,}));
   };
 
   return (
@@ -75,10 +72,10 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
               value={product.category || ""}
               onChange={(value) => setProduct({ ...product, category: value })}
               data={[
-                { value: "Samsung", label: "Samsung" },
-                { value: "Apple", label: "Apple" },
-                { value: "Huawei", label: "Huawei" },
-                { value: "Nokia", label: "Nokia" },
+                { value: "Electronics", label: "Electronics" },
+                { value: "Clothing", label: "Clothing" },
+                { value: "Shoes", label: "Shoes" },
+                { value: "Home", label: "Home" },
               ]}
               placeholder="Select category"
               style={{ width: "100%" }}
@@ -128,14 +125,14 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
             <TextInput
               label="Product Image URL"
               name="images"
-              value={product.images[0] || ""}
+              value={product.images || ""}
               onChange={handleChange}
               style={{ width: "100%" }}
             />
-            {product.images.length > 0 && product.images[0] && (
+            {product.images.length > 0 && product.images && (
               <div className="image-preview">
                 <img
-                  src={product.images[0]}
+                  src={product.images}
                   alt="Product preview"
                   style={{ maxHeight: "200px", maxWidth: "100%" }}
                 />

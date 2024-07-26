@@ -132,7 +132,7 @@ const SignupForm = ({ isOpen, onClose }) => {
               name="role"
               value={formData.role}
               placeholder="Select your role"
-              data={['admin', 'user', 'guest']}
+              data={['admin', 'customer', 'guest']}
               onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
               required
             />

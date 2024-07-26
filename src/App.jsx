@@ -14,11 +14,9 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageUsersPage from './pages/admin/ManageUsersPage';
 import ManageOdersPage from './pages/admin/ManageOdersPage';
 import ManageListingsPage from './pages/admin/ManageListingsPage';
-import  SessionContextProvider  from './contexts/SessionContext';
 
 function App() {
   return (
-    <SessionContextProvider>
       <Fragment>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -70,7 +68,6 @@ function App() {
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </Fragment>
-    </SessionContextProvider>
   );
 }
 

@@ -133,7 +133,7 @@ const handleCancel = () => {
             name="role"
             value={formData.role}
             placeholder="Select your role"
-            data={['admin', 'user', 'guest']}       
+            data={['guest', 'customer', 'admin']}       
             onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
             required
           />

@@ -15,7 +15,10 @@ const Header = () => {
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
       <LightDarkModeButton/>
-     <Link to="/cart" > 
+      <Link to="/cart" >
+        <Button> CartButton</Button>  
+      </Link>
+     <Link to="/cart" >
         <Image
           src={cart} 
           alt="Shopping cart"

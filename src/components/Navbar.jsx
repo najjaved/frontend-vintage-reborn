@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react'
-import { Container, Stack, Select, Button, Text } from '@mantine/core';
+import { Container, Stack, Select, Button, Text, Divider } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext'
@@ -45,13 +45,15 @@ const Navbar = () => {
             )}
             {isSignUpOpen && <SignupForm isOpen={isSignUpOpen} onClose={handleCloseModal} />}
             {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
-
+            <Divider/>
+            <Text>to Header:</Text>
             {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}
             & await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)*/}
             {isAuthenticated && (
               <>
                 {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
-                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link>  
+                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link> 
+                <Link to= "/profile/orders" className={classes.navLink}> View Orders </Link>   
                 <Button type='button' onClick={handleLogout}> Logout </Button>
               </>
             )}

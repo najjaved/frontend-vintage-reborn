@@ -12,9 +12,11 @@ const Header = () => {
   return (
     <Box className={classes.header}>
 
+
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
       <LightDarkModeButton/>
+     <Link to="/profile/cart" >
      <Link to="/profile/cart" >
         <Image
           src={cart} 
@@ -23,6 +25,7 @@ const Header = () => {
           height={24}        
         />
     </Link>
+
 
     </Box>
   );

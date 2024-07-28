@@ -6,29 +6,12 @@ import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext'
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import LightDarkModeButton from './LightDarkModeButton';
 
 const Navbar = () => {
   //const [user, setUser] = useState({}) //toDo:put in context
-  const { isAuthenticated, handleLogout, user } = useContext(SessionContext)
-
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsSignUpOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsSignUpOpen(false);
-  };
-
-  const handleOpenLogin = () => {
-    setIsLoginOpen(true);
-  };
-
-  const handleCloseLogin = () => {
-    setIsLoginOpen(false);
-  };
+ 
+ 
 
   return (
       <Container className={classes.navbar}>
@@ -36,26 +19,9 @@ const Navbar = () => {
             <Link to="/" className={classes.navLink}>Home</Link>
             <Link to="#featured" className={classes.navLink}>Featured</Link>
             <Link to="/about" className={classes.navLink}>About</Link>
+            <LightDarkModeButton/>
 
-            {!isAuthenticated && (
-              <>        
-                <Button onClick={handleOpenModal}>Signup Test</Button>
-                <Button onClick={handleOpenLogin}>Login Test</Button>              
-              </>
-            )}
-            {isSignUpOpen && <SignupForm isOpen={isSignUpOpen} onClose={handleCloseModal} />}
-            {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
-
-            {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}
-            & await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)*/}
-            {isAuthenticated && (
-              <>
-                {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
-                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link>  
-                <Button type='button' onClick={handleLogout}> Logout </Button>
-              </>
-            )}
-
+        
             {/* 
             <Select id="#theme"
               label="Chose color scheme"

@@ -27,7 +27,7 @@ const SessionContextProvider = ({ children }) => {
         setIsAuthenticated(true);
 
         // get userId and role
-        const tokenPayload = await response.json();
+        const {tokenPayload} = await response.json();
         console.log("token payload after token verification: ", tokenPayload);
         setUser(tokenPayload);
         if (tokenPayload.role === "admin") {

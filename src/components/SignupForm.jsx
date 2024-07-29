@@ -14,57 +14,56 @@ import {
   Modal,
 } from '@mantine/core';
 
-
 const resetInitialStates = () => ({
-    username: '',
-    password: '',
-    email: '',
-    address: '',
-    phone: '',
-    role: 'user',
+  username: '',
+  password: '',
+  email: '',
+  address: '',
+  phone: '',
+  role: 'user',
 
 })
 
-const SignupForm = ({isOpen, onClose}) => {
+const SignupForm = ({ isOpen, onClose }) => {
 
   const theme = useMantineTheme();
   const navigate = useNavigate();
   const [formData, setFormData] = useState(resetInitialStates);
 
-  
-const handleChange = (event) => {
+
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({...prevData, [name]: value,}));
+    setFormData((prevData) => ({ ...prevData, [name]: value, }));
   };
 
 
-const handleSubmit = async event => {
-  event.preventDefault()
-  const payload = formData;
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-    if (response.ok) {
-      const userData = await response.json()
-      console.log("User data: ", userData)
-      setFormData(resetInitialStates()) // reinitialize entries after submitting form
-      onClose(); // Close the form on successful signup
-      navigate("/"); // navigate to ??
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const payload = formData;
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      if (response.ok) {
+        const userData = await response.json()
+        console.log("User data: ", userData)
+        setFormData(resetInitialStates()) // reinitialize entries after submitting form
+        onClose(); // Close the form on successful signup
+        navigate("/"); // navigate to ??
+      }
+    } catch (error) {
+      console.log(error)
     }
-  } catch (error) {
-    console.log(error)
   }
-}
 
-const handleCancel = () => {
-  onClose(); //form closes on cancel
-  navigate("/");
-};
+  const handleCancel = () => {
+    onClose(); //form closes on cancel
+    navigate("/");
+  };
 
   return (
     <Modal opened={isOpen} onClose={onClose} title='Sign Up'>
@@ -78,7 +77,7 @@ const handleCancel = () => {
               placeholder="Enter your username"
               onChange={handleChange}
               required
-              style={{ marginBottom: theme.spacing.sm, }}       
+              style={{ marginBottom: theme.spacing.sm, }}
             />
             <Space h="md" />
 
@@ -89,7 +88,7 @@ const handleCancel = () => {
               placeholder="Enter your password"
               onChange={handleChange}
               required
-              type='password'       
+              type='password'
             />
             <Space h="md" />
 
@@ -100,44 +99,45 @@ const handleCancel = () => {
               placeholder="Enter your email"
               onChange={handleChange}
               required
-              type='email'       
+              type='email'
             />
             <Space h="md" />
-        </Grid.Col>
+          </Grid.Col>
 
-        <Grid.Col span={6}>
-          <Textarea
-            label="Address"
-            name="address"
-            value={formData.address}
-            placeholder="Enter your address"
-            onChange={handleChange}
-            required
-            rows={5}
-            cols={25}      
-          />
-          <Space h="md" />
+          <Grid.Col span={6}>
+            <Textarea
+              label="Address"
+              name="address"
+              value={formData.address}
+              placeholder="Enter your address"
+              onChange={handleChange}
+              required
+              rows={5}
+              cols={25}
+            />
+            <Space h="md" />
 
-          <TextInput
-            label="Phone"
-            name="phone"
-            value={formData.phone}
-            placeholder="Enter your phone number"
-            onChange={handleChange}
-            type="tel"  
-          />
-          <Space h="md" />
+            <TextInput
+              label="Phone"
+              name="phone"
+              value={formData.phone}
+              placeholder="Enter your phone number"
+              onChange={handleChange}
+              type="tel"
+            />
+            <Space h="md" />
 
-          <Select
-            label="Role"
-            name="role"
-            value={formData.role}
-            placeholder="Select your role"
-            data={['guest', 'customer', 'admin']}       
-            onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
-            required
-          />
-         </Grid.Col>
+            <Select
+              label="Role"
+              name="role"
+              value={formData.role}
+              placeholder="Select your role"
+              data={['customer', 'admin']}
+              defaultValue="customer"
+              clearable
+              onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
+            />
+          </Grid.Col>
         </Grid>
         <Divider my="lg" />
 
@@ -145,7 +145,7 @@ const handleCancel = () => {
           <Button type='submit' size="md" radius="md"> Register </Button>
           <Button type="button" size="md" radius="md" onClick={handleCancel}> Cancel </Button>
         </Group>
-        </form>
+      </form>
     </Modal>
   )
 }

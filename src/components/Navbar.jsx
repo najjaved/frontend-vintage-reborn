@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { Container, Stack, Button, Image } from '@mantine/core';
@@ -8,6 +9,7 @@ import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar'; // Import the SearchBar component
 import searchIcon from '../assets/images/search.png'; // Import the search icon
+
 
 const Navbar = () => {
   const { isAuthenticated } = useContext(SessionContext);
@@ -32,6 +34,7 @@ const Navbar = () => {
   }, []);
 
   return (
+
     <Container className={classes.navbar}>
       <Stack position="center" spacing="sm" direction="column">
         <Link to="/" className={classes.navLink}>Home</Link>
@@ -41,6 +44,7 @@ const Navbar = () => {
         <SearchBar products={products} icon={searchIcon} /> {/* Add the SearchBar component */}
       </Stack>
     </Container>
+
   );
 };
 

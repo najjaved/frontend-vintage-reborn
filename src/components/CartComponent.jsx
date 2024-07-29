@@ -1,20 +1,17 @@
 import React from 'react';
 import { Card, Text, Button, Group, Container, Title } from '@mantine/core';
 
-const CartComponent = () => {
-  // Initialize the cart state and logic here when functionality is added
+
+const CartComponent = ({product}) => {
 
   return (
     <Container>
-      <Title order={2} align="center" my="md">
-        Your Cart
-      </Title>
       <Card shadow="sm" padding="lg" mb="md">
         <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
           <Text weight={500}>Product Name</Text>
           <Text>$0.00</Text>
         </Group>
-        <Text size="sm" color="dimmed">
+        <Text size="sm" c="dimmed">
           Product description goes here.
         </Text>
         <Group position="apart" style={{ marginTop: '1rem' }}>

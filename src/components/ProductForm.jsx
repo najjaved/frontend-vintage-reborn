@@ -13,7 +13,8 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-  const { getAllProducts,token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  const { getAllProducts, token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
+  console.log(token)
   /* toDo use fetchWithToken from context: 
   const { fetchWithToken } = useContext(SessionContext)
   */
@@ -37,7 +38,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
     fetchWithToken(`/products${initialProduct ? `/${initialProduct._id}` : ""}`, {initialProduct ? "PUT" : "POST"}, payload)
     */
 
-    const url = `http://localhost:5006/api/products${initialProduct ? `/${initialProduct._id}` : ""}`;
+    const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
     const method = initialProduct ? "PUT" : "POST";
     try {
       const response = await fetch(url, {
@@ -66,26 +67,20 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
       <form onSubmit={handleSubmit}>
         <Grid>
           <Grid.Col span={6}>
-            <TextInput
-             label="Catogory"
-             name="category"
-             value={product.category || ""}
-             onChange={handleChange}
-             style={{ width: "100%" }}/>
-          { /* <Select
+            <Select
               label="Product Category"
               name="category"
               value={product.category || ""}
               onChange={(value) => setProduct({ ...product, category: value })}
               data={[
-                { value: "Samsung", label: "Samsung" },
-                { value: "Apple", label: "Apple" },
-                { value: "Huawei", label: "Huawei" },
-                { value: "Nokia", label: "Nokia" },
+                { value: "Electronics", label: "Electronics" },
+                { value: "Clothing", label: "Clothing" },
+                { value: "Shoes", label: "Shoes" },
+                { value: "Home", label: "Home" },
               ]}
               placeholder="Select category"
               style={{ width: "100%" }}
-            />*/}
+            />
             <Space h="md" />
             <TextInput
               label="Name"

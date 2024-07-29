@@ -7,6 +7,7 @@ const SessionContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const removeToken = () => {
     window.localStorage.removeItem('authToken');
@@ -19,9 +20,20 @@ const SessionContextProvider = ({ children }) => {
           Authorization: `Bearer ${tokenToVerify}`,
         },
       });
+
+      // if response is ok, set token and authenticate to true
       if (response.status === 200) {
         setToken(tokenToVerify);
         setIsAuthenticated(true);
+
+        // get userId and role
+        const { tokenPayload } = await response.json();
+        console.log("token payload after token verification: ", tokenPayload);
+        setUser(tokenPayload);
+        if (tokenPayload.role === "admin") {
+          setIsAdmin(true);
+        }
+
         setIsLoading(false);
       } else {
         setIsLoading(false);
@@ -35,9 +47,9 @@ const SessionContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const localToken = window.localStorage.getItem('authToken');
+    const localToken = window.localStorage.getItem('authToken'); // check local storage for token
     if (localToken) {
-      verifyToken(localToken);
+      verifyToken(localToken); // if token exists, verify token with BE
     } else {
       setIsLoading(false);
     }
@@ -46,7 +58,7 @@ const SessionContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       window.localStorage.setItem('authToken', token);
-      setIsAuthenticated(true);
+      verifyToken(token);
     }
   }, [token]);
 
@@ -65,13 +77,14 @@ const SessionContextProvider = ({ children }) => {
     }
   };
 
+  // toDo: check its purpose? dont know who added this here, incomplete
   const getAllProducts = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }, //toDo: if token necessary here?
       });
       if (response.ok) {
-        return response.json();
+        return response.json(); //why empty response?
       }
     } catch (error) {
       console.log(error);
@@ -82,11 +95,13 @@ const SessionContextProvider = ({ children }) => {
     removeToken();
     setToken();
     setIsAuthenticated(false);
+    setUser(null);
+    setIsAdmin(false);
   };
 
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, getAllProducts }}
+      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin }}
     >
       {children}
     </SessionContext.Provider>

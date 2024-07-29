@@ -132,9 +132,10 @@ const SignupForm = ({ isOpen, onClose }) => {
               name="role"
               value={formData.role}
               placeholder="Select your role"
-              data={['admin', 'customer', 'guest']}
+              data={['customer', 'admin']}
+              defaultValue="customer"
+              clearable
               onChange={(value) => setFormData((prevData) => ({ ...prevData, role: value }))}
-              required
             />
           </Grid.Col>
         </Grid>

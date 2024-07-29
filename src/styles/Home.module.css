@@ -1,5 +1,5 @@
 .hero {
-  background: url('../assets/images/2.png') center center;
+  background: url('../assets/images/2.png') center space;
   background-size: contain;
   display: flex;
   flex-direction: column;

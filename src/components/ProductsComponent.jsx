@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Space } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
+import { IconHeart } from '@tabler/icons-react';
+import { CartContext } from '../contexts/CartContext';
 
 const ProductsComponent = ({ onEdit }) => {
   const { token } = useContext(SessionContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { addToCart, cartItems } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -52,21 +56,27 @@ const ProductsComponent = ({ onEdit }) => {
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
           <Card.Section>
-            <Image src={product.image} alt={product.name} height={160} /> {/* Using Mantine Image component */}
+            <Image src={product.image} alt={product.name}
+            h={160} 
+            radius="md" 
+            fallbackSrc="https://placehold.co/600x400?text=Placeholder"
+            /> {/* w= 'auto' fit="contain" */}           
           </Card.Section>
-          <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
+          <Group position="apart" h="xl" style={{ marginBottom: 5, marginTop: 5 }}>
             <Text weight={500}>{product.name}</Text>
             <Badge color="pink" variant="light">
               {product.category}
             </Badge>
           </Group>
-          <Text size="sm" color="dimmed">
+          <Space h="md" />
+          <Text size="md" c="dimmed" align= 'left'>
             {product.description}
           </Text>
+          <Space h="xl" />
+          <Text weight={700} size="lg" align = 'left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
           <Group position="apart" style={{ marginTop: '1rem' }}>
-            <Text weight={700} size="lg">{product.price}</Text>
-            <Button variant="light" color="blue">
-              Add to Cart
+            <Button variant="light" color="blue" onClick={() => addToCart(product._id)}>
+              Add to Cart {cartItems[product._id] > 0 && <> ({cartItems[product._id]}) </>}
             </Button>
             <Button variant="light" color="blue" onClick={() => onEdit(product)}>
               Edit

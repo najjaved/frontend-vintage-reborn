@@ -4,8 +4,9 @@ import ProductsComponent from '../components/ProductsComponent';
 import ProductForm from '../components/ProductForm';
 import { SessionContext } from '../contexts/SessionContext';
 
+
 const AllProductsPage = () => {
-  const { isAuthenticated } = useContext(SessionContext)
+  const { isAuthenticated } = useContext(SessionContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);

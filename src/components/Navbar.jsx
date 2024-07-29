@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useContext } from 'react'
-import { Container, Stack, Select, Button, Text, Divider } from '@mantine/core';
+import { Container, Stack, Select, Button, Text, Divider, Anchor } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext'
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
+import { Avatar } from '@mantine/core';
 
 const Navbar = () => {
   //const [user, setUser] = useState({}) //toDo:put in context
@@ -33,7 +34,7 @@ const Navbar = () => {
   return (
       <Container className={classes.navbar}>
           <Stack  position="center" spacing="sm" direction="column">
-            <Link to="/" className={classes.navLink}>Home</Link>
+            <Anchor href ="/" underline="hover" >Home</Anchor> {/*toDo: chane other Link components to Anchor from Mantine*/}
             <Link to="#featured" className={classes.navLink}>Featured</Link>
             <Link to="/about" className={classes.navLink}>About</Link>
 
@@ -44,7 +45,7 @@ const Navbar = () => {
               </>
             )}
             {isSignUpOpen && <SignupForm isOpen={isSignUpOpen} onClose={handleCloseModal} />}
-            {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
+            {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />} {/* <Avatar src="avatar.png" alt="no image here" color="cyan" radius="xl /> */}
             <Divider/>
             <Text>to Header:</Text>
             {/*{isAuthenticated && (<Link to={`/profile/${user._id}`} className={classes.navLink}>Profile Page</Link>)}

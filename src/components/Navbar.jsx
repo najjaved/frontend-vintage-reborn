@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Stack, Select, Button, Text, Divider, Anchor } from '@mantine/core';
+import { Container, Stack } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
-import SearchBar from './SearchBar'; // Import the SearchBar component
-import searchIcon from '../assets/images/search.png'; // Import the search icon
+import SearchBar from './SearchBar'; 
+import searchIcon from '../assets/images/search.png';
 import { SessionContext } from '../contexts/SessionContext';
 import { Link } from 'react-router-dom';
 

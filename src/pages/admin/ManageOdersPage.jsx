@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../../contexts/SessionContext";
 
 const ManageOdersPage = () => {
@@ -30,10 +30,10 @@ const ManageOdersPage = () => {
         <div>
             {orders.map((order) => (
                 <ul key={order._id}>
-                    <li>UserID:{order.userId}</li>
+                    <li>UserID: {order.userId}</li>
                     <li>Name: {order.status}</li>
-                    <li>Email:{order.orderItems}</li>
-                    <li>Role:{order.totalAmount}</li>
+                    <li>Email: {order.orderItems}</li>
+                    <li>Role: {order.totalAmount}</li>
                     <li> <a href={`/user/${order.userId}/`}>View User</a> </li>
                 </ul>
             )

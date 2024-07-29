@@ -34,3 +34,26 @@ img.naj {
   width: 200px;
   border-radius: 2em;
 }
+
+div .users {
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4em;
+}
+
+ul.usersul {
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  list-style: none;
+  padding-inline-start: 0px;
+  background-color: #228be64d;
+  border-radius: 6%;
+  padding: 1.5em;
+}
+
+ul.usersul li {
+  list-style: none;
+}

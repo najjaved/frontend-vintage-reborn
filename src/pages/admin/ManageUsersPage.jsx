@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { SessionContext } from "../../contexts/SessionContext";
 
 const ManageUsersPage = () => {
 
@@ -26,13 +27,13 @@ const ManageUsersPage = () => {
     }, [])
 
 
-    return (<> <div>
+    return (<> <div className="users">
         {users.map((user) => (
-            <ul key={user._id}>
-                <li>UserID:{user._id}</li>
+            <ul key={user._id} className="usersul">
+                <li>UserID: {user._id}</li>
                 <li>Name: {user.username}</li>
-                <li>Email:{user.email}</li>
-                <li>Role:{user.role}</li>
+                <li>Email: {user.email}</li>
+                <li>Role: {user.role}</li>
                 <li> <a href={`/user/${user._id}/products`}>View Products</a> </li>
                 <li> <a href={`/user/${user._id}/orders`}>View Orders</a> </li>
             </ul>

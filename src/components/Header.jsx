@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { SessionContext } from '../contexts/SessionContext';
 import classes from '../styles/Header.module.css';
 import { Link } from 'react-router-dom';
-
 import cart from "../assets/images/cartIcon.png";
 import profileImage from '../assets/images/profile.png';
 import loggedImage from '../assets/images/logged.png'; // Import logged image
@@ -34,12 +33,10 @@ const Header = () => {
 
   return (
     <Box className={classes.header}>
-
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
-      
-      <Link to="/cart">
 
+      <Link to="/cart">
         <Image
           src={cart}
           alt="Shopping cart"
@@ -47,7 +44,6 @@ const Header = () => {
           height={24}
         />
       </Link>
-
 
       {!isAuthenticated && (
         <>
@@ -57,7 +53,6 @@ const Header = () => {
         </>
       )}
       {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
-
 
       {isAuthenticated && (
         <>
@@ -73,8 +68,9 @@ const Header = () => {
             position="right"
           >
             <Stack>
-              <Link to="/profile/userId" className={classes.navLink} onClick={handleDrawerClose}>Profile Page</Link>
-              <Button type="button" onClick={handleLogout}>Logout</Button>
+              <Link to="/profile/userId" className={classes.navLink}> Profile Page</Link>
+              <Link to="/profile/orders" className={classes.navLink}> View Orders </Link>
+              <Button type='button' onClick={handleLogout}> Logout </Button>
             </Stack>
           </Drawer>
         </>

@@ -40,7 +40,9 @@ const Navbar = () => {
         <Link to="/" className={classes.navLink}>Home</Link>
         <Link to="#featured" className={classes.navLink}>Featured</Link>
         <Link to="/about" className={classes.navLink}>About</Link>
-        <LightDarkModeButton />
+        <div className={classes.centeredItem}>
+          <LightDarkModeButton />
+        </div>
         <SearchBar products={products} icon={searchIcon} /> {/* Add the SearchBar component */}
       </Stack>
     </Container>

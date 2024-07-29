@@ -65,11 +65,11 @@ function App() {
           </AdminRoute>
         } />
 
-        <Route path="admin/products" element={
-          <AdminRoute>
-            <ManageListingsPage />
-          </AdminRoute>
-        } />
+          <Route path="/admin/products" element={
+            <AdminRoute>
+              <ManageListingsPage/>
+            </AdminRoute>
+          }/>
 
         <Route path='/products' element={<AllProductsPage />} />
         <Route path='/products/:productId' element={<ProductDetailsPage />} />

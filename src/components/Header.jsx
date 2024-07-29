@@ -35,15 +35,14 @@ const Header = () => {
     <Box className={classes.header}>
       <Text className={classes.logo}>Logo</Text>
       <Title order={2} className={classes.title}>Our Store Name</Title>
-
-      <Link to="/cart">
+     <Link to="/profile/cart" >
         <Image
           src={cart}
           alt="Shopping cart"
           width={24}
           height={24}
         />
-      </Link>
+    </Link>
 
       {!isAuthenticated && (
         <>

@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import { Container, Stack, Button, Image } from '@mantine/core';
-import { Link } from 'react-router-dom';
-import { SessionContext } from '../contexts/SessionContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { Container, Stack, Select, Button, Text, Divider, Anchor } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar'; // Import the SearchBar component
@@ -12,7 +7,7 @@ import searchIcon from '../assets/images/search.png'; // Import the search icon
 
 
 const Navbar = () => {
-  const { isAuthenticated } = useContext(SessionContext);
+  const { isAuthenticated, user } = useContext(SessionContext);
   const [products, setProducts] = useState([]);
 
   // Fetch products data
@@ -40,9 +35,24 @@ const Navbar = () => {
         <Link to="/" className={classes.navLink}>Home</Link>
         <Link to="#featured" className={classes.navLink}>Featured</Link>
         <Link to="/about" className={classes.navLink}>About</Link>
-        <div className={classes.centeredItem}>
+        <Container className={classes.centeredItem}>
           <LightDarkModeButton />
-        </div>
+        </Container>
+        {isAuthenticated && (
+              <>
+                {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
+                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link> 
+                <Link to= "/profile/orders" className={classes.navLink}> View Orders </Link>   
+                <Button type='button' onClick={handleLogout}> Logout </Button>
+              </>
+            )}
+
+            {/* 
+            <Select id="#theme"
+              label="Chose color scheme"
+              placeholder="Pick value"
+              data={['light', 'dark']}
+            /> */}
         <SearchBar products={products} icon={searchIcon} /> {/* Add the SearchBar component */}
       </Stack>
     </Container>

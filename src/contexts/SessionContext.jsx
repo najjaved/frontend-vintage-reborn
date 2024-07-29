@@ -27,7 +27,7 @@ const SessionContextProvider = ({ children }) => {
         setIsAuthenticated(true);
 
         // get userId and role
-        const { tokenPayload } = await response.json();
+        const {tokenPayload} = await response.json();
         console.log("token payload after token verification: ", tokenPayload);
         setUser(tokenPayload);
         if (tokenPayload.role === "admin") {
@@ -71,20 +71,6 @@ const SessionContextProvider = ({ children }) => {
       });
       if (response.ok) {
         return response.json();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // toDo: check its purpose? dont know who added this here, incomplete
-  const getAllProducts = async () => {
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
-        headers: { Authorization: `Bearer ${token}` }, //toDo: if token necessary here?
-      });
-      if (response.ok) {
-        return response.json(); //why empty response?
       }
     } catch (error) {
       console.log(error);

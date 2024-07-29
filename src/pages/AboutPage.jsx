@@ -1,8 +1,8 @@
-import { Title } from "@mantine/core";
+
 
 const AboutPage = () => {
     return (
-        <> <Title> The team</Title>
+        <> <h1> The team</h1>
             <div className="aboutCards">
                 <div className="santiago">
                     <h3>Santiago</h3>

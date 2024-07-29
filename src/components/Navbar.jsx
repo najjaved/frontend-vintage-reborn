@@ -4,6 +4,8 @@ import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar'; // Import the SearchBar component
 import searchIcon from '../assets/images/search.png'; // Import the search icon
+import { SessionContext } from '../contexts/SessionContext';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -42,8 +44,6 @@ const Navbar = () => {
               <>
                 {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
                 <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link> 
-                <Link to= "/profile/orders" className={classes.navLink}> View Orders </Link>   
-                <Button type='button' onClick={handleLogout}> Logout </Button>
               </>
             )}
 

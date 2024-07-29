@@ -3,7 +3,7 @@ import { createTheme } from '@mantine/core'
 
 const baseTheme = createTheme({
   colorScheme: 'light',
-  fontFamily: 'Arial, sans-serif', // font family for the entire application
+  fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', // font family for the entire application
   headings: {
     fontFamily: 'Helvetica, sans-serif',
     sizes: {

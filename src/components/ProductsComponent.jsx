@@ -56,7 +56,7 @@ const ProductsComponent = ({ onEdit }) => {
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
           <Card.Section>
-            <Image src={product.image} alt={product.name}
+            <Image src={product.images} alt={product.name}
               h={160}
               radius="md"
               fallbackSrc="https://placehold.co/600x400?text=Placeholder"

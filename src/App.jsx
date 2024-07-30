@@ -65,6 +65,12 @@ function App() {
           </AdminRoute>
         } />
 
+<Route path="/admin/listingitems" element={
+          <AdminRoute>
+            <ManageListingsPage />
+          </AdminRoute>
+        } />
+
           <Route path="/admin/products" element={
             <AdminRoute>
               <ManageListingsPage/>

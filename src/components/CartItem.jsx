@@ -12,12 +12,18 @@ const CartItem = ({product}) => {
     return <Navigate to= {`/products/`} />;
 
   }
+  const item = cartItems.find(item => item._id === product._id);
 
   // toDo: CSS
   return (
     <Card className="cartItem">
         <Card.Section>
-            <Image src={product.images} />
+            <Image 
+            src={product.images}
+            h={200}
+            w="auto"
+            fit="contain"
+            />
         </Card.Section>
         <Card.Section className="description">
             <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
@@ -28,7 +34,7 @@ const CartItem = ({product}) => {
             <Group className="countHandler">
                 <Button onClick={() => removeFromCart(product._id)}> - </Button>
                 <TextInput
-                    value={cartItems[product._id]}
+                    value={item ? item.quantity : 0}
                     onChange={(event) => updateCartItemCount(Number(event.target.value), product._id)}
                 />
                 <Button onClick={() => addToCart(product._id)}> + </Button>

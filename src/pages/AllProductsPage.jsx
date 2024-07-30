@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button } from '@mantine/core';
+import { Button, Space, Title } from '@mantine/core';
 import ProductsComponent from '../components/ProductsComponent';
 import ProductForm from '../components/ProductForm';
 import { SessionContext } from '../contexts/SessionContext';
@@ -23,12 +23,13 @@ const AllProductsPage = () => {
 
   return (
     <>
-      <h1>All Products</h1>
+      <Title order = {1}>All Products</Title>
+      <Space h="md" />
       {/*add product button shown if user is authenticated, same should be for Edit button*/}
       {isAuthenticated && (
         <Button onClick={() => handleOpenModal(null)}>Add Product</Button>
       )}
-
+      <Space h="xl" />
       <ProductsComponent onEdit={handleOpenModal} />
       {isModalOpen && <ProductForm isOpen={isModalOpen} onClose={handleCloseModal} product={editingProduct} />}
     </>

@@ -2,22 +2,18 @@ import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext(null);
 
-
-export const CartContextProvider = ({ children }) => {
-
-//toD: check getDefaultCart logic
-const getDefaultCart = () => {
-  let cart = {};
-  for (let product = 1; product < products.length + 1; product++) {
-    cart[product] = 0;
-  }
-  return cart;
+const initializeCartItems = (products) => {
+  return products.map(product => ({
+    ...product,
+    id: product._id.toString(),
+    quantity: 0
+  }));
 };
 
+const CartContextProvider = ({ children }) => {
+
 const [products, setProducts] = useState([]);
-const [cartItems, setCartItems] = useState(getDefaultCart()); //toDo: use useEfect, decide at mounting time, see Mat's comments
-
-
+const [cartItems, setCartItems] = useState([]);
 
 
 const getAllProducts = async () => {
@@ -37,36 +33,39 @@ useEffect(() => {
   getAllProducts();
 }, []);
 
+
 useEffect(() => {
-  setCartItems(getDefaultCart());
+  setCartItems(initializeCartItems(products));
 }, [products]);
 
 const addToCart = (productId) => {
   console.log("added to cart product with id: ", productId);
-  setCartItems((prevCartObject) => ({ ...prevCartObject, [productId]: prevCartObject[productId] + 1 })); // add to cart newly added item(previousCount +1) i.e. cartItems[currentProduct.id]
+  setCartItems(prevCart => prevCart.map(item => 
+    item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+  ));
 };
 
 const removeFromCart = (productId) => {
-  setCartItems((prevCartObject) => ({ ...prevCartObject, [productId]: prevCartObject[productId] - 1 }));
+  setCartItems(prevCart => prevCart.map(item => 
+    item.id === productId && item.quantity > 0 ? { ...item, quantity: item.quantity - 1 } : item
+  ));
 };
 
 const updateCartItemCount = (newAmount, productId) => {
-  setCartItems((prev) => ({ ...prev, [productId]: newAmount }));
+  setCartItems(prevCart => prevCart.map(item => 
+    item.id === productId ? { ...item, quantity: newAmount } : item
+  ));
 };
 
 const getTotalCartAmount = () => {
-  let totalAmount = 0;
-  for (const item in cartItems) {
-    if (cartItems[item] > 0) {
-      let itemInfo = products.find((aProduct) => aProduct._id === Number(item)); //toDO, modify according to our databse, id is not just a number, check others solution..Aso for getDefaultCart
-      totalAmount += cartItems[item] * itemInfo.price;
-    }
-  }
-  return totalAmount;
+  return cartItems.reduce((total, item) => {
+    const product = products.find(p => p._id === item._id);
+    return total + (item.quantity * (product ? product.price : 0));
+  }, 0);
 };
 
 const checkout = () => {
-  setCartItems(getDefaultCart());
+  setCartItems([]);
 };
 
 
@@ -87,3 +86,5 @@ const contextValue = {
     </CartContext.Provider>
   );
 };
+
+export default CartContextProvider;

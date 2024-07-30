@@ -31,7 +31,7 @@ const ProductsComponent = ({ onEdit }) => {
   }, []);
 
   const handleDelete = async (productId) => {
-    const url = `http://localhost:5006/api/products/${productId}`;
+    const url = `${import.meta.env.VITE_API_URL}/products/${productId}`;
     try {
       const response = await fetch(url, {
         method: 'DELETE',
@@ -56,7 +56,7 @@ const ProductsComponent = ({ onEdit }) => {
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
           <Card.Section>
-            <Image src={product.image} alt={product.name}
+            <Image src={product.images} alt={product.name}
               h={160}
               radius="md"
               fallbackSrc="https://placehold.co/600x400?text=Placeholder"

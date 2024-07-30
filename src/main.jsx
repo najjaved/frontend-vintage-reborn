@@ -13,6 +13,7 @@ import baseTheme from './styles/theme';
 import AppShellComponent from './components/AppShellComponent.jsx';
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
       <BrowserRouter>
@@ -20,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <CartContextProvider>
               <MantineProvider theme={baseTheme} defaultColorScheme= 'auto'> //color scheme based on user OS
                 <Paper padding = "md" radious = {0} style = {{minHeight: "100vh"}}>
-                  <AppShellComponent /> 
+                  <AppShellComponent/> 
                 </Paper>        
               </MantineProvider>
             </CartContextProvider>

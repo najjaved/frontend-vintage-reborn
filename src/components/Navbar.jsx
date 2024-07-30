@@ -16,7 +16,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:5006/api/products');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

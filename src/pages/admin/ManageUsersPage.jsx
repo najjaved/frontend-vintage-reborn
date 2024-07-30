@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../../contexts/SessionContext";
+import { Link } from "react-router-dom";
 
 const ManageUsersPage = () => {
 
@@ -34,8 +35,8 @@ const ManageUsersPage = () => {
                 <li>Name: {user.username}</li>
                 <li>Email: {user.email}</li>
                 <li>Role: {user.role}</li>
-                <li> <a href={`/user/${user._id}/products`}>View Products</a> </li>
-                <li> <a href={`/user/${user._id}/orders`}>View Orders</a> </li>
+                <li> <Link to={`/user/${user._id}/products`}>View Products</Link> </li>
+                <li> <Link to={`/user/${user._id}/orders`}>View Orders</Link> </li>
             </ul>
         )
 

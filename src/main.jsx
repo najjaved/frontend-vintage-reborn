@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { MantineProvider, Paper} from '@mantine/core'; // ColorSchemeProvider, ColorScheme,
 import { BrowserRouter } from 'react-router-dom';
 import SessionContextProvider from './contexts/SessionContext.jsx';
-import { CartContextProvider } from './contexts/CartContext.jsx';
+import CartContextProvider from './contexts/CartContext.jsx';
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports

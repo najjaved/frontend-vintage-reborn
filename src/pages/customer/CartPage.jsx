@@ -27,14 +27,15 @@ const CartPage = () => {
 
   return (
     <Container className = {classes.cart}> {/*add CSS module*/} 
-      <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
+      <Title order={1} align="center" my="xl">Items in your Cart</Title>
 
       <Container className = {classes.cartItems}>
       {products.map((currentProduct) => {
-          if (cartItems[currentProduct._id] !== 0) {
+          const item = cartItems.find(item => item._id === currentProduct._id);
+          if (item && item.quantity > 0) {
             return <CartItem key={currentProduct._id} product={currentProduct} />;
           }
-          //return null;
+          return null;
         })}
       </Container>
 

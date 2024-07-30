@@ -1,5 +1,5 @@
 /* customize the appearance of components consistently across the app */
-import { createTheme } from '@mantine/core'
+import { createTheme, rem } from '@mantine/core'
 
 const baseTheme = createTheme({
   colorScheme: 'light',
@@ -7,10 +7,19 @@ const baseTheme = createTheme({
   headings: {
     fontFamily: 'Helvetica, sans-serif',
     sizes: {
-      h1: 36,
-      h2: 30,
-      h3: 24,
-    },
+      h1:{
+        fontSize: rem(36)
+      },
+      h2:{
+        fontSize: rem(30)
+      },
+      h3:{
+        fontSize: rem(24)
+      },
+      h3:{
+        fontSize: rem(18)
+      }
+    }
   },
 
 });
@@ -25,11 +34,11 @@ export const lightTheme = {...baseTheme,
   },
   primaryColor: 'primary',
   fontSizes: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
+    xs: rem(12),
+    sm: rem(14),
+    md: rem(16),
+    lg: rem(20),
+    xl: rem(24),
   },
 };
 
@@ -43,11 +52,11 @@ export const darkTheme = {...baseTheme,
   },
   primaryColor: 'primary',
   fontSizes: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 20,
-    xl: 24,
+    xs: rem(12),
+    sm: rem(14),
+    md: rem(16),
+    lg: rem(20),
+    xl: rem(24),
   },
 };
 

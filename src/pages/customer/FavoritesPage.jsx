@@ -8,7 +8,7 @@ import { SessionContext } from "../../contexts/SessionContext";
 const addToFavorites = async (productId) => {
     const { token, user, product } = useContext(SessionContext);
     try {
-        const response = await fetch(`http://localhost:5006/api/favorites/${user._id}/${productId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/favorites/${user._id}/${productId}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`

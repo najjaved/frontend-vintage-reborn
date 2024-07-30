@@ -8,7 +8,7 @@ const ManageUsersPage = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await fetch("http://localhost:5006/api/users", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

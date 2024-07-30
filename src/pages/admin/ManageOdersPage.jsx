@@ -7,7 +7,7 @@ const ManageOdersPage = () => {
 
     const fetchAllOrders = async () => {
         try {
-            const response = await fetch("http://localhost:5006/api/orders", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

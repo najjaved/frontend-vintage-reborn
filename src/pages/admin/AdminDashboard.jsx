@@ -1,6 +1,10 @@
 import { useContext, useState } from "react";
 import { Button } from "@mantine/core";
 import { SessionContext } from "../../contexts/SessionContext";
+import { Link } from "react-router-dom";
+import ManageUsersPage from "./ManageUsersPage";
+import ManageListingsPage from "./ManageListingsPage";
+import ManageOrdersPage from "./ManageOdersPage";
 
 const AdminDashboard = () => {
   const { currentUser, fetchWithToken } = useContext(SessionContext);
@@ -33,6 +37,9 @@ const AdminDashboard = () => {
               <li key={user._id}>{user.username}</li>
             ))}
           </ul>
+          <Link to={ManageUsersPage}> <h2>Users list</h2> </Link>
+          <Link to={ManageListingsPage}><h2>Products list</h2></Link>
+          <Link to={ManageOrdersPage} ><h2>Orders list</h2></Link>
         </>
       )}
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Container,
   Title,
@@ -27,6 +27,20 @@ const ProfilePage = () => {
     role: '',
   });
 
+  fetchUserData = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`)
+      const data = await response.json()
+      setFormData(data)
+    } catch (error) {
+      console.log("Error fetching user data: ", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [userId])
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -34,6 +48,19 @@ const ProfilePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      const updatedData = await response.json()
+      console.log("Updated Profile: ", updatedData)
+    } catch (error) {
+      console.log("Error updating profile: ", error)
+    }
     // toDo: put request for editing user details with userId
     //  const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/users/${userId}`)
     console.log('Updated Profile:', formData);

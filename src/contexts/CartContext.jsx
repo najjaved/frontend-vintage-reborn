@@ -38,10 +38,6 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  console.log(
-    "this is the products state right now inside the cart context",
-    products
-  ); // Log products when they are updated
   setCartItems(getDefaultCart());
 }, [products]);
 

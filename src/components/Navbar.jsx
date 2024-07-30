@@ -36,6 +36,7 @@ const Navbar = () => {
       <Stack position="center" spacing="sm" direction="column">
         <Link to="/" className={classes.navLink}>Home</Link>
         <Link to="#featured" className={classes.navLink}>Featured</Link>
+        <Link to= "/admin" className={classes.navLink}> Admin Dashboard</Link> 
         <Link to="/about" className={classes.navLink}>About</Link>
         <Container className={classes.centeredItem}>
           <LightDarkModeButton />

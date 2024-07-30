@@ -18,32 +18,16 @@ body {
   overflow-y: scroll;
 } */
 
-div.aboutCards {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-}
-
-img.om,
-img.santi,
-img.naj {
-  width: 200px;
-  border-radius: 2em;
-}
-
+/*toDo: move the below styles to respective css modules, to be consistent with the project structure */
 div .users {
   display: flex;
   flex-direction: column;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4em;
-}
-
-ul.usersul {
+  }
+  
+  ul.usersul {
   flex-direction: column;
   align-items: center;
   border: 1px solid grey;
@@ -52,8 +36,8 @@ ul.usersul {
   background-color: #228be64d;
   border-radius: 6%;
   padding: 1.5em;
-}
-
-ul.usersul li {
+  }
+  
+  ul.usersul li {
   list-style: none;
-}
+  }

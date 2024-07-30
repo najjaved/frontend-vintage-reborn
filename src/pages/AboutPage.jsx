@@ -1,13 +1,13 @@
 import { Card, Title, Container, Image, Text, Badge, Group, Space } from "@mantine/core";
 import { Link } from "react-router-dom";
+import classes from '../styles/About.module.css';
 
-//toDo: use css modules and mantine for styling, to be consistent with rest of the project
 const AboutPage = () => {
     return (
         <>  <Title fw={500}> The team</Title>
             <Space h="xl" />
-            <Container className="aboutCards"> 
-                <Card className="santiago" shadow="sm" padding="lg" radius="md" withBorder>
+            <Container className={classes.aboutCards}> 
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
                         <Image
                         src="src/assets/images/file.jpeg"
@@ -23,7 +23,7 @@ const AboutPage = () => {
                 </Card>
                 <Space h="md" />
                 
-                <Card className="najma" shadow="sm" padding="lg" radius="md" withBorder>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
                         <Image
                         src="src/assets/images/Najma.jpeg"
@@ -41,7 +41,7 @@ const AboutPage = () => {
                 </Card>
                 <Space h="md" />
                 
-                <Card className="omid" shadow="sm" padding="lg" radius="md" withBorder>
+                <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
                         <Image
                         src="src/assets/images/Omid.png"

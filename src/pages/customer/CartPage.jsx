@@ -7,96 +7,98 @@ import { CartContext } from '../../contexts/CartContext';
 import { useDisclosure } from "@mantine/hooks";
 
 const CartPage = () => {
-  const { products,cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
+  const { products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
   const totalAmount = getTotalCartAmount();
-
   const [modalOpened, { open, close }] = useDisclosure(false);
   const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
 
   const handleFakePayReset = () => {
     checkout();
-    open(); //toDO: add this after stripe functionality
-    //navigate("/checkout");
+    open();
   };
 
   const handleModalClose = () => {
     close();
-    // Set showEmptyCartMessage to true only if the cart is empty
     setShowEmptyCartMessage(totalAmount <= 0);
   };
 
-  return (
-    <Container className = {classes.cart}> {/*add CSS module*/} 
-      <Title order={1} align="center" my="xl">Items in your Cart</Title>
+  const isCartEmpty = cartItems.every(item => item.quantity === 0);
 
-      <Container className = {classes.cartItems}>
-      {products.map((currentProduct) => {
-          const item = cartItems.find(item => item._id === currentProduct._id);
-          if (item && item.quantity > 0) {
-            return <CartItem key={currentProduct._id} product={currentProduct} />;
+  return (
+    <Container className={classes.cart}>
+      {!isCartEmpty && (
+        <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
+      )}
+
+      <Container className={classes.cartItems}>
+        {cartItems.map((item) => {
+          const product = products.find(p => p._id === item.id);
+          if (item.quantity > 0) {
+            return <CartItem key={item.id} product={product} />;
           }
           return null;
         })}
       </Container>
 
-      <Container>
-        {totalAmount > 0 ? (
-            <Text >Subtotal: {totalAmount.toFixed(2)}€</Text>
-          ) : null}
-
-
+      {isCartEmpty && (
         <Container>
-          {showEmptyCartMessage && (
-            <Group className="emptycart">
-              <Title className="carth1">Your Shopping Cart is empty</Title>
-              <Image className="emptyimage" src={''} alt="Placeholder" />
-            </Group>
-          )}
-         <Divider my="lg" />
-          <Container>
-            <Group className="cart-buttons">
-              <Button
-                size="lg" 
-                variant="gradient"
-                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-                component={Link}
-                to="/products"
-              >
-                Continue Shopping
-              </Button>
-
-              <Button 
-                size="lg" 
-                variant="gradient" 
-                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-                onClick={handleFakePayReset}            
-              >
-                Proceed to Checkout
-              </Button>
-            </Group>
-          </Container>
-
-          <Modal
-            opened={modalOpened}
-            onClose={handleModalClose}
-            title="Payment Successful!"
-            centered
-          >
-            <Container>
-              <Title>
-                Thank you for shopping & supporting our green planet iniative!
-              </Title>
-              <Image
-                className="emptyimage"
-                src="https://placehold.co/600x400?text=Placeholder"
-                alt= 'Placeholder image'
-              />
-            </Container>
-          </Modal>
+          <Group className="emptycart">
+            <Title className="carth1">Your Shopping Cart is empty</Title>
+            <Image className="emptyimage" src="https://placehold.co/600x400?text=Placeholder" alt="Placeholder" />
+          </Group>
         </Container>
+      )}
 
+      <Container>
+        {totalAmount > 0 && (
+          <Text>Subtotal: {totalAmount.toFixed(2)}€</Text>
+        )}
+
+        {!isCartEmpty && (
+          <Container>
+            <Divider my="lg" />
+            <Container>
+              <Group className="cart-buttons">
+                <Button
+                  size="lg"
+                  variant="gradient"
+                  gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                  component={Link}
+                  to="/products"
+                >
+                  Continue Shopping
+                </Button>
+                <Button
+                  size="lg"
+                  variant="gradient"
+                  gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                  onClick={handleFakePayReset}
+                >
+                  Proceed to Checkout
+                </Button>
+              </Group>
+            </Container>
+          </Container>
+        )}
+
+        <Modal
+          opened={modalOpened}
+          onClose={handleModalClose}
+          title="Payment Successful!"
+          centered
+        >
+          <Container>
+            <Title>
+              Thank you for shopping & supporting our green planet initiative!
+            </Title>
+            <Image
+              className="emptyimage"
+              src="https://placehold.co/600x400?text=Placeholder"
+              alt='Placeholder image'
+            />
+          </Container>
+        </Modal>
       </Container>
-      
     </Container>
   );
 };

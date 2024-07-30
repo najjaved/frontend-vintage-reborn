@@ -31,7 +31,7 @@ const ProductsComponent = ({ onEdit }) => {
   }, []);
 
   const handleDelete = async (productId) => {
-    const url = `${import.meta.env.VITE_API_URL}/products/${productId}`;
+    const url = `${import.meta.env.VITE_API_URL}/api/products/${productId}`;
     try {
       const response = await fetch(url, {
         method: 'DELETE',

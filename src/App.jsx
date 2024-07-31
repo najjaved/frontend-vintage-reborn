@@ -22,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/profile/:userId"
+        <Route path="/profile"
           element={
             <PrivateRoute>
               <ProfilePage /> {/*corresponding to userId, also access orders under this page */}

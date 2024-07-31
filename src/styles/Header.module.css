@@ -7,16 +7,6 @@
   padding: 1rem;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.logo img {
-  padding-top: 0.6em;
-  margin-left: -2em;
-}
-
 .title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -34,6 +24,7 @@
 }
 
 .logoimg {
-  height: 24px;
-  width: 24px;
+  display: flex;
+  height: auto;
+  width: 47px;
 }

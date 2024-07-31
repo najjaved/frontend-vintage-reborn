@@ -15,6 +15,8 @@ import ManageUsersPage from './pages/admin/ManageUsersPage';
 import ManageOdersPage from './pages/admin/ManageOdersPage';
 import ManageListingsPage from './pages/admin/ManageListingsPage';
 import OrdersPage from './pages/customer/OrdersPage';
+import ManageSingleUserProductsPage from './pages/admin/ManageSingleUserProductsPage'
+import MangeSingleUserOrdersPage from './pages/admin/ManageSingleUserOrdersPage'
 
 function App() {
   return (
@@ -68,6 +70,18 @@ function App() {
         <Route path="/admin/products" element={
           <AdminRoute>
             <ManageListingsPage />
+          </AdminRoute>
+        } />
+
+        <Route path="/user/:userId/products" element={
+          <AdminRoute>
+            <ManageSingleUserProductsPage />
+          </AdminRoute>
+        } />
+
+        <Route path="/user/:userId/orders" element={
+          <AdminRoute>
+            <MangeSingleUserOrdersPage />
           </AdminRoute>
         } />
 

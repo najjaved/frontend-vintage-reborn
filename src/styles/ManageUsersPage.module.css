@@ -1,0 +1,22 @@
+.users {
+    display: flex;
+    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4em;
+}
+
+.usersul {
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    list-style: none;
+    padding-inline-start: 0px;
+    background-color: #228be64d;
+    border-radius: 6%;
+    padding: 1.5em;
+}
+
+.usersul li {
+    list-style: none;
+}

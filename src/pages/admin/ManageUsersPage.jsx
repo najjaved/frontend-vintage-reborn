@@ -28,9 +28,9 @@ const ManageUsersPage = () => {
     }, [])
 
 
-    return (<> <div className="users">
+    return (<> <div className={classes.users}>
         {users.map((user) => (
-            <ul key={user._id} className="usersul">
+            <ul key={user._id} className={classes.usersul}>
                 <li>UserID: {user._id}</li>
                 <li>Name: {user.username}</li>
                 <li>Email: {user.email}</li>

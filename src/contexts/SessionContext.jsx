@@ -8,6 +8,7 @@ const SessionContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   const removeToken = () => {
     window.localStorage.removeItem('authToken');
@@ -85,9 +86,19 @@ const SessionContextProvider = ({ children }) => {
     setIsAdmin(false);
   };
 
+  const fetchCartItems = async (token) => {
+    try {
+      const response = await fetchWithToken('/cart');
+      if (response) {
+        setCartItems(response.cartItems || []);
+      }
+    } catch (error) {
+      console.log('Error fetching cart items:', error);
+    }
+  };
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin }}
+      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, fetchCartItems }}
     >
       {children}
     </SessionContext.Provider>

@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useContext, useState } from "react";
+import { SessionContext } from '../contexts/SessionContext';
 
 export const CartContext = createContext(null);
 
@@ -11,8 +12,20 @@ const initializeCartItems = (products) => {
 };
 
 const CartContextProvider = ({ children }) => {
+  const { fetchWithToken, user } = useContext(SessionContext); 
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
+  const fetchCartItems = async (token) => {
+    try {
+      const response = await fetchWithToken('/cart');
+      if (response) {
+        setCartItems(response.cartItems || []);
+      }
+    } catch (error) {
+      console.log('Error fetching cart items:', error);
+    }
+  };
 
   const getAllProducts = async () => {
     try {

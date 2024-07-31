@@ -13,11 +13,9 @@ const resetInitialStates = () => ({
 });
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
-  const { getAllProducts, token } = useContext(SessionContext); // Use your actual context // toDO: add getAllProducts to context
-  console.log(token)
-  /* toDo use fetchWithToken from context: 
-  const { fetchWithToken } = useContext(SessionContext)
-  */
+  const { fetchWithToken, token } = useContext(SessionContext);
+  console.log(token);
+
   const [product, setProduct] = useState(resetInitialStates());
 
   useEffect(() => {
@@ -33,10 +31,15 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
+    const method = initialProduct ? "PUT" : "POST";
+    const payload = product;
+    fetchWithToken(url, method, payload);
+
     /* OR amke own functions for specific endpoints if different behaviour is expected
     const payload = product
     fetchWithToken(`/products${initialProduct ? `/${initialProduct._id}` : ""}`, {initialProduct ? "PUT" : "POST"}, payload)
-    */
+   
 
     const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
     const method = initialProduct ? "PUT" : "POST";
@@ -54,7 +57,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
       }
     } catch (error) {
       console.log("Error submitting form", error);
-    }
+    }  */
   };
 
   const handleChange = (event) => {

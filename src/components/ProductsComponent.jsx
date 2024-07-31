@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 //import { IconHeart } from '@tabler/icons-react'; 
 import { CartContext } from '../contexts/CartContext';
+import classes from '../styles/Products.module.css';
 
 const ProductsComponent = ({ onEdit }) => {
   const { token } = useContext(SessionContext);
@@ -54,15 +55,20 @@ const ProductsComponent = ({ onEdit }) => {
   //toDo: add classes in css module for listings page styling
   return (
     <SimpleGrid 
+    cols={{ base: 1, sm: 2, lg: 3 }}
+    spacing={{ base: 10, sm: 'xl' }}
+    verticalSpacing={{ base: 'md', sm: 'xl' }}
     justify="center" 
     align="center" 
     gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
     >
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
-          <Card.Section>
+          <Card.Section className = {classes.productImage}>
           <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
-            <Image src={product.images} alt={product.name}
+            <Image 
+              src={product.images} 
+              alt={product.name}
               radius="md"
               fit="contain"
               fallbackSrc="https://placehold.co/600x400?text=Placeholder"

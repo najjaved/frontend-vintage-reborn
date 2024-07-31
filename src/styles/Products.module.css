@@ -1,8 +1,14 @@
-.shopTitle {
-    margin-top: 100px;
-    text-align: center;
-    font-size: 40px;
-  }
+.productsContainer {
+  padding: 2rem;
+  background-color: rgb(237, 236, 236);
+}
+
+.title {
+  text-align: center;
+}
+.productImage {
+  padding: 1rem;
+}
   .products {
     width: 100%;
     height: auto;

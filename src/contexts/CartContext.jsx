@@ -4,7 +4,7 @@ import { SessionContext } from '../contexts/SessionContext';
 export const CartContext = createContext(null);
 
 const CartContextProvider = ({ children }) => {
-  //const { fetchWithToken, token, user } = useContext(SessionContext); 
+  const { fetchWithToken, token, isAuthenticated, user } = useContext(SessionContext); 
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -25,42 +25,79 @@ useEffect(() => {
   getAllProducts();
 }, []);
 
-
-
-/* add protect routes on BE for fetching cart specific to the userId
+/*
 const fetchCartItems = async () => {
   try {
     const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`);
-    if (response) {
-      setCartItems(response.cartItems || []);
+    if (!response.ok) {
+      throw new Error("Server response was not ok " + response.statusText);
     }
+    const cartData = await response.json();
+    setCartItems(cartData);
   } catch (error) {
     console.log('Error fetching cart items:', error);
   }
 };
 
-const addToCart = async (productId) => {
+useEffect(() => {
+  if (isAuthenticated) {
+    fetchCartItems();
+  }
+}, [isAuthenticated, token]); // fetch items in cart if user changes
+
+
+/* add protect routes on BE for fetching cart specific to the userId
+
+const addToUserCart = async (product) => {
+
+  setCartItems(prevCart => {
+    const existingItem = prevCart.find(item => item.productId === product._id);
+    if (existingItem) {
+      return prevCart.map(item => 
+        item.productId === product._id 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    } else {
+      return [...prevCart, { productId: product._id, quantity: 1 }];
+    }
+  });
+
+  const payload = { 
+      userId: user.userId, 
+      productId: product._id 
+    };
+
   try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'POST', { productId });
-    if (response) {
-      setCartItems(response.cartItems);
+    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'POST', payload);
+    if (response.ok) {
+      console.log('add to cart resonse format:', response)
+      const cartData = await response.json();
+      //setCartItems(cartData.cartItems) //toDo: check if data that was written to be logged
     }
   } catch (error) {
     console.log('Error adding to cart:', error);
   }
 };
 
-const removeFromCart = async (productId) => {
+const removeFromUserCart = async (product) => {
+
+  setCartItems(prevCart => prevCart.map(item => 
+    (item.productId === product._id && item.quantity) > 0
+      ? {...item,  quantity: item.quantity -1 }
+      : item
+  ));
+
   try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'DELETE', { productId });
-    if (response) {
-      setCartItems(response.cartItems);
-    }
+    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'DELETE');
+    if (response.ok) {
+
+      setCartItems(cartData.cartItems)
   } catch (error) {
     console.log('Error removing from cart:', error);
   }
-};
-
+} 
+  
 const updateCartItemCount = async (newAmount, productId) => {
   try {
     const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'PUT', { productId, quantity: newAmount });
@@ -72,35 +109,8 @@ const updateCartItemCount = async (newAmount, productId) => {
   }
 };
 
-// Fetch cart items after user is authenticated
-useEffect(() => {
-  if (isAuthenticated) {
-    fetchCartItems();
-  }
-}, [isAuthenticated, token]);
 */
 
-/*
-const addToCart = async (product) => {
-  const newArray = cartItems.filter(item => item._id === product._id)
-
-  if (newArray.length !==0){
-    setCartItems(prevCart => prevCart.map(item => 
-      item.id === product._id 
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    ));
-
-  }
-  else {
-    const cartItem = {productId: product._id, quantity: 1}
-    setCartItems(cartItems.push(cartItem));
-    console.log(cartItems)
-
-  }
-  
-};
-*/
 const addToCart = async (product) => {
   setCartItems(prevCart => {
     const existingItem = prevCart.find(item => item.productId === product._id);

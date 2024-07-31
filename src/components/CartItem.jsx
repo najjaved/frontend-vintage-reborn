@@ -19,7 +19,7 @@ const CartItem = ({ product }) => {
   const handleChange = (event) => {
     const newAmount = Number(event.target.value);
     if (newAmount >= 0) {
-      updateCartItemCount(newAmount, product._id);
+      updateCartItemCount(newAmount, product);
     }
   };
 

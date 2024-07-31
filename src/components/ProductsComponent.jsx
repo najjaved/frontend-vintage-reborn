@@ -11,7 +11,7 @@ const ProductsComponent = ({ onEdit }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart, cartItems } = useContext(CartContext);
+  const { addToCart, cartItems,  updateCartItemCount} = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,6 +30,14 @@ const ProductsComponent = ({ onEdit }) => {
 
     fetchProducts(); // Call the fetch function
   }, []);
+
+  const calculateItemsQuantity = (items, product) =>{
+    const currentProduct = items.find(item => item.productId === product._id);
+    if (currentProduct) {
+      return currentProduct.quantity;
+    }
+    return 0;
+  }
 
   const handleDelete = async (productId) => {
     const url = `${import.meta.env.VITE_API_URL}/api/products/${productId}`;
@@ -89,7 +97,8 @@ const ProductsComponent = ({ onEdit }) => {
           <Text weight={700} size="lg" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
           <Group position="apart" style={{ marginTop: '1rem' }}>
             <Button variant="light" color="blue" onClick={() => addToCart(product)}>
-              Add to Cart {cartItems[product._id] > 0 && <> ({cartItems[product._id]}) </>}
+              Add to Cart {
+             calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>} 
             </Button>
             <Button variant="light" color="blue" onClick={() => onEdit(product)}>
               Edit

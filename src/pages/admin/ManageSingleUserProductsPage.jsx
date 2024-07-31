@@ -1,19 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../../contexts/SessionContext";
 import classes from "../../styles/ManageUsersPage.module.css"
+import { useParams } from "react-router-dom";
 
 
 const UserProductsDetails = () => {
 
-    const { user, token } = useContext(SessionContext)
+    const { token } = useContext(SessionContext)
 
-    const { userId } = user;
+    const { userId } = useParams();
     const [product, setProduct] = useState([])
     const [userData, setUserData] = useState([])
 
     const fetchProduct = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products/${createdBy}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products/createdby/${userId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -40,8 +41,8 @@ const UserProductsDetails = () => {
     };
 
     useEffect(() => {
-        fetchProduct(),
-            fetchUserData()
+        fetchProduct()
+        fetchUserData()
     }, [userId])
 
     return (
@@ -57,7 +58,7 @@ const UserProductsDetails = () => {
             <h2>Products</h2>
             {product.length > 0 ? (
                 product.map((e) => (
-                    <ul key={e.id} className={classes.usersul}>
+                    <ul key={e._id} className={classes.usersul}>
                         <li>Name: {e.name}</li>
                         <li>Category: {e.category} </li>
                         <li>Price: {e.price}</li>

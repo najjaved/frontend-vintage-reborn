@@ -1,21 +1,21 @@
 import { useContext, useState } from 'react';
 import { SessionContext } from '../contexts/SessionContext';
 import { useNavigate } from "react-router-dom";
-import { 
-  Box, 
-  Button, 
-  PasswordInput, 
-  TextInput, 
-  Space, 
+import {
+  Box,
+  Button,
+  PasswordInput,
+  TextInput,
+  Space,
   Group,
-  Divider, 
+  Divider,
   Modal,
   Text
 } from "@mantine/core";
 import SignupForm from './SignupForm'; // Import SignupForm
 
 const LoginForm = ({ isOpen, onClose }) => {
-  const { setToken } = useContext(SessionContext);
+  const { verifyToken } = useContext(SessionContext);
   const navigate = useNavigate();
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -36,7 +36,7 @@ const LoginForm = ({ isOpen, onClose }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        setToken(data.token);
+        verifyToken(data.token);
         onClose(); // Close the form on successful login
       }
     } catch (error) {
@@ -46,7 +46,7 @@ const LoginForm = ({ isOpen, onClose }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({...prevData, [name]: value}));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleCancel = () => {

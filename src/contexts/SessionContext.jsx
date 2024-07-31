@@ -28,7 +28,7 @@ const SessionContextProvider = ({ children }) => {
         setIsAuthenticated(true);
 
         // get userId and role
-        const {tokenPayload} = await response.json();
+        const { tokenPayload } = await response.json();
         console.log("token payload after token verification: ", tokenPayload);
         setUser(tokenPayload);
         if (tokenPayload.role === "admin") {
@@ -59,7 +59,6 @@ const SessionContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       window.localStorage.setItem('authToken', token);
-      verifyToken(token);
     }
   }, [token]);
 
@@ -98,7 +97,7 @@ const SessionContextProvider = ({ children }) => {
   };
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, fetchCartItems }}
+      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, fetchCartItems, verifyToken }}
     >
       {children}
     </SessionContext.Provider>

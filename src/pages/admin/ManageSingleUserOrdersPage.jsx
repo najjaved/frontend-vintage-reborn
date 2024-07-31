@@ -4,15 +4,14 @@ import classes from "../../styles/ManageUsersPage.module.css"
 
 const UserOrderDetails = () => {
 
-    const { user, token } = useContext(SessionContext)
-
-    const { userId } = user;
+    const { token } = useContext(SessionContext)
+    const { userId } = useParams();
     const [orders, setOrders] = useState([])
     const [userData, setUserData] = useState([])
 
     const fetchOrders = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${userId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/currentuser/${userId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }
@@ -56,7 +55,7 @@ const UserOrderDetails = () => {
             <h2>Orders</h2>
             {orders.length > 0 ? (
                 orders.map((order) => (
-                    <ul key={order.id} className={classes.usersul}>
+                    <ul key={order._id} className={classes.usersul}>
                         <li>Full name: {order.firstName}{order.lastName} </li>
                         <li>Items: {order.orderItems}</li>
                         <li>Status: {order.price}</li>

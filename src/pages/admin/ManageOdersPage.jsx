@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../../contexts/SessionContext";
+import { Link } from "react-router-dom";
 
 const ManageOdersPage = () => {
     const { token } = useContext(SessionContext);
@@ -34,7 +35,7 @@ const ManageOdersPage = () => {
                     <li>Name: {order.status}</li>
                     <li>Email: {order.orderItems}</li>
                     <li>Role: {order.totalAmount}</li>
-                    <li> <a href={`/user/${order.userId}/`}>View User</a> </li>
+                    <li> <Link to={`/user/${order.userId}/`}>View User</Link> </li>
                 </ul>
             )
 

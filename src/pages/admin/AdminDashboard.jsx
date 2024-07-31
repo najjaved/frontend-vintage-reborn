@@ -37,11 +37,13 @@ const AdminDashboard = () => {
               <li key={user._id}>{user.username}</li>
             ))}
           </ul>
-          <Link to={ManageUsersPage}> <h2>Users list</h2> </Link>
-          <Link to={ManageListingsPage}><h2>Products list</h2></Link>
-          <Link to={ManageOrdersPage} ><h2>Orders list</h2></Link>
         </>
       )}
+      <Link to={ManageUsersPage}> <h2>Users list</h2> </Link>
+      <Link to={ManageListingsPage}><h2>Products list</h2></Link>
+      <Link to={ManageOrdersPage} ><h2>Orders list</h2></Link>
+
+
     </>
   );
 };

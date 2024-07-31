@@ -70,7 +70,7 @@ const ManageListingsPage = () => {
       ))}
 
       <Space h="md" />
-      <Table className={classes.table}>
+      <Table>
         <thead>
           <tr>
             <th>Product Name</th>

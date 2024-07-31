@@ -12,7 +12,7 @@ const CartItem = ({ product }) => {
   }
 
   // Find the corresponding cart item
-  const cartItem = cartItems.find(item => item.id === product._id);
+  const cartItem = cartItems.find(item => item.productId === product._id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
  
@@ -40,13 +40,13 @@ const CartItem = ({ product }) => {
         </Group>
 
         <Group className="countHandler">
-          <Button onClick={() => removeFromCart(product._id)}> - </Button>
+          <Button onClick={() => removeFromCart(product)}> - </Button>
           <TextInput
             value={quantity.toString()} 
             onChange={handleChange}
             type="number" 
           />
-          <Button onClick={() => addToCart(product._id)}> + </Button>
+          <Button onClick={() => addToCart(product)}> + </Button>
         </Group>
       </Card.Section>
     </Card>

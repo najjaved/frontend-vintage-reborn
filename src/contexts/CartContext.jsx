@@ -3,41 +3,29 @@ import { SessionContext } from '../contexts/SessionContext';
 
 export const CartContext = createContext(null);
 
-const initializeCartItems = (products) => {
-  return products.map(product => ({
-    ...product,
-    id: product._id.toString(),
-    quantity: 0
-  }));
-};
-
 const CartContextProvider = ({ children }) => {
-  const { fetchWithToken, token, user } = useContext(SessionContext); 
-  const [products, setProducts] = useState([]);
+  //const { fetchWithToken, token, user } = useContext(SessionContext); 
   const [cartItems, setCartItems] = useState([]);
+  const [products, setProducts] = useState([]);
 
-//toDo move getAllProducts to helper functions, also used in allProductsPage
-const getAllProducts = async () => {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
-    console.log("response format:", response); //toDO: remove later
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+  const getAllProducts = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.log("Fetch error: ", error);
     }
-    const data = await response.json();
-    setProducts(data);
-  } catch (error) {
-    console.log("Fetch error: ", error);
-  }
-};
+  };
 
 useEffect(() => {
   getAllProducts();
 }, []);
 
-useEffect(() => {
-  setCartItems(initializeCartItems(products));
-}, [products]);
+
 
 /* add protect routes on BE for fetching cart specific to the userId
 const fetchCartItems = async () => {
@@ -92,25 +80,57 @@ useEffect(() => {
 }, [isAuthenticated, token]);
 */
 
-const addToCart = async (productId) => {
-  setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId 
-      ? { ...item, quantity: item.quantity + 1 }
-      : item
-  ));
+/*
+const addToCart = async (product) => {
+  const newArray = cartItems.filter(item => item._id === product._id)
+
+  if (newArray.length !==0){
+    setCartItems(prevCart => prevCart.map(item => 
+      item.id === product._id 
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    ));
+
+  }
+  else {
+    const cartItem = {productId: product._id, quantity: 1}
+    setCartItems(cartItems.push(cartItem));
+    console.log(cartItems)
+
+  }
+  
+};
+*/
+const addToCart = async (product) => {
+  setCartItems(prevCart => {
+    const existingItem = prevCart.find(item => item.productId === product._id);
+    if (existingItem) {
+      return prevCart.map(item => 
+        item.productId === product._id 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    } else {
+      return [...prevCart, { productId: product._id, quantity: 1 }];
+    }
+  });
 };
 
-const removeFromCart = (productId) => {
+
+const removeFromCart = (product) => {
+
   setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId && item.quantity > 0
-      ? { ...item, quantity: item.quantity - 1 }
+    (item.productId === product._id && item.quantity) > 0
+      ? {...item,  quantity: item.quantity -1 }
       : item
   ));
+
 };
 
-const updateCartItemCount = (newAmount, productId) => {
+
+const updateCartItemCount = (newAmount, product) => {
   setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId 
+    item.id === product._id 
       ? { ...item, quantity: newAmount }
       : item
   ));
@@ -118,29 +138,28 @@ const updateCartItemCount = (newAmount, productId) => {
 
 const getTotalCartAmount = () => {
   let totalAmount = 0;
-  for (const item of cartItems) {
-    if (item.quantity > 0) {
-      const itemInfo = products.find(product => product._id === item.id);
-      totalAmount += item.quantity * itemInfo.price;
+    for (const item of cartItems) {
+      if (item.quantity > 0) {
+        const currentProduct = products.find(product => product._id === item.productId);
+        totalAmount += item.quantity * currentProduct.price;
+      }
     }
-  }
-  return totalAmount;
+    return totalAmount;
 };
 
 const checkout = () => {
-  setCartItems(initializeCartItems(products));
-  // go tochecout page and POST an order
+  setCartItems([]);
+  // go to checkout page and POST an order
 };
 
 const contextValue = {
-  products,
   cartItems,
   addToCart,
   updateCartItemCount,
   removeFromCart,
   getTotalCartAmount,
   checkout,
-  getAllProducts,
+  products
 };
 
 return (

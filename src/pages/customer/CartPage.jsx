@@ -7,7 +7,7 @@ import { CartContext } from '../../contexts/CartContext';
 import { useDisclosure } from "@mantine/hooks";
 
 const CartPage = () => {
-  const { products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
+  const {products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
   const totalAmount = getTotalCartAmount();
   const [modalOpened, { open, close }] = useDisclosure(false);
   const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
@@ -35,9 +35,10 @@ const CartPage = () => {
 
       <Container className={classes.cartItems}>
         {cartItems.map((item) => {
-          const product = products.find(p => p._id === item.id);
+          const productData = products.find(p => p._id === item.productId);
+          console.log('product going to the cart', productData);
           if (item.quantity > 0) {
-            return <CartItem key={item.id} product={product} />;
+            return <CartItem key={item.productId} product={productData} />;
           }
           return null;
         })}
@@ -54,7 +55,7 @@ const CartPage = () => {
 
       <Container>
         {totalAmount > 0 && (
-          <Text>Subtotal: {totalAmount.toFixed(2)}€</Text>
+          <Text>Total Price: {totalAmount.toFixed(2)}€</Text>
         )}
 
         {!isCartEmpty && (

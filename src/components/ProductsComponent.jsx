@@ -88,7 +88,7 @@ const ProductsComponent = ({ onEdit }) => {
           <Space h="xl" />
           <Text weight={700} size="lg" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
           <Group position="apart" style={{ marginTop: '1rem' }}>
-            <Button variant="light" color="blue" onClick={() => addToCart(product._id)}>
+            <Button variant="light" color="blue" onClick={() => addToCart(product)}>
               Add to Cart {cartItems[product._id] > 0 && <> ({cartItems[product._id]}) </>}
             </Button>
             <Button variant="light" color="blue" onClick={() => onEdit(product)}>

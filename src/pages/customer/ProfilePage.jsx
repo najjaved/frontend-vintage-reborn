@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Container,
   Title,
@@ -10,11 +10,13 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { SessionContext } from '../../contexts/SessionContext';
 
 const ProfilePage = () => {
+  const { user, token } = useContext(SessionContext)
 
-  const { userId } = useParams();
+  const { userId } = user;
 
   const theme = useMantineTheme();
   const navigate = useNavigate();
@@ -29,7 +31,11 @@ const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      })
       const data = await response.json()
       setFormData(data)
     } catch (error) {
@@ -49,10 +55,11 @@ const ProfilePage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(formData)
       })

@@ -1,5 +1,5 @@
 /* customize the appearance of components consistently across the app */
-import { createTheme, rem } from '@mantine/core'
+import { createTheme, rem, Container} from '@mantine/core'
 
 const baseTheme = createTheme({
   colorScheme: 'light',
@@ -39,6 +39,14 @@ export const lightTheme = {...baseTheme,
     md: rem(16),
     lg: rem(20),
     xl: rem(24),
+  },
+  // add responsive size that will make Container max-width different depending on screen size:
+  components: {
+    Container: Container.extend({
+      classNames: (_, { size }) => ({
+        root: cx({ [classes.responsiveContainer]: size === 'responsive' }),
+      }),
+    }),
   },
 };
 

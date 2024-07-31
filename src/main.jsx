@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <SessionContextProvider>
           <CartContextProvider>
               <MantineProvider theme={baseTheme} defaultColorScheme= 'auto'> //color scheme based on user OS
-                <Paper padding = "md" radious = {0} style = {{minHeight: "100vh"}}>
+                <Paper componenet = "container" style = {{minHeight: "100vh"}} size="responsive" >
                   <AppShellComponent/> 
                 </Paper>        
               </MantineProvider>

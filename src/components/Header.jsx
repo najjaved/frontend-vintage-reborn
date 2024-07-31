@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <Box className={classes.header}>
-      <Text className={classes.logo}><Link to="/"> <img className={classes.logoimg} src={Logo} alt="logo" /> </Link></Text>
+      <Text className={classes.logo} radious = {50}><Link to="/"> <img className={classes.logoimg} src={Logo} alt="logo" /> </Link></Text>
       <Title order={2} className={classes.title}>Reborn</Title>
       <Link to="/profile/cart" >
         <Image

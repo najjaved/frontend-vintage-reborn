@@ -8,6 +8,7 @@ import cart from "../assets/images/cartIcon.png";
 import profileImage from '../assets/images/profile.png';
 import loggedImage from '../assets/images/logged.png'; // Import logged image
 import LoginForm from './LoginForm';
+import Logo from '../assets/images/Logo.png'
 
 const Header = () => {
   const { isAuthenticated, handleLogout } = useContext(SessionContext);
@@ -33,16 +34,16 @@ const Header = () => {
 
   return (
     <Box className={classes.header}>
-      <Text className={classes.logo}>Logo</Text>
-      <Title order={2} className={classes.title}>Our Store Name</Title>
-     <Link to="/profile/cart" >
+      <Text className={classes.logo}><img className={classes.logoimg} src={Logo} alt="logo" /> </Text>
+      <Title order={2} className={classes.title}>Reborn</Title>
+      <Link to="/profile/cart" >
         <Image
           src={cart}
           alt="Shopping cart"
           width={24}
           height={24}
         />
-    </Link>
+      </Link>
 
       {!isAuthenticated && (
         <>

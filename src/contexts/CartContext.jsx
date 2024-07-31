@@ -11,78 +11,83 @@ const initializeCartItems = (products) => {
 };
 
 const CartContextProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
-const [products, setProducts] = useState([]);
-const [cartItems, setCartItems] = useState([]);
-
-
-const getAllProducts = async () => {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
+  const getAllProducts = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.log("Fetch error: ", error);
     }
-    const data = await response.json();
-    setProducts(data);
-  } catch (error) {
-    console.log("Fetch error: ", error);
-  }
-};
+  };
 
-useEffect(() => {
-  getAllProducts();
-}, []);
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
+  useEffect(() => {
+    setCartItems(initializeCartItems(products));
+  }, [products]);
 
-useEffect(() => {
-  setCartItems(initializeCartItems(products));
-}, [products]);
+  const addToCart = (productId) => {
+    setCartItems(prevCart => prevCart.map(item => 
+      item.id === productId 
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    ));
+  };
 
-const addToCart = (productId) => {
-  console.log("added to cart product with id: ", productId);
-  setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-  ));
-};
+  const removeFromCart = (productId) => {
+    setCartItems(prevCart => prevCart.map(item => 
+      item.id === productId && item.quantity > 0
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    ));
+  };
 
-const removeFromCart = (productId) => {
-  setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId && item.quantity > 0 ? { ...item, quantity: item.quantity - 1 } : item
-  ));
-};
+  const updateCartItemCount = (newAmount, productId) => {
+    setCartItems(prevCart => prevCart.map(item => 
+      item.id === productId 
+        ? { ...item, quantity: newAmount }
+        : item
+    ));
+  };
 
-const updateCartItemCount = (newAmount, productId) => {
-  setCartItems(prevCart => prevCart.map(item => 
-    item.id === productId ? { ...item, quantity: newAmount } : item
-  ));
-};
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item of cartItems) {
+      if (item.quantity > 0) {
+        const itemInfo = products.find(product => product._id === item.id);
+        totalAmount += item.quantity * itemInfo.price;
+      }
+    }
+    return totalAmount;
+  };
 
-const getTotalCartAmount = () => {
-  return cartItems.reduce((total, item) => {
-    const product = products.find(p => p._id === item._id);
-    return total + (item.quantity * (product ? product.price : 0));
-  }, 0);
-};
+  const checkout = () => {
+    setCartItems(initializeCartItems(products));
+  };
 
-const checkout = () => {
-  setCartItems([]);
-};
-
-
-const contextValue = {
-  products,
-  cartItems,
-  addToCart,
-  updateCartItemCount,
-  removeFromCart,
-  getTotalCartAmount,
-  checkout,
-  getAllProducts,
-};
+  const contextValue = {
+    products,
+    cartItems,
+    addToCart,
+    updateCartItemCount,
+    removeFromCart,
+    getTotalCartAmount,
+    checkout,
+    getAllProducts,
+  };
 
   return (
     <CartContext.Provider value={contextValue}>
-       {children}
+      {children}
     </CartContext.Provider>
   );
 };

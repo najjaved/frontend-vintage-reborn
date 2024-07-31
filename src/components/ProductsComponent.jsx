@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, Image, Text, Badge, Button, Group, Space } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Space, Container, SimpleGrid , AspectRatio } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 //import { IconHeart } from '@tabler/icons-react'; 
@@ -48,19 +48,26 @@ const ProductsComponent = ({ onEdit }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Container>Loading...</Container>;
   }
 
+  //toDo: add classes in css module for listings page styling
   return (
-    <div>
+    <SimpleGrid 
+    justify="center" 
+    align="center" 
+    gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
+    >
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
           <Card.Section>
+          <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
             <Image src={product.images} alt={product.name}
-              h={160}
               radius="md"
+              fit="contain"
               fallbackSrc="https://placehold.co/600x400?text=Placeholder"
             /> {/* w= 'auto' fit="contain" */}
+            </AspectRatio>
           </Card.Section>
           <Group position="apart" h="xl" style={{ marginBottom: 5, marginTop: 5 }}>
             <Text weight={500}>{product.name}</Text>
@@ -90,7 +97,7 @@ const ProductsComponent = ({ onEdit }) => {
           </Group>
         </Card>
       ))}
-    </div>
+    </SimpleGrid >
   );
 };
 

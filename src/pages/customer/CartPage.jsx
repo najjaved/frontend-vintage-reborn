@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Title, Text, Modal, Group, Image, Divider } from '@mantine/core';
 import CartItem from '../../components/CartItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from '../../styles/CartPage.module.css';
 import { CartContext } from '../../contexts/CartContext';
 import { useDisclosure } from "@mantine/hooks";
@@ -12,9 +12,12 @@ const CartPage = () => {
   const [modalOpened, { open, close }] = useDisclosure(false);
   const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleFakePayReset = () => {
-    checkout();
+    checkout(); 
     open();
+    //navigate("/checkout"); //toDO: add this after stripe functionality
   };
 
   const handleModalClose = () => {

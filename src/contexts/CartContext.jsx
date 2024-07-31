@@ -4,6 +4,7 @@ export const CartContext = createContext(null);
 
 const initializeCartItems = (products) => {
   return products.map(product => ({
+    ...product,
     id: product._id.toString(),
     quantity: 0
   }));

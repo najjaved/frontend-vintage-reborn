@@ -39,7 +39,7 @@ const ProductDetails = () => {
     product && (
       <Card shadow="sm" padding="lg">
         <Card.Section>
-          <Image src={product.images} alt={product.name} height={auto} />
+          <Image src={product.images} alt={product.name} height={400} />
         </Card.Section>
         <Group position="apart" style={{ marginBottom: 5, marginTop: 10 }}>
           <Text weight={500}>{product.name}</Text>

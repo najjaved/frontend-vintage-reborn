@@ -32,3 +32,8 @@
   color: #fff;
   justify-self: flex-end;
 }
+
+.logoimg {
+  height: 24px;
+  width: 24px;
+}

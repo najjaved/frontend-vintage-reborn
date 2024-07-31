@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Container, Stack } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
-import SearchBar from './SearchBar'; 
+import SearchBar from './SearchBar';
 import searchIcon from '../assets/images/search.png';
 import { SessionContext } from '../contexts/SessionContext';
 import { Link } from 'react-router-dom';
@@ -36,19 +36,19 @@ const Navbar = () => {
       <Stack position="center" spacing="sm" direction="column">
         <Link to="/" className={classes.navLink}>Home</Link>
         <Link to="#featured" className={classes.navLink}>Featured</Link>
-        <Link to= "/admin" className={classes.navLink}> Admin Dashboard</Link> 
+        <Link to="/admin" className={classes.navLink}> Admin Dashboard</Link>
         <Link to="/about" className={classes.navLink}>About</Link>
         <Container className={classes.centeredItem}>
           <LightDarkModeButton />
         </Container>
         {isAuthenticated && (
-              <>
-                {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}    
-                <Link to= "/profile/userId" className={classes.navLink}> Profile Page</Link> 
-              </>
-            )}
+          <>
+            {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}
+            <Link to="/profile" className={classes.navLink}> Profile Page</Link>
+          </>
+        )}
 
-            {/* 
+        {/* 
             <Select id="#theme"
               label="Chose color scheme"
               placeholder="Pick value"

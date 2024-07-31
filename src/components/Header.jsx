@@ -68,7 +68,7 @@ const Header = () => {
             position="right"
           >
             <Stack>
-              <Link to="/profile/:userId" className={classes.navLink}> Profile Page</Link>
+              <Link to="/profile/" className={classes.navLink}> Profile Page</Link>
               <Link to="/profile/orders" className={classes.navLink}> View Orders </Link>
               <Button type='button' onClick={handleLogout}> Logout </Button>
             </Stack>

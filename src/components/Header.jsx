@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, Box, Title, Text, Button, Drawer, Stack } from '@mantine/core';
+import { Image, Box, Title, Button, Drawer, Stack, Group } from '@mantine/core';
 import { useContext } from 'react';
 import { SessionContext } from '../contexts/SessionContext';
 import classes from '../styles/Header.module.css';
@@ -34,47 +34,56 @@ const Header = () => {
 
   return (
     <Box className={classes.header}>
-      <Text className={classes.logo} radious = {50}><Link to="/"> <img className={classes.logoimg} src={Logo} alt="logo" /> </Link></Text>
-      <Title order={2} className={classes.title}>Reborn</Title>
-      <Link to="/profile/cart" >
-        <Image
-          src={cart}
-          alt="Shopping cart"
-          width={24}
-          height={24}
-        />
+      <Link to="/">
+          <Image
+            className={classes.logo}
+            src={Logo}
+            alt="logo"
+            style={{ height: "50px", width: "auto" }}
+          />
       </Link>
+      <Title order={2} className={classes.title}>Vintage Reborn</Title>
+      <Group>
+        <Link to="/profile/cart" >
+          <Image
+            src={cart}
+            alt="Shopping cart"
+            width={24}
+            height={24}
+          />
+        </Link>
 
-      {!isAuthenticated && (
-        <>
-          <Button onClick={handleOpenLogin} style={{ padding: 0, border: 'none', background: 'none' }}>
-            <Image src={profileImage} alt="Profile" width={24} height={24} />
-          </Button>
-        </>
-      )}
-      {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
+        {!isAuthenticated && (
+          <>
+            <Button onClick={handleOpenLogin} style={{ padding: 0, border: 'none', background: 'none' }}>
+              <Image src={profileImage} alt="Profile" width={24} height={24} />
+            </Button>
+          </>
+        )}
+        {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}
 
-      {isAuthenticated && (
-        <>
-          <Button onClick={handleDrawerOpen} style={{ padding: 0, border: 'none', background: 'none' }}>
-            <Image src={loggedImage} alt="Menu" width={24} height={24} />
-          </Button>
-          <Drawer
-            opened={drawerOpened}
-            onClose={handleDrawerClose}
-            title="User Menu"
-            padding="md"
-            size="md"
-            position="right"
-          >
-            <Stack>
-              <Link to="/profile/" className={classes.navLink}> Profile Page</Link>
-              <Link to="/profile/orders" className={classes.navLink}> View Orders </Link>
-              <Button type='button' onClick={handleLogout}> Logout </Button>
-            </Stack>
-          </Drawer>
-        </>
-      )}
+        {isAuthenticated && (
+          <>
+            <Button onClick={handleDrawerOpen} style={{ padding: 0, border: 'none', background: 'none' }}>
+              <Image src={loggedImage} alt="Menu" width={24} height={24} />
+            </Button>
+            <Drawer
+              opened={drawerOpened}
+              onClose={handleDrawerClose}
+              title="User Menu"
+              padding="md"
+              size="md"
+              position="right"
+            >
+              <Stack>
+                <Link to="/profile/" className={classes.navLink}> Profile Page</Link>
+                <Link to="/profile/orders" className={classes.navLink}> View Orders </Link>
+                <Button type='button' onClick={handleLogout}> Logout </Button>
+              </Stack>
+            </Drawer>
+          </>
+        )}
+      </Group>
     </Box>
   );
 };

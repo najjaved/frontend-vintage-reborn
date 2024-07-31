@@ -1,15 +1,23 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+}
+.logo {
+  border-radius: 35%;
+}
+
+.logo:hover {
+  filter: brightness(1.2);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: bold;
+  font-family: "Cursive", "Lucida Console", "Courier New", monospace;
 }
 
 .cartButton {
@@ -21,10 +29,4 @@
   background-color: #007bff;
   color: #fff;
   justify-self: flex-end;
-}
-
-.logoimg {
-  display: flex;
-  height: auto;
-  width: 47px;
 }

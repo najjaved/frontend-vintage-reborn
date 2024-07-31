@@ -29,7 +29,7 @@ const ProfilePage = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`)
       const data = await response.json()
       setFormData(data)
     } catch (error) {
@@ -49,7 +49,7 @@ const ProfilePage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

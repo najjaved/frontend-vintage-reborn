@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { SessionContext } from "../../contexts/SessionContext";
 import { Link } from "react-router-dom";
+import classes from "../../styles/ManageUsersPage.module.css"
 
 const ManageUsersPage = () => {
 

@@ -37,23 +37,10 @@ const Navbar = () => {
         <Link to="/" className={classes.navLink}>Home</Link>
         <Link to="#featured" className={classes.navLink}>Featured</Link>
         <Link to="/admin" className={classes.navLink}> Admin Dashboard</Link>
-        <Link to="/about" className={classes.navLink}>About</Link>
         <Container className={classes.centeredItem}>
-          <LightDarkModeButton />
+          Change Theme <LightDarkModeButton />
         </Container>
-        {isAuthenticated && (
-          <>
-            {/* toDo: fix backend, fetch userId from token payload {`/profile/${user._id}`}*/}
-            <Link to="/profile" className={classes.navLink}> Profile Page</Link>
-          </>
-        )}
-
-        {/* 
-            <Select id="#theme"
-              label="Chose color scheme"
-              placeholder="Pick value"
-              data={['light', 'dark']}
-            /> */}
+        <Link to="/about" className={classes.navLink}>About</Link>
         <SearchBar products={products} icon={searchIcon} /> {/* Add the SearchBar component */}
       </Stack>
     </Container>

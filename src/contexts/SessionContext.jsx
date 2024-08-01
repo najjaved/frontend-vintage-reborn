@@ -62,20 +62,20 @@ const SessionContextProvider = ({ children }) => {
   }, [token]);
 
 
-const fetchWithToken = async (endpoint, method = 'GET', payload) => {
-  try {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/api${endpoint}`, {
-      method,
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify(payload),
-    });
-    if (response.ok) {
-      return response.json();
+  const fetchWithToken = async (endpoint, method = 'GET', payload) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api${endpoint}`, {
+        method,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify(payload),
+      });
+      if (response.ok) {
+        return response.json();
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
 
   const handleLogout = () => {

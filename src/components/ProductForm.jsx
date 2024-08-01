@@ -31,7 +31,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
+    const url = `/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
     const method = initialProduct ? "PUT" : "POST";
     const payload = product;
     fetchWithToken(url, method, payload);

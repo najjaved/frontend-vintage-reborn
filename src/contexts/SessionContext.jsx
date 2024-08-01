@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useContext } from 'react';
 
 export const SessionContext = createContext();
 
@@ -8,6 +8,7 @@ const SessionContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   const removeToken = () => {
     window.localStorage.removeItem('authToken');
@@ -84,11 +85,12 @@ const SessionContextProvider = ({ children }) => {
     setIsAuthenticated(false);
     setUser(null);
     setIsAdmin(false);
+    setCartItems([]); // empty the cart
   };
 
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, verifyToken }}
+      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, verifyToken, cartItems, setCartItems }}
     >
       {children}
     </SessionContext.Provider>

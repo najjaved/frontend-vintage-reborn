@@ -14,6 +14,10 @@ const CartPage = () => {
 
   const navigate = useNavigate();
 
+  const handleProceedToCheckout = () => {
+    navigate("/profile/checkout");
+  };
+  
   const handleFakePayReset = () => {
     checkout(); 
     open();
@@ -76,7 +80,7 @@ const CartPage = () => {
                   size="lg"
                   variant="gradient"
                   gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-                  onClick={handleFakePayReset}
+                  onClick={handleProceedToCheckout}
                 >
                   Proceed to Checkout
                 </Button>

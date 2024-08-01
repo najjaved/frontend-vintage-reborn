@@ -4,8 +4,8 @@ import { SessionContext } from '../contexts/SessionContext';
 export const CartContext = createContext(null);
 
 const CartContextProvider = ({ children }) => {
-  const { fetchWithToken, token, isAuthenticated, user } = useContext(SessionContext); 
-  const [cartItems, setCartItems] = useState([]);
+  const { fetchWithToken, token, isAuthenticated, user, cartItems, setCartItems } = useContext(SessionContext); 
+  //const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
   const getAllProducts = async () => {
@@ -157,9 +157,8 @@ const getTotalCartAmount = () => {
     return totalAmount;
 };
 
-const checkout = () => {
+const resetCart = () => {
   setCartItems([]);
-  // go to checkout page and POST an order
 };
 
 const contextValue = {
@@ -168,7 +167,7 @@ const contextValue = {
   updateCartItemCount,
   removeFromCart,
   getTotalCartAmount,
-  checkout,
+  resetCart,
   products
 };
 

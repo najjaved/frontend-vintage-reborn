@@ -17,6 +17,7 @@ import ManageListingsPage from './pages/admin/ManageListingsPage';
 import OrdersPage from './pages/customer/OrdersPage';
 import ManageSingleUserProductsPage from './pages/admin/ManageSingleUserProductsPage'
 import MangeSingleUserOrdersPage from './pages/admin/ManageSingleUserOrdersPage'
+import CheckoutPage from './pages/customer/CheckoutPage';
 
 function App() {
   return (
@@ -45,6 +46,15 @@ function App() {
           element={
             <PrivateRoute>
               <OrdersPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/profile/checkout"
+          element={
+            <PrivateRoute>
+              <CheckoutPage/>
             </PrivateRoute>
           }
         />

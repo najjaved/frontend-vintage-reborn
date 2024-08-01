@@ -5,7 +5,7 @@ const baseTheme = createTheme({
   colorScheme: 'light',
   fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', // font family for the entire application
   headings: {
-    fontFamily: 'Segoe UI, Lucida Console, "Courier New',
+    fontFamily: 'Courier New, Courier, monospace',
     sizes: {
       h1:{
         fontSize: rem(36)

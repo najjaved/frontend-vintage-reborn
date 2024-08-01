@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, Image, Text, Badge, Button, Group, Space, Container, SimpleGrid , AspectRatio } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Space, Container, SimpleGrid, AspectRatio } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 //import { IconHeart } from '@tabler/icons-react'; 
@@ -7,11 +7,11 @@ import { CartContext } from '../contexts/CartContext';
 import classes from '../styles/Products.module.css';
 
 const ProductsComponent = ({ onEdit }) => {
-  const { token } = useContext(SessionContext);
+  const { user, token } = useContext(SessionContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart, cartItems,  updateCartItemCount} = useContext(CartContext);
+  const { addToCart, cartItems, updateCartItemCount } = useContext(CartContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,7 +31,7 @@ const ProductsComponent = ({ onEdit }) => {
     fetchProducts(); // Call the fetch function
   }, []);
 
-  const calculateItemsQuantity = (items, product) =>{
+  const calculateItemsQuantity = (items, product) => {
     const currentProduct = items.find(item => item.productId === product._id);
     if (currentProduct) {
       return currentProduct.quantity;
@@ -62,25 +62,25 @@ const ProductsComponent = ({ onEdit }) => {
 
   //toDo: add classes in css module for listings page styling
   return (
-    <SimpleGrid 
-    cols={{ base: 1, sm: 2, lg: 3 }}
-    spacing={{ base: 10, sm: 'xl' }}
-    verticalSpacing={{ base: 'md', sm: 'xl' }}
-    justify="center" 
-    align="center" 
-    gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
+    <SimpleGrid
+      cols={{ base: 1, sm: 2, lg: 3 }}
+      spacing={{ base: 10, sm: 'xl' }}
+      verticalSpacing={{ base: 'md', sm: 'xl' }}
+      justify="center"
+      align="center"
+      gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
     >
       {products.map((product) => (
         <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
-          <Card.Section className = {classes.productImage}>
-          <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
-            <Image 
-              src={product.images} 
-              alt={product.name}
-              radius="md"
-              fit="contain"
-              fallbackSrc="https://placehold.co/600x400?text=Placeholder"
-            /> {/* w= 'auto' fit="contain" */}
+          <Card.Section className={classes.productImage}>
+            <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
+              <Image
+                src={product.images}
+                alt={product.name}
+                radius="md"
+                fit="contain"
+                fallbackSrc="https://placehold.co/600x400?text=Placeholder"
+              /> {/* w= 'auto' fit="contain" */}
             </AspectRatio>
           </Card.Section>
           <Group position="apart" h="xl" style={{ marginBottom: 5, marginTop: 5 }}>
@@ -98,14 +98,18 @@ const ProductsComponent = ({ onEdit }) => {
           <Group position="apart" style={{ marginTop: '1rem' }}>
             <Button variant="light" color="blue" onClick={() => addToCart(product)}>
               Add to Cart {
-             calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>} 
+                calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
             </Button>
-            <Button variant="light" color="blue" onClick={() => onEdit(product)}>
-              Edit
-            </Button>
-            <Button variant="light" color="red" onClick={() => handleDelete(product._id)}>
-              Delete
-            </Button>
+            {(user._id === product.createdBy || user.role === 'admin') && (
+              <>
+                <Button variant="light" color="blue" onClick={() => onEdit(product)}>
+                  Edit
+                </Button>
+                <Button variant="light" color="red" onClick={() => handleDelete(product._id)}>
+                  Delete
+                </Button>
+              </>
+            )}
             <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
               View Details
             </Button>

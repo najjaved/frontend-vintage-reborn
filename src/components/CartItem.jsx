@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from '../contexts/CartContext';
 import { Card, Text, Button, Group, Image, TextInput } from '@mantine/core';
 import { Navigate } from "react-router-dom";
+import classes from '../styles/CartPage.module.css';
 
 const CartItem = ({ product }) => {
   const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(CartContext);
@@ -24,20 +25,18 @@ const CartItem = ({ product }) => {
   };
 
   return (
-    <Card className="cartItem" shadow="sm" padding="lg" radius="md" mt="md" withBorder>
-      <Card.Section mt="xs">
+    <Card className={classes.cartItem}  mt="xl" >
+       <Text fw= {300} className={classes.text}>{product.name}</Text>
+      <Card.Section mt="lg">
         <Image
           src={product.images}
-          height={200}
-          width="auto"
-          fit="contain"
         />
       </Card.Section>
-      <Group position="apart" mt="xs" mb="xs">
-        <Text size="sm" c="dimmed">{product.name}</Text>
-        <Text size="sm" c="dimmed">{product.price}€</Text>
+      <Group className={classes.text} position="apart" mt="xs" mb="xs">
+        <Text c="dimmed">Price: </Text>
+        <Text c="dimmed">{product.price}€</Text>
       </Group>
-      <Group className="countHandler" justify="center" gap="xs" mt="md" mb="md">
+      <Group className={classes.countHandler} mt="md" mb="md">
         <Button onClick={() => removeFromCart(product)} > - </Button>
         <TextInput
           value={quantity.toString()} 

@@ -70,53 +70,51 @@ const ProductsComponent = ({ onEdit }) => {
       align="center"
       gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
     >
-      {products.map((product) => {
-        const isOwnerOrAdmin = user && (user._id === product.createdBy || user.role === 'admin');
+      {products.map((product) => (
+        <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
+          <Card.Section className={classes.productImage}>
+            <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
+              <Image
+                src={product.images}
+                alt={product.name}
+                radius="md"
+                fit="contain"
+                fallbackSrc="https://placehold.co/600x400?text=Placeholder"
+              /> {/* w= 'auto' fit="contain" */}
+            </AspectRatio>
+          </Card.Section>
+          <Group position="apart" h="xl" style={{ marginBottom: 5, marginTop: 5 }}>
+            <Text weight={500}>{product.name}</Text>
+            <Badge color="pink" variant="light">
+              {product.category}
+            </Badge>
+          </Group>
+          <Space h="md" />
+          <Text size="md" c="dimmed" align='left'>
+            {product.description}
+          </Text>
+          <Space h="xl" />
+          <Text weight={700} size="lg" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
+          <Group position="apart" style={{ marginTop: '1rem' }}>
+            <Button variant="light" color="blue" onClick={() => addToCart(product)}>
+              Add to Cart {
+                calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
+            </Button>
 
-        return (
-          <Card key={product._id} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
-            <Card.Section className={classes.productImage}>
-              <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
-                <Image
-                  src={product.images}
-                  alt={product.name}
-                  radius="md"
-                  fit="contain"
-                  fallbackSrc="https://placehold.co/600x400?text=Placeholder"
-                /> {/* w= 'auto' fit="contain" */}
-              </AspectRatio>
-            </Card.Section>
-            <Group position="apart" h="xl" style={{ marginBottom: 5, marginTop: 5 }}>
-              <Text weight={500}>{product.name}</Text>
-              <Badge color="pink" variant="light">
-                {product.category}
-              </Badge>
-            </Group>
-            <Space h="md" />
-            <Text size="md" c="dimmed" align='left'>
-              {product.description}
-            </Text>
-            <Space h="xl" />
-            <Text weight={700} size="lg" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
-            <Group position="apart" style={{ marginTop: '1rem' }}>
-              <Button variant="light" color="blue" onClick={() => addToCart(product)}>
-                Add to Cart {
-                  calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
-              </Button>
+            <Button variant="light" color="blue" onClick={() => onEdit(product)}>
+              Edit
+            </Button>
+            <Button variant="light" color="red" onClick={() => handleDelete(product._id)}>
+              Delete
+            </Button>
 
-              <Button variant="light" color="blue" onClick={() => onEdit(product)} disabled={!isOwnerOrAdmin}>
-                Edit
-              </Button>
-              <Button variant="light" color="red" onClick={() => handleDelete(product._id)} disabled={!isOwnerOrAdmin}>
-                Delete
-              </Button>
-              <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
-                View Details
-              </Button>
-            </Group>
-          </Card>
-        )
-      })}
+
+            <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
+              View Details
+            </Button>
+          </Group>
+        </Card>
+      ))}
     </SimpleGrid >
   );
 };

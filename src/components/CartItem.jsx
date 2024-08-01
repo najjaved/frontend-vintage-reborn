@@ -24,8 +24,8 @@ const CartItem = ({ product }) => {
   };
 
   return (
-    <Card className="cartItem">
-      <Card.Section>
+    <Card className="cartItem" shadow="sm" padding="lg" radius="md" mt="md" withBorder>
+      <Card.Section mt="xs">
         <Image
           src={product.images}
           height={200}
@@ -33,22 +33,19 @@ const CartItem = ({ product }) => {
           fit="contain"
         />
       </Card.Section>
-      <Card.Section className="description">
-        <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
-          <Text weight={500}>{product.name}</Text>
-          <Text>{product.price}€</Text>
-        </Group>
-
-        <Group className="countHandler">
-          <Button onClick={() => removeFromCart(product)}> - </Button>
-          <TextInput
-            value={quantity.toString()} 
-            onChange={handleChange}
-            type="number" 
-          />
+      <Group position="apart" mt="xs" mb="xs">
+        <Text size="sm" c="dimmed">{product.name}</Text>
+        <Text size="sm" c="dimmed">{product.price}€</Text>
+      </Group>
+      <Group className="countHandler" justify="center" gap="xs" mt="md" mb="md">
+        <Button onClick={() => removeFromCart(product)} > - </Button>
+        <TextInput
+          value={quantity.toString()} 
+          onChange={handleChange}
+          type="number" 
+        />
           <Button onClick={() => addToCart(product)}> + </Button>
-        </Group>
-      </Card.Section>
+      </Group>
     </Card>
   );
 };

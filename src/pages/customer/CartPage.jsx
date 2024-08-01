@@ -27,8 +27,9 @@ const CartPage = () => {
 
   const isCartEmpty = cartItems.every(item => item.quantity === 0);
 
+  //toDo: move styles to corresponding css module
   return (
-    <Container className={classes.cart}>
+    <Container className={classes.cart} style= {{marginBottom: "2rem"}}>
       {!isCartEmpty && (
         <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
       )}
@@ -53,9 +54,9 @@ const CartPage = () => {
         </Container>
       )}
 
-      <Container>
+      <Container mt="md">
         {totalAmount > 0 && (
-          <Text>Total Price: {totalAmount.toFixed(2)}€</Text>
+          <Text fw={500} size="lg" mt="md">Total Price: {totalAmount.toFixed(2)}€</Text>
         )}
 
         {!isCartEmpty && (

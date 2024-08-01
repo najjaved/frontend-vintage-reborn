@@ -157,6 +157,14 @@ const getTotalCartAmount = () => {
     return totalAmount;
 };
 
+/* OR using reduce
+  const getTotalCartAmount = () => {
+    return cartItems.reduce((total, item) => {
+      return total + item.quantity * item.price; //missing product.price
+    }, 0);
+  };
+*/
+
 const resetCart = () => {
   setCartItems([]);
 };

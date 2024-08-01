@@ -71,7 +71,7 @@ const ProductsComponent = ({ onEdit }) => {
       gutter={{ base: 5, xs: 'md', md: 'xl', xl: 50 }}
     >
       {products.map((product) => (
-        <Card key={product._id} className= {classes.product} shadow="sm" padding="lg" style={{ marginBottom: '1rem' }}>
+        <Card key={product._id} className= {classes.product}>
           <Card.Section className={classes.productImage}>
             <AspectRatio ratio={1080 / 720} maw={300} mx="auto">
               <Image

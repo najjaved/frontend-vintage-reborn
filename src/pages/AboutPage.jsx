@@ -9,7 +9,7 @@ const AboutPage = () => {
     return (
         <>  <Title fw={500}> The team</Title>
             <Space h="xl" />
-            <Container className={classes.aboutCards}>
+            <Container className={classes.aboutContainer}>
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
                         <Image

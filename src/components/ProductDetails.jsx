@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Image, Text, Badge, Group, Space } from '@mantine/core';
+import classes from '../styles/Products.module.css';
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -37,9 +38,9 @@ const ProductDetails = () => {
 
   return (
     product && (
-      <Card shadow="sm" padding="lg">
+      <Card className= {classes.product}>
         <Card.Section>
-          <Image src={product.images} alt={product.name} height={400} />
+          <Image src={product.images} alt={product.name} w="auto" content = "fit" className= {classes.productImage}/>
         </Card.Section>
         <Group position="apart" style={{ marginBottom: 5, marginTop: 10 }}>
           <Text weight={500}>{product.name}</Text>
@@ -47,13 +48,12 @@ const ProductDetails = () => {
             {product.category}
           </Badge>
         </Group>
-        <Text size="sm" color="dimmed">
-          {product.description}
+        <Text size="sm" c="dimmed" my="lg">
+          Description: {product.description}
         </Text>
-        <Space h="md" />
-        <Group position="apart" style={{ marginTop: '1rem' }}>
-          <Text weight={700} size="lg">{product.price}</Text>
-        </Group>
+        
+        <Text weight={500} size="lg" align = "left">Price: {product.price}</Text>
+
       </Card>
     )
   );

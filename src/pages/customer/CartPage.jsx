@@ -27,14 +27,13 @@ const CartPage = () => {
 
   const isCartEmpty = cartItems.every(item => item.quantity === 0);
 
-  //toDo: move styles to corresponding css module
   return (
-    <Container className={classes.cart} style= {{marginBottom: "2rem"}}>
+    <Container className={classes.cart}>
       {!isCartEmpty && (
         <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
       )}
 
-      <Container className={classes.cartItems}>
+      <Container >
         {cartItems.map((item) => {
           const productData = products.find(p => p._id === item.productId);
           console.log('product going to the cart', productData);
@@ -47,9 +46,9 @@ const CartPage = () => {
 
       {isCartEmpty && (
         <Container>
-          <Group className="emptycart">
-            <Title className="carth1">Your Shopping Cart is empty</Title>
-            <Image className="emptyimage" src="https://placehold.co/600x400?text=Placeholder" alt="Placeholder" />
+          <Group className={classes.emptyCart} >
+            <Title order = {1}>Your Shopping Cart is empty</Title>
+            <Image className={classes.emptyImage} src="https://placehold.co/600x400?text=Placeholder" alt="Placeholder" />
           </Group>
         </Container>
       )}
@@ -63,7 +62,7 @@ const CartPage = () => {
           <Container>
             <Divider my="lg" />
             <Container>
-              <Group className="cart-buttons">
+              <Group className={classes.cartButtons}>
                 <Button
                   size="lg"
                   variant="gradient"

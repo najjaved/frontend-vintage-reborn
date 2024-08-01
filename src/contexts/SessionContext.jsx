@@ -88,7 +88,7 @@ const fetchWithToken = async (endpoint, method = 'GET', payload) => {
 
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, fetchCartItems, verifyToken }}
+      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout, user, isAdmin, verifyToken }}
     >
       {children}
     </SessionContext.Provider>

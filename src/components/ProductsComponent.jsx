@@ -7,7 +7,7 @@ import { CartContext } from '../contexts/CartContext';
 import classes from '../styles/Products.module.css';
 
 const ProductsComponent = ({ onEdit }) => {
-  const { user, token } = useContext(SessionContext);
+  const { token } = useContext(SessionContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 

@@ -100,7 +100,7 @@ const ProductsComponent = ({ onEdit }) => {
               Add to Cart {
                 calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
             </Button>
-            {user && (user._id === product.createdBy || user.role === 'admin') && (
+            {(user._id === product.createdBy || user.role === 'admin') && (
               <>
                 <Button variant="light" color="blue" onClick={() => onEdit(product)}>
                   Edit

@@ -157,9 +157,8 @@ const getTotalCartAmount = () => {
     return totalAmount;
 };
 
-const checkout = () => {
+const resetCart = () => {
   setCartItems([]);
-  // go to checkout page and POST an order
 };
 
 const contextValue = {
@@ -168,7 +167,7 @@ const contextValue = {
   updateCartItemCount,
   removeFromCart,
   getTotalCartAmount,
-  checkout,
+  resetCart,
   products
 };
 

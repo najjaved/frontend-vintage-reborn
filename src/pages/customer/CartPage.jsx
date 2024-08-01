@@ -7,7 +7,7 @@ import { CartContext } from '../../contexts/CartContext';
 import { useDisclosure } from "@mantine/hooks";
 
 const CartPage = () => {
-  const {products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
+  const {products, cartItems, getTotalCartAmount, resetCart } = useContext(CartContext);
   const totalAmount = getTotalCartAmount();
   const [modalOpened, { open, close }] = useDisclosure(false);
   const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
@@ -19,7 +19,7 @@ const CartPage = () => {
   };
   
   const handleFakePayReset = () => {
-    checkout(); 
+    resetCart(); 
     open();
     //navigate("/checkout"); //toDO: add this after stripe functionality
   };

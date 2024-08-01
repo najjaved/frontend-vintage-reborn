@@ -6,7 +6,7 @@ import { SessionContext } from '../../contexts/SessionContext';
 import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, resetCart } = useContext(CartContext);
   const { fetchWithToken, user, token } = useContext(SessionContext);
   const navigate = useNavigate();
 
@@ -42,6 +42,7 @@ const CheckoutPage = () => {
       console.log(token, user)
       if (responseData) {
         console.log('Order placed successfully:', responseData);
+        resetCart(); // empty the cart after successful order placement
         navigate('/'); // toDo: open order confirmation popup
       }
     } catch (error) {

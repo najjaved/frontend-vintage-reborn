@@ -5,7 +5,7 @@ const baseTheme = createTheme({
   colorScheme: 'light',
   fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', // font family for the entire application
   headings: {
-    fontFamily: 'Helvetica, sans-serif',
+    fontFamily: 'Segoe UI, Helvetica, sans-serif',
     sizes: {
       h1:{
         fontSize: rem(36)
@@ -34,7 +34,7 @@ export const lightTheme = {...baseTheme,
   },
   primaryColor: 'primary',
   fontSizes: {
-    xs: rem(12),
+    xs: rem(5),
     sm: rem(14),
     md: rem(16),
     lg: rem(20),

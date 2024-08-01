@@ -7,7 +7,7 @@ import { CartContext } from '../../contexts/CartContext';
 import { useDisclosure } from "@mantine/hooks";
 
 const CartPage = () => {
-  const { products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
+  const {products, cartItems, getTotalCartAmount, checkout } = useContext(CartContext);
   const totalAmount = getTotalCartAmount();
   const [modalOpened, { open, close }] = useDisclosure(false);
   const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
@@ -27,17 +27,19 @@ const CartPage = () => {
 
   const isCartEmpty = cartItems.every(item => item.quantity === 0);
 
+  //toDo: move styles to corresponding css module
   return (
-    <Container className={classes.cart}>
+    <Container className={classes.cart} style= {{marginBottom: "2rem"}}>
       {!isCartEmpty && (
         <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
       )}
 
       <Container className={classes.cartItems}>
         {cartItems.map((item) => {
-          const product = products.find(p => p._id === item.id);
+          const productData = products.find(p => p._id === item.productId);
+          console.log('product going to the cart', productData);
           if (item.quantity > 0) {
-            return <CartItem key={item.id} product={product} />;
+            return <CartItem key={item.productId} product={productData} />;
           }
           return null;
         })}
@@ -52,9 +54,9 @@ const CartPage = () => {
         </Container>
       )}
 
-      <Container>
+      <Container mt="md">
         {totalAmount > 0 && (
-          <Text>Subtotal: {totalAmount.toFixed(2)}€</Text>
+          <Text fw={500} size="lg" mt="md">Total Price: {totalAmount.toFixed(2)}€</Text>
         )}
 
         {!isCartEmpty && (

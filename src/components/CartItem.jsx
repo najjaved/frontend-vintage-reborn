@@ -12,20 +12,20 @@ const CartItem = ({ product }) => {
   }
 
   // Find the corresponding cart item
-  const cartItem = cartItems.find(item => item.id === product._id);
+  const cartItem = cartItems.find(item => item.productId === product._id);
   const quantity = cartItem ? cartItem.quantity : 0;
 
  
   const handleChange = (event) => {
     const newAmount = Number(event.target.value);
     if (newAmount >= 0) {
-      updateCartItemCount(newAmount, product._id);
+      updateCartItemCount(newAmount, product);
     }
   };
 
   return (
-    <Card className="cartItem">
-      <Card.Section>
+    <Card className="cartItem" shadow="sm" padding="lg" radius="md" mt="md" withBorder>
+      <Card.Section mt="xs">
         <Image
           src={product.images}
           height={200}
@@ -33,22 +33,19 @@ const CartItem = ({ product }) => {
           fit="contain"
         />
       </Card.Section>
-      <Card.Section className="description">
-        <Group position="apart" style={{ marginBottom: 5, marginTop: 5 }}>
-          <Text weight={500}>{product.name}</Text>
-          <Text>{product.price}€</Text>
-        </Group>
-
-        <Group className="countHandler">
-          <Button onClick={() => removeFromCart(product._id)}> - </Button>
-          <TextInput
-            value={quantity.toString()} 
-            onChange={handleChange}
-            type="number" 
-          />
-          <Button onClick={() => addToCart(product._id)}> + </Button>
-        </Group>
-      </Card.Section>
+      <Group position="apart" mt="xs" mb="xs">
+        <Text size="sm" c="dimmed">{product.name}</Text>
+        <Text size="sm" c="dimmed">{product.price}€</Text>
+      </Group>
+      <Group className="countHandler" justify="center" gap="xs" mt="md" mb="md">
+        <Button onClick={() => removeFromCart(product)} > - </Button>
+        <TextInput
+          value={quantity.toString()} 
+          onChange={handleChange}
+          type="number" 
+        />
+          <Button onClick={() => addToCart(product)}> + </Button>
+      </Group>
     </Card>
   );
 };

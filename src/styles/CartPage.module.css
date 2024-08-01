@@ -11,17 +11,23 @@
 align-items: center;
 box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 border-radius: 25px;
-padding: 1.5rem 3.5rem
+padding: 1rem 2.5rem
 }
 
 .cartItem img {
-width: 200px;
-height:auto;
+width: auto;
+height:150px;
 
 }
 
 .text {
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Lucida Console", "Courier New";
 }
 
 .countHandler input {

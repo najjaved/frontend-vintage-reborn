@@ -30,7 +30,7 @@ const CartPage = () => {
   return (
     <Container className={classes.cart}>
       {!isCartEmpty && (
-        <Title order={1} align="center" my="xl" weight={500}>Items in your Cart</Title>
+        <Title order={1} className={classes.title}>Items in your Cart</Title>
       )}
 
       <Container >
@@ -47,7 +47,7 @@ const CartPage = () => {
       {isCartEmpty && (
         <Container>
           <Group className={classes.emptyCart} >
-            <Title order = {1}>Your Shopping Cart is empty</Title>
+            <Title order = {1} className={classes.title}>Your Shopping Cart is empty</Title>
             <Image className={classes.emptyImage} src="https://placehold.co/600x400?text=Placeholder" alt="Placeholder" />
           </Group>
         </Container>
@@ -92,7 +92,7 @@ const CartPage = () => {
           centered
         >
           <Container>
-            <Title>
+            <Title className={classes.title}>
               Thank you for shopping & supporting our green planet initiative!
             </Title>
             <Image

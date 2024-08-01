@@ -26,7 +26,7 @@ const CartItem = ({ product }) => {
 
   return (
     <Card className={classes.cartItem}  mt="xl" >
-       <Text fw= {300} className={classes.text}>{product.name}</Text>
+       <Text fw= {200} className={classes.text}>{product.name}</Text>
       <Card.Section mt="lg">
         <Image
           src={product.images}

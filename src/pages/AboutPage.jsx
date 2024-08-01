@@ -22,7 +22,7 @@ const AboutPage = () => {
                         <Text fw={500}>Santiago</Text>
                         <Badge color="blue" component={Link} href="#" target="_blank" rel="noopener noreferrer">LinkedIn</Badge>
                     </Group>
-                    <Text>On my late 20s, nature lover and close to be FullStack Web Developer. Born and grown in Canary Islands, with experience working or studying in Great Britain, Poland and Romania. For more info click </Text>
+                    <Text>On my late 20s, nature lover and close to be FullStack Web Developer. Born and grown in Canary Islands, with experience working or studying in Great Britain, Poland and Romania. </Text>
                 </Card>
                 <Space h="md" />
 

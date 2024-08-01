@@ -1,0 +1,119 @@
+.checkoutContainer {
+max-width: 800px;
+margin: 0 auto;
+padding: 2rem;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+font-size: 1.5rem;
+font-weight: 300;
+font-family: Segoe UI, 'Lucida Console';
+margin-bottom: 1.5rem;
+text-align: center;
+}
+
+
+.checkoutForm .formGroup {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    gap: 2px;
+    margin-bottom: 1.5rem;
+  }
+  
+.checkoutForm label {
+width: 150px;
+margin-right: 0.5rem;
+font-weight: 500;
+}
+
+.checkoutForm input {
+flex: 1;
+padding: 0.75rem;
+font-size: 1rem;
+border: 1px solid #ddd;
+border-radius: 4px;
+transition: border-color 0.2s;
+}
+
+.checkoutForm input:focus {
+border-color: #5cb85c;
+outline: none;
+}
+
+.checkoutForm button {
+padding: 0.5rem;
+font-size: 1rem;
+font-weight: 500;
+color: #fff;
+background-color: #5cb85c;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.2s;
+}
+
+.checkoutForm button:hover {
+background-color: #4cae4c;
+}
+
+.checkoutSummary {
+margin-top: 2rem;
+padding: 1.5rem;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+
+.checkoutSummary h2 {
+font-size: 1.5rem;
+font-weight: 300;
+margin-bottom: 1rem;
+
+}
+
+.checkoutSummary .summaryItem {
+display: flex;
+justify-content: space-between;
+margin-bottom: 0.5rem;
+font-size: 1rem;
+
+}
+
+.checkoutSummary .summaryTotal {
+display: flex;
+justify-content: space-between;
+margin-top: 1rem;
+font-size: 1.25rem;
+font-weight: 700;
+}
+
+@media (max-width: 600px) {
+.checkoutContainer {
+    padding: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.checkoutSummary h2 {
+    font-size: 1.25rem;
+}
+.checkoutForm .formGroup {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.checkoutForm label {
+width: 100%;
+margin-right: 0;
+margin-bottom: 0.5rem;
+}
+
+.checkoutForm input {
+width: 100%;
+}
+}

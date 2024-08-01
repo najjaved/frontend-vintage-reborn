@@ -25,15 +25,56 @@ useEffect(() => {
   getAllProducts();
 }, []);
 
-/*
+/**** add protect routes on BE for fetching cart specific to the userId
+const addToUserCart = async (product) => {
+    try {
+      const payload = { productId: product._id, quantity: 1 };
+      const response = await fetchWithToken(`/cart`, 'POST', payload);
+      if (response.ok) {
+        const cartData = await response.json();
+        setCartItems(cartData.items);
+      }
+    } catch (error) {
+      console.log('Error adding item to cart:', error);
+    }
+  };
+
+  const removeFromUserCart = async (product) => {
+    try {
+      const payload = { productId: product._id };
+      const response = await fetchWithToken(`/cart`, 'DELETE', payload);
+      if (response.ok) {
+        const cartData = await response.json();
+        setCartItems(cartData.items);
+      }
+    } catch (error) {
+      console.log('Error removing from cart:', error);
+    }
+  };
+
+  const updateCartItemCount = async (newAmount, productId) => {
+    try {
+      const payload = { productId, quantity: newAmount };
+      const response = await fetchWithToken(`/cart`, 'PUT', payload);
+      if (response.ok) {
+        const cartData = await response.json();
+        setCartItems(cartData.items);
+      }
+    } catch (error) {
+      console.log('Error', error)
+}
+
+// Fetch the cart for the authenticated user
 const fetchCartItems = async () => {
   try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`);
-    if (!response.ok) {
-      throw new Error("Server response was not ok " + response.statusText);
+    const cartData = await fetchWithToken(`/cart`);
+    if (cartData) {
+      setCartItems(cartData.items);
     }
-    const cartData = await response.json();
-    setCartItems(cartData);
+    else {
+      setCartItems([]);
+    }
+    
   } catch (error) {
     console.log('Error fetching cart items:', error);
   }
@@ -44,72 +85,7 @@ useEffect(() => {
     fetchCartItems();
   }
 }, [isAuthenticated, token]); // fetch items in cart if user changes
-
-
-/* add protect routes on BE for fetching cart specific to the userId
-
-const addToUserCart = async (product) => {
-
-  setCartItems(prevCart => {
-    const existingItem = prevCart.find(item => item.productId === product._id);
-    if (existingItem) {
-      return prevCart.map(item => 
-        item.productId === product._id 
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
-    } else {
-      return [...prevCart, { productId: product._id, quantity: 1 }];
-    }
-  });
-
-  const payload = { 
-      userId: user.userId, 
-      productId: product._id 
-    };
-
-  try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'POST', payload);
-    if (response.ok) {
-      console.log('add to cart resonse format:', response)
-      const cartData = await response.json();
-      //setCartItems(cartData.cartItems) //toDo: check if data that was written to be logged
-    }
-  } catch (error) {
-    console.log('Error adding to cart:', error);
-  }
-};
-
-const removeFromUserCart = async (product) => {
-
-  setCartItems(prevCart => prevCart.map(item => 
-    (item.productId === product._id && item.quantity) > 0
-      ? {...item,  quantity: item.quantity -1 }
-      : item
-  ));
-
-  try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'DELETE');
-    if (response.ok) {
-
-      setCartItems(cartData.cartItems)
-  } catch (error) {
-    console.log('Error removing from cart:', error);
-  }
-} 
-  
-const updateCartItemCount = async (newAmount, productId) => {
-  try {
-    const response = await fetchWithToken(`${import.meta.env.VITE_API_URL}/api/cart`, 'PUT', { productId, quantity: newAmount });
-    if (response) {
-      setCartItems(response.cartItems);
-    }
-  } catch (error) {
-    console.log('Error updating cart item count:', error);
-  }
-};
-
-*/
+****/
 
 const addToCart = async (product) => {
   setCartItems(prevCart => {
@@ -125,7 +101,6 @@ const addToCart = async (product) => {
     }
   });
 };
-
 
 const removeFromCart = (product) => {
 

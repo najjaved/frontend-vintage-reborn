@@ -4,9 +4,10 @@ import { useContext } from 'react';
 import { SessionContext } from '../contexts/SessionContext';
 import classes from '../styles/Header.module.css';
 import { Link } from 'react-router-dom';
-import cart from "../assets/images/cartIcon.png";
+import { IconShoppingCart } from '@tabler/icons-react';
 import profileImage from '../assets/images/profile.png';
 import loggedImage from '../assets/images/logged.png'; // Import logged image
+import { IconUsers } from '@tabler/icons-react';
 import LoginForm from './LoginForm';
 import Logo from '../assets/images/Logo.png'
 
@@ -45,12 +46,10 @@ const Header = () => {
       <Title order={2} className={classes.title}>Vintage Reborn</Title>
       <Group>
         <Link to="/profile/cart" >
-          <Image
-            src={cart}
-            alt="Shopping cart"
-            width={24}
-            height={24}
-          />
+          <IconShoppingCart stroke={1.5} 
+              width={24}
+              height={24}
+            />
         </Link>
 
         {!isAuthenticated && (

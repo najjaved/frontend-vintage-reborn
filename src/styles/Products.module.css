@@ -1,6 +1,5 @@
 .productsContainer {
   padding: 2rem;
-  background-color: rgb(237, 236, 236);
 }
 
 .title {
@@ -9,51 +8,33 @@
 .productImage {
   padding: 1rem;
 }
-  .products {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    place-items: center;
-  }
+.products {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+}
+
+.product {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+}
+
+.product .description {
+  text-align: center;
+}
+
+.product:hover {
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.buttonsGroup {
+  display: flex;
+  flex-wrap: wrap;
+}
   
-  .product {
-    border-radius: 15px;
-    width: 300px;
-    height: 350px;
-    margin: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .product img {
-    width: 400px;
-  }
-  
-  .product .description {
-    text-align: center;
-  }
-  
-  .product:hover {
-    transition: 0.3s ease-in;
-    cursor: pointer;
-  }
-  
-  .addToCartBttn {
-    background-color: transparent;
-    border: 2px solid rgb(19, 19, 19);
-    min-width: 100px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 15px;
-  }
-  
-  .addToCartBttn:hover {
-    background-color: rgb(19, 19, 19);
-    color: white;
-    cursor: pointer;
-  }
+button:hover {
+  cursor: pointer;
+}

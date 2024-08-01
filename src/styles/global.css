@@ -17,5 +17,3 @@ body {
   border: 5px solid hsl(0 0 50% / 0.5);
   overflow-y: scroll;
 } */
-
-/*toDo: move the below styles to respective css modules, to be consistent with the project structure */

@@ -4,6 +4,7 @@ import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar';
 import searchIcon from '../assets/images/search.png';
+//import { IconSearch } from '@tabler/icons-react';
 import { SessionContext } from '../contexts/SessionContext';
 import { Link } from 'react-router-dom';
 

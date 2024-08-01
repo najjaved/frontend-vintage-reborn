@@ -6,7 +6,7 @@ const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
@@ -35,6 +35,21 @@ const SessionContextProvider = ({ children }) => {
           setIsAdmin(true);
         }
 
+        // Fetch the cart for the authenticated user
+        /*
+        const cartResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
+          headers: {
+            Authorization: `Bearer ${tokenToVerify}`,
+          },
+        });
+        if (cartResponse.ok) {
+          const cartData = await cartResponse.json();
+          setCartItems(cartData.items);
+        } else {
+          setCartItems([]);
+        } */
+
+
         setIsLoading(false);
       } else {
         setIsLoading(false);
@@ -59,6 +74,7 @@ const SessionContextProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       window.localStorage.setItem('authToken', token);
+      verifyToken(token);
     }
   }, [token]);
 

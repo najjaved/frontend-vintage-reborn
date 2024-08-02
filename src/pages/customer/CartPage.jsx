@@ -1,16 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { Button, Container, Title, Text, Modal, Group, Image, Divider } from '@mantine/core';
+import React, { useContext } from 'react';
+import { Button, Container, Title, Text, Group, Image, Divider } from '@mantine/core';
 import CartItem from '../../components/CartItem';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from '../../styles/CartPage.module.css';
 import { CartContext } from '../../contexts/CartContext';
-import { useDisclosure } from "@mantine/hooks";
+
 
 const CartPage = () => {
-  const {products, cartItems, getTotalCartAmount, resetCart } = useContext(CartContext);
+  const {products, cartItems, getTotalCartAmount } = useContext(CartContext);
   const totalAmount = getTotalCartAmount();
-  const [modalOpened, { open, close }] = useDisclosure(false);
-  const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,16 +16,6 @@ const CartPage = () => {
     navigate("/profile/checkout");
   };
   
-  const handleFakePayReset = () => {
-    resetCart(); 
-    open();
-    //navigate("/checkout"); //toDO: add this after stripe functionality
-  };
-
-  const handleModalClose = () => {
-    close();
-    setShowEmptyCartMessage(totalAmount <= 0);
-  };
 
   const isCartEmpty = cartItems.every(item => item.quantity === 0);
 
@@ -88,24 +76,6 @@ const CartPage = () => {
             </Container>
           </Container>
         )}
-
-        <Modal
-          opened={modalOpened}
-          onClose={handleModalClose}
-          title="Payment Successful!"
-          centered
-        >
-          <Container>
-            <Title className={classes.title}>
-              Thank you for shopping & supporting our green planet initiative!
-            </Title>
-            <Image
-              className="emptyimage"
-              src="https://placehold.co/600x400?text=Placeholder"
-              alt='Placeholder image'
-            />
-          </Container>
-        </Modal>
       </Container>
     </Container>
   );

@@ -1,16 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Container, Title, TextInput, Button, Group, Text, Divider } from '@mantine/core';
+import { Container, Title, TextInput, Button, Group, Text, Divider, Modal } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { CartContext } from '../../contexts/CartContext';
 import { SessionContext } from '../../contexts/SessionContext';
 import { useNavigate } from 'react-router-dom';
 import classes from '../../styles/Checkout.module.css';
+import { useDisclosure } from "@mantine/hooks";
 
 const CheckoutPage = () => {
   const { cartItems, resetCart, getTotalCartAmount, products } = useContext(CartContext);
   const { fetchWithToken, user } = useContext(SessionContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
+  const [modalOpened, { open, close }] = useDisclosure(false);
+  const [showEmptyCartMessage, setShowEmptyCartMessage] = useState(false);
 
   const mantineForm = useForm({
     initialValues: {
@@ -29,6 +32,17 @@ const CheckoutPage = () => {
     },
   });
 
+  const checkoutHandle = () => { 
+    open();
+    resetCart();
+    
+  };
+
+  const handleModalClose = () => {
+    close();
+    navigate("/"); //toDO: add this after stripe functionality
+  };
+
   const handleSubmit = async (values) => {
     const orderPayload = {
         userId: user.userId,
@@ -43,8 +57,8 @@ const CheckoutPage = () => {
       const responseData = await fetchWithToken(`/orders`, 'POST', orderPayload);
       if (responseData) {
         console.log('Order placed successfully:', responseData);
-        resetCart(); // empty the cart after successful order placement
-        navigate('/'); // toDo: open order confirmation popup
+        checkoutHandle(); // empty the cart after successful order placement, later add payment feature
+        //navigate('/'); 
       }
     } catch (error) {
       console.log('Error placing order:', error);
@@ -83,7 +97,7 @@ const CheckoutPage = () => {
 
         <Group position="apart" mt="md" my = "xl"  justify="center" grow>
           <Button variant="outline" onClick={() => navigate('/profile/cart')}>Back to Cart</Button>
-          <Button type="submit">Place Order</Button>
+          <Button type="submit"  onClick={checkoutHandle}>Place Order</Button>
         </Group>
       </form>
 
@@ -103,6 +117,20 @@ const CheckoutPage = () => {
           <Text fw={700}>{totalAmount.toFixed(2)}€</Text>
         </Group>
       </Container>
+
+      <Modal
+          opened={modalOpened}
+          onClose={handleModalClose}
+          title="Payment Successful!"
+          centered
+        >
+          <Container>
+            <Title className={classes.title}>
+              Thank you for shopping & supporting our green planet initiative!
+            </Title>
+          </Container>
+        </Modal>
+
     </Container>
   );
 };

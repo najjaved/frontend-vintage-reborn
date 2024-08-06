@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Stack } from '@mantine/core';
+import { Button, Container, Stack } from '@mantine/core';
 import classes from '../styles/Navbar.module.css';
 import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar';
@@ -23,7 +23,9 @@ const Navbar = () => {
           Change Theme <LightDarkModeButton />
         </Container>
         <Link to="/about" className={classes.navLink}>About</Link>
-        <SearchBar products={products} icon={searchIcon} /> {/* Add the SearchBar component */}
+        <Button variant="white" size="xs" radius="xl">
+          <SearchBar products={products} icon={searchIcon} />
+        </Button>
       </Stack>
     </Container>
 

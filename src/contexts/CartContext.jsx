@@ -1,5 +1,6 @@
 import { createContext, useEffect, useContext, useState } from "react";
 import { SessionContext } from '../contexts/SessionContext';
+import {showNotification} from "../helpers/functions";
 
 export const CartContext = createContext(null);
 
@@ -7,7 +8,7 @@ const CartContextProvider = ({ children }) => {
   const { fetchWithToken, token, isAuthenticated, user, cartItems, setCartItems } = useContext(SessionContext); 
   //const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
 
   const getAllProducts = async () => {
     try {
@@ -17,7 +18,6 @@ const CartContextProvider = ({ children }) => {
       }
       const data = await response.json();
       setProducts(data);
-      setLoading(false);
     } catch (error) {
       console.log("Error fetching products: ", error);
     }
@@ -90,6 +90,11 @@ useEffect(() => {
 ****/
 
 const addToCart = async (product) => {
+  if (!isAuthenticated) {
+    showNotification();
+    return 0;
+  }
+  
   setCartItems(prevCart => {
     const existingItem = prevCart.find(item => item.productId === product._id);
     if (existingItem) {
@@ -153,7 +158,6 @@ const contextValue = {
   removeFromCart,
   getTotalCartAmount,
   resetCart,
-  loading,
   products, 
   setProducts
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Card, Image, Text, Badge, Button, Group, Space, Container, SimpleGrid, AspectRatio } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group, Space, SimpleGrid, AspectRatio, Loader, Container } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { SessionContext } from '../contexts/SessionContext';
 //import { IconHeart } from '@tabler/icons-react'; 
@@ -7,9 +7,15 @@ import { CartContext } from '../contexts/CartContext';
 import classes from '../styles/Products.module.css';
 
 const ProductsComponent = ({ onEdit }) => {
-  const { token, isAuthenticated, user} = useContext(SessionContext);
+  const { fetchWithToken, isAuthenticated, user} = useContext(SessionContext);
+  const { addToCart, cartItems, products, setProducts } = useContext(CartContext);
+  const [loading, setLoading] = useState(true);
 
-  const { addToCart, cartItems, products, setProducts, loading } = useContext(CartContext);
+  useEffect(() => {
+    if (products.length > 0) {
+      setLoading(false);
+    }
+  }, [products]);
 
   const calculateItemsQuantity = (items, product) => {
     const currentProduct = items.find(item => item.productId === product._id);
@@ -20,27 +26,21 @@ const ProductsComponent = ({ onEdit }) => {
   }
 
   const handleDelete = async (productId) => {
-    const url = `${import.meta.env.VITE_API_URL}/api/products/${productId}`;
-    try {
-      const response = await fetch(url, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
-      if (response.ok) {
-        setProducts(products.filter(product => product._id !== productId)); // Remove the deleted product from state
-      } else {
-        console.error('Failed to delete product, response status:', response.status);
-      }
-    } catch (error) {
-      console.error('Error deleting product', error);
+    const responseStatus = await fetchWithToken(`/products/${productId}`, 'DELETE'); // status is 204 if delete successful
+
+    if (responseStatus === 204) {
+      setProducts(products.filter(product => product._id !== productId)); // Remove the deleted product from products
+    } else {
+      console.log('Failed to delete product, returned with status code:', responseStatus);
     }
   };
 
   if (loading) {
-    return <Container>Loading...</Container>;
+    return <Container align= 'center'>
+              <Loader size="xl" color="blue" type="bars" />;
+            </Container>
   }
 
-  //toDo: add classes in css module for listings page styling
   return (
     <SimpleGrid
       cols={{ base: 1, sm: 2, lg: 3 }}
@@ -79,16 +79,15 @@ const ProductsComponent = ({ onEdit }) => {
             <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
               View Details
             </Button>
-            {isAuthenticated? 
-              (user.role === "customer") && (
+            {(user.role !== "admin") && (
                 <Button variant="filled" radius="lg" onClick={() => addToCart(product)} >
                   Add to Cart {
                     calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
                 </Button>
-              ):null            
+              )           
             }
 
-            {isAuthenticated? (user.userId === product.createdBy ||user.role === "admin") && (
+            {isAuthenticated? ((user.userId === product.createdBy ||user.role === "admin") && (
               <Group>
                 <Button variant="light" color="blue" onClick={() => onEdit(product)}>
                   Edit
@@ -97,7 +96,7 @@ const ProductsComponent = ({ onEdit }) => {
                   Delete
                 </Button>
               </Group>
-            ): null
+            )): null
            }
           </Group>
         </Card>

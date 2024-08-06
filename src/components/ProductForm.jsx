@@ -47,7 +47,8 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
     }
     catch (error) {
       console.log("Error adding new product:", error);
-    }  
+    }
+  }  
 
   const handleChange = (event) => {
     const { name, value } = event.target;

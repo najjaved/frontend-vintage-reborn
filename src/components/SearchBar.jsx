@@ -27,7 +27,7 @@ const SearchBar = ({ products, icon }) => {
 
   return (
     <>
-      <Button onClick={() => setIsModalOpen(true)} style={{ padding: 0, border: 'none', background: 'none' }}>
+      <Button onClick={() => setIsModalOpen(true)} variant="white" size="xs" radius="xl">
         <Image src={icon} alt="Search" width={24} height={24} />
       </Button>
       <Modal opened={isModalOpen} onClose={() => setIsModalOpen(false)} title="Search Products">

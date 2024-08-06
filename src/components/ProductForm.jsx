@@ -40,7 +40,7 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
 
       if (responseStatus === 201) {
           setProduct(resetInitialStates()); // reset form entries
-          await getAllProducts(); // its a promise
+          getAllProducts();
           onClose();
       }
 

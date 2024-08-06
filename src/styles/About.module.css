@@ -14,4 +14,13 @@
     justify-content: center;
     align-items: center;
   }
+
+.aboutLink {
+  text-decoration: none;
+}
+
+.aboutLink:hover {
+  text-decoration:dotted;
+  cursor: pointer;
+}
   

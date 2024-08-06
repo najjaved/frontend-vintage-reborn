@@ -1,8 +1,27 @@
-# Project Name
+# Vintage Reborn
 
 ## Description
 
-Describe your project in one/two lines.
+Vintage Reborn is a web application where users can buy or sell used items, similar to eBay Kleinanzeigen in Germany.
+
+## Overview
+
+Vintage Reborn allows users to browse, buy, and sell used items. Users can easily access the web app using the URL and browse items without having an account. However, to buy or sell items, users need to sign up and log in.
+
+## Features
+
+- User authentication (sign up, log in, log out)
+- Add, edit, and delete products
+- Search for products
+- Cart management
+- View and edit user profile
+- Admin management for products and users
+
+## Technologies Used
+
+- **Frontend:** React, Mantine UI
+- **Backend:** Node.js, Express
+- **Database:** MongoDB, MongoDB Atlas
 
 ## User Stories
 
@@ -123,26 +142,82 @@ address - String
     - address
 - GET /restaurant/:id
 
-  
+## Contributions
+
+Contributions are welcome! Please fork this repository and open a pull request to contribute.
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+  - [Environment Variables](#environment-variables)
+
+### Prerequisites
+
+- Node.js
+
+### Installation
+
+1. Clone the frontend repository:
+   \`\`\`bash
+   git clone https://github.com/najjaved/frontend-vintage-reborn.git
+   \`\`\`
+2. Clone the backend repository:
+   \`\`\`bash
+   git clone https://github.com/najjaved/backend-vintage-reborn.git
+   \`\`\`
+3. Navigate to each project directory and install dependencies using \`npm install\`:
+   \`\`\`bash
+   cd frontend-vintage-reborn
+   npm install
+   cd backend-vintage-reborn
+   npm install
+   \`\`\`
+
+### Running the Application
+
+1. Start the backend server:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+2. Start the frontend application:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+## Environment Variables
+
+Create a \`.env\` file in the root of both frontend and backend directories and add the following:
+
+### Frontend
+
+\`\`\`
+VITE_API_URL=http://localhost:5006
+\`\`\`
+
+### Backend
+
+\`\`\`
+PORT=5006
+ORIGIN=http://localhost:5173
+MONGO_URI='you B~E Atlas link `here'
+\`\`\`
+
 
 ## Links
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com/b/gMSFpBQn/fintech-reborn)
+[Trello board](https://trello.com/b/gMSFpBQn/fintech-reborn)
 
 ### Git
 
-The url to your repository and to your deployed project
-
 [Client repository Link](https://github.com/najjaved/frontend-vintage-reborn)
 
-[Server repository Link](https://github.com/SantiMora06/FintechRebornBackEnd)
+[Server repository Link](https://github.com/najjaved/backend-vintage-reborn)
 
-[Deploy Link](http://heroku.com)
+### Deployed project 
+[Deploy Link](https://vintagereborn.netlify.app/)
 
-### Slides
-
-The url to your presentation slides
-
-[Slides Link](http://slides.com)
+### Slides 
+[Slides Link](https://docs.google.com/presentation/d/1QBcI9fcvncTGKwVIlt5JIw8SraWJVCgZ/edit#slide=id.p2)

@@ -30,5 +30,3 @@ const AppShellComponent= ()=> {
 }
 
 export default AppShellComponent
-
-

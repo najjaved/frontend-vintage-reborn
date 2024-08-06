@@ -5,31 +5,12 @@ import LightDarkModeButton from './LightDarkModeButton';
 import SearchBar from './SearchBar';
 import searchIcon from '../assets/images/search.png';
 //import { IconSearch } from '@tabler/icons-react';
-import { SessionContext } from '../contexts/SessionContext';
+import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
-  const { isAuthenticated, user } = useContext(SessionContext);
-  const [products, setProducts] = useState([]);
-
-  // Fetch products data
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+  const { products } = useContext(CartContext);
 
   return (
 

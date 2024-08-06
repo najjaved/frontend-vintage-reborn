@@ -11,6 +11,7 @@ import { IconUsers } from '@tabler/icons-react';
 import LoginForm from './LoginForm';
 import Logo from '../assets/images/Logo.png';
 import {showNotification} from "../helpers/functions";
+import { ActionIcon } from '@mantine/core';
 
 const Header = () => {
   const { isAuthenticated, handleLogout } = useContext(SessionContext);
@@ -59,18 +60,18 @@ const Header = () => {
       </Link>
       <Title order={2} className={classes.title}>Vintage Reborn</Title>
       <Group>
-        <Button onClick={handelAccessCart} >
+        <ActionIcon onClick={handelAccessCart} >
           <IconShoppingCart stroke={1.5} 
               width={24}
               height={24}
             />
-        </Button>
+        </ActionIcon>
 
         {!isAuthenticated && (
           <>
-            <Button onClick={handleOpenLogin} style={{ padding: 0, border: 'none', background: 'none' }}>
+            <ActionIcon onClick={handleOpenLogin} variant = "white" radius="lg">
               <Image src={profileImage} alt="Profile" width={24} height={24} />
-            </Button>
+            </ActionIcon>
           </>
         )}
         {isLoginOpen && <LoginForm isOpen={isLoginOpen} onClose={handleCloseLogin} />}

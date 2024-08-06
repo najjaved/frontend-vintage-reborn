@@ -69,7 +69,7 @@ const Header = () => {
 
         {!isAuthenticated && (
           <>
-            <ActionIcon onClick={handleOpenLogin} variant = "white" radius="lg">
+            <ActionIcon onClick={handleOpenLogin} variant = "white" size="lg" radius="lg">
               <Image src={profileImage} alt="Profile" width={24} height={24} />
             </ActionIcon>
           </>
@@ -78,9 +78,9 @@ const Header = () => {
 
         {isAuthenticated && (
           <>
-            <Button onClick={handleDrawerOpen} style={{ padding: 0, border: 'none', background: 'none' }}>
+            <ActionIcon onClick={handleDrawerOpen} variant = "white" size="lg" radius="lg">
               <Image src={loggedImage} alt="Menu" width={24} height={24} />
-            </Button>
+            </ActionIcon>
             <Drawer
               opened={drawerOpened}
               onClose={handleDrawerClose}

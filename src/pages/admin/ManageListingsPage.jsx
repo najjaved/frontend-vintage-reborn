@@ -6,7 +6,7 @@ const ManageListingsPage = () => {
   const [products, setProducts] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {

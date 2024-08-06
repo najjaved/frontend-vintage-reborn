@@ -1,5 +1,6 @@
 import { createContext, useEffect, useContext, useState } from "react";
 import { SessionContext } from '../contexts/SessionContext';
+import {showNotification} from "../helpers/functions";
 
 export const CartContext = createContext(null);
 
@@ -89,6 +90,11 @@ useEffect(() => {
 ****/
 
 const addToCart = async (product) => {
+  if (!isAuthenticated) {
+    showNotification();
+    return 0;
+  }
+  
   setCartItems(prevCart => {
     const existingItem = prevCart.find(item => item.productId === product._id);
     if (existingItem) {

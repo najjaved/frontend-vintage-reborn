@@ -3,19 +3,22 @@ import { Image, Box, Title, Button, Drawer, Stack, Group } from '@mantine/core';
 import { useContext } from 'react';
 import { SessionContext } from '../contexts/SessionContext';
 import classes from '../styles/Header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IconShoppingCart } from '@tabler/icons-react';
 import profileImage from '../assets/images/profile.png';
 import loggedImage from '../assets/images/logged.png'; // Import logged image
 import { IconUsers } from '@tabler/icons-react';
 import LoginForm from './LoginForm';
-import Logo from '../assets/images/Logo.png'
+import Logo from '../assets/images/Logo.png';
+import {showNotification} from "../helpers/functions";
 
 const Header = () => {
   const { isAuthenticated, handleLogout } = useContext(SessionContext);
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [drawerOpened, setDrawerOpened] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleOpenLogin = () => {
     setIsLoginOpen(true);
@@ -33,6 +36,17 @@ const Header = () => {
     setDrawerOpened(false);
   };
 
+  const handelAccessCart = () => {
+    if (isAuthenticated) {
+      navigate("/profile/cart");
+    }
+    else {
+      showNotification();
+      return 0;
+    }
+    
+  }
+
   return (
     <Box className={classes.header}>
       <Link to="/">
@@ -45,12 +59,12 @@ const Header = () => {
       </Link>
       <Title order={2} className={classes.title}>Vintage Reborn</Title>
       <Group>
-        <Link to="/profile/cart" >
+        <Button onClick={handelAccessCart} >
           <IconShoppingCart stroke={1.5} 
               width={24}
               height={24}
             />
-        </Link>
+        </Button>
 
         {!isAuthenticated && (
           <>

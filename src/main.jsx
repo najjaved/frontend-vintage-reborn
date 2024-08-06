@@ -4,6 +4,8 @@ import { MantineProvider, Paper} from '@mantine/core'; // ColorSchemeProvider, C
 import { BrowserRouter } from 'react-router-dom';
 import SessionContextProvider from './contexts/SessionContext.jsx';
 import CartContextProvider from './contexts/CartContext.jsx';
+import { Notifications } from "@mantine/notifications";
+import '@mantine/notifications/styles.css';
 
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
@@ -21,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <CartContextProvider>
               <MantineProvider theme={baseTheme} defaultColorScheme= 'auto'> //color scheme based on user OS
                 <Paper componenet = "container" style = {{minHeight: "100vh"}} size="responsive" >
+                  <Notifications />
                   <AppShellComponent/> 
                 </Paper>        
               </MantineProvider>

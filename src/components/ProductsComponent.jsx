@@ -8,28 +8,8 @@ import classes from '../styles/Products.module.css';
 
 const ProductsComponent = ({ onEdit }) => {
   const { token, isAuthenticated, user} = useContext(SessionContext);
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  const { addToCart, cartItems } = useContext(CartContext);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`); // GET request
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setProducts(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts(); // Call the fetch function
-  }, []);
+  const { addToCart, cartItems, products, setProducts, loading } = useContext(CartContext);
 
   const calculateItemsQuantity = (items, product) => {
     const currentProduct = items.find(item => item.productId === product._id);

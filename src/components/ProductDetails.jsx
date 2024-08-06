@@ -39,9 +39,7 @@ const ProductDetails = () => {
   return (
     product && (
       <Card className= {classes.product}>
-        <Card.Section>
-          <Image src={product.images} alt={product.name} w="auto" content = "fit" className= {classes.productImage}/>
-        </Card.Section>
+        <Image src={product.images} alt={product.name} w= '300' h ='300' className= {classes.productImage}/>
         <Group position="apart" style={{ marginBottom: 5, marginTop: 10 }}>
           <Text weight={500}>{product.name}</Text>
           <Badge color="pink" variant="light">

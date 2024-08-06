@@ -7,7 +7,7 @@ const CartContextProvider = ({ children }) => {
   const { fetchWithToken, token, isAuthenticated, user, cartItems, setCartItems } = useContext(SessionContext); 
   //const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
 
   const getAllProducts = async () => {
     try {
@@ -17,7 +17,6 @@ const CartContextProvider = ({ children }) => {
       }
       const data = await response.json();
       setProducts(data);
-      setLoading(false);
     } catch (error) {
       console.log("Error fetching products: ", error);
     }
@@ -153,7 +152,6 @@ const contextValue = {
   removeFromCart,
   getTotalCartAmount,
   resetCart,
-  loading,
   products, 
   setProducts
 };

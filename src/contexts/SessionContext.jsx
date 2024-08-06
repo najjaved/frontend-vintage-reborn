@@ -86,11 +86,12 @@ const SessionContextProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
       });
+      console.log('response formate: ', response);
       if (response.ok) {
-        return response.json();
+        return response.status;
       }
     } catch (error) {
-      console.log(error);
+      console.log(`******** Error ${method} with token: ${error}********`);
     }
   };
 

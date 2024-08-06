@@ -54,9 +54,9 @@ const CheckoutPage = () => {
     };
 
     try {
-      const responseData = await fetchWithToken(`/orders`, 'POST', orderPayload);
-      if (responseData) {
-        console.log('Order placed successfully:', responseData);
+      const responseStatus = await fetchWithToken(`/orders`, 'POST', orderPayload);
+      if (responseStatus === 201) {
+        console.log('Order placed successfully!');
         checkoutHandle(); // empty the cart after successful order placement, later add payment feature
         //navigate('/'); 
       }

@@ -23,9 +23,9 @@ const Navbar = () => {
           Change Theme <LightDarkModeButton />
         </Container>
         <Link to="/about" className={classes.navLink}>About</Link>
-        <Button variant="white" size="xs" radius="xl">
-          <SearchBar products={products} icon={searchIcon} />
-        </Button>
+        
+        <SearchBar products={products} icon={searchIcon} />
+        
       </Stack>
     </Container>
 

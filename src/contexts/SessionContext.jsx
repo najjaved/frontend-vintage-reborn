@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const SessionContext = createContext();
 
@@ -6,9 +7,12 @@ const SessionContextProvider = ({ children }) => {
   const [token, setToken] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState({});
+  const [user, setUser] =  useState({});
+ 
   const [isAdmin, setIsAdmin] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+
+  const navigate = useNavigate();
 
   const removeToken = () => {
     window.localStorage.removeItem('authToken');
@@ -101,9 +105,10 @@ const SessionContextProvider = ({ children }) => {
     removeToken();
     setToken();
     setIsAuthenticated(false);
-    setUser(null);
+    setUser({});
     setIsAdmin(false);
     setCartItems([]); // empty the cart
+    navigate('/products');
   };
 
   return (

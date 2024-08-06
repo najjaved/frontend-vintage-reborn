@@ -90,7 +90,7 @@ useEffect(() => {
 ****/
 
 const addToCart = async (product) => {
-  if (!isAuthenticated) {
+  if (!isAuthenticated || user?.role === "admin") {
     showNotification();
     return 0;
   }

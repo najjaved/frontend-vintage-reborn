@@ -82,15 +82,14 @@ const ProductsComponent = ({ onEdit }) => {
               <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
                 View Details
               </Button>
-              {(user.role !== "admin") && (
-                  <Button variant="filled" radius="lg" onClick={() => addToCart(product)} >
-                    Add to Cart {
-                      calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
-                  </Button>
-                )           
-              }
 
-              {isAuthenticated? ((user.userId === product.createdBy ||user.role === "admin") && (
+              <Button variant="filled" radius="lg" onClick={() => addToCart(product)} >
+                Add to Cart {
+                  calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
+              </Button>
+                          
+              {isAuthenticated? (
+               (user?.userId === product.createdBy || user?.role === "admin") && (
                 <Group>
                   <Button variant="light" color="blue" onClick={() => onEdit(product)}>
                     Edit
@@ -99,8 +98,8 @@ const ProductsComponent = ({ onEdit }) => {
                     Delete
                   </Button>
                 </Group>
-              )): null
-            }
+              )
+            ): null }
             </Group>
           </Card>
         ))}

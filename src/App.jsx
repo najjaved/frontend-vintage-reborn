@@ -9,7 +9,7 @@ import AllProductsPage from './pages/AllProductsPage';
 import CartPage from './pages/customer/CartPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import ContactPage from './pages/ContactPage';
-import AboutPage from './pages/AboutPage';
+import AboutTeamPage from './pages/AboutTeamPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageUsersPage from './pages/admin/ManageUsersPage';
 import ManageOdersPage from './pages/admin/ManageOdersPage';
@@ -18,6 +18,7 @@ import OrdersPage from './pages/customer/OrdersPage';
 import ManageSingleUserProductsPage from './pages/admin/ManageSingleUserProductsPage'
 import MangeSingleUserOrdersPage from './pages/admin/ManageSingleUserOrdersPage'
 import CheckoutPage from './pages/customer/CheckoutPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
         <Route path='/products' element={<AllProductsPage />} />
         <Route path='/products/:productId' element={<ProductDetailsPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/aboutUs" element={<AboutTeamPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

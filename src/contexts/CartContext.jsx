@@ -159,7 +159,8 @@ const contextValue = {
   getTotalCartAmount,
   resetCart,
   products, 
-  setProducts
+  setProducts,
+  getAllProducts
 };
 
 return (

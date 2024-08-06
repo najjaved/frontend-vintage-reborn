@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, Image, Text, Badge, Group, Space } from '@mantine/core';
+import { Link, useParams } from 'react-router-dom';
+import { Card, Image, Text, Badge, Group, Space, Button } from '@mantine/core';
 import classes from '../styles/Products.module.css';
 
 const ProductDetails = () => {
@@ -51,6 +51,7 @@ const ProductDetails = () => {
         </Text>
         
         <Text weight={500} size="lg" align = "left">Price: {product.price}</Text>
+        <Button variant="subtle" color="cyan" radius="lg" component={Link} to='/products' > Back </Button>
 
       </Card>
     )

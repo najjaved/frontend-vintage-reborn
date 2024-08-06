@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Modal, TextInput, NumberInput, Select, Textarea, Button, Group, Divider, Grid, Space } from "@mantine/core";
 import { SessionContext } from "../contexts/SessionContext";
+import { CartContext } from "../contexts/CartContext";
 
 const resetInitialStates = () => ({
   category: "",
@@ -14,7 +15,7 @@ const resetInitialStates = () => ({
 
 const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
   const { fetchWithToken, token } = useContext(SessionContext);
-  console.log(token);
+  const { getAllProducts } = useContext(CartContext);
 
   const [product, setProduct] = useState(resetInitialStates());
 
@@ -34,31 +35,20 @@ const ProductForm = ({ isOpen, onClose, product: initialProduct }) => {
     const url = `/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
     const method = initialProduct ? "PUT" : "POST";
     const payload = product;
-    fetchWithToken(url, method, payload);
-
-    /* OR amke own functions for specific endpoints if different behaviour is expected
-    const payload = product
-    fetchWithToken(`/products${initialProduct ? `/${initialProduct._id}` : ""}`, {initialProduct ? "PUT" : "POST"}, payload)
-   
-
-    const url = `${import.meta.env.VITE_API_URL}/api/products${initialProduct ? `/${initialProduct._id}` : ""}`; 
-    const method = initialProduct ? "PUT" : "POST";
     try {
-      const response = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-        body: JSON.stringify(product),
-      });
-      if (response.ok) {
-        await response.json();
-        setProduct(resetInitialStates());
-        await getAllProducts(); // Ensure this is awaited
-        onClose();
+      const responseStatus = await fetchWithToken(url, method, payload);
+
+      if (responseStatus === 201) {
+          setProduct(resetInitialStates()); // reset form entries
+          getAllProducts();
+          onClose();
       }
-    } catch (error) {
-      console.log("Error submitting form", error);
-    }  */
-  };
+
+    }
+    catch (error) {
+      console.log("Error adding new product:", error);
+    }
+  }  
 
   const handleChange = (event) => {
     const { name, value } = event.target;

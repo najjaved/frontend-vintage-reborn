@@ -86,7 +86,8 @@ const SessionContextProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
       });
-      console.log('response formate: ', response);
+      const data = await response.json();
+      console.log('response data: ', data);
       if (response.ok) {
         return response.status;
       }

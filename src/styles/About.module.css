@@ -1,13 +1,14 @@
-.aboutContainer {
-  margin-bottom: 2rem;
+.aboutContainr {
+  margin-right: 2rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  align-items: center;
-  width: 50%;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 30%;
 }
 .aboutCards {
     align-content: center;
@@ -29,4 +30,11 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 1rem;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
 }

@@ -1,4 +1,4 @@
-import { Card, Title, Container, Image, Text, Badge, Group, Space } from "@mantine/core";
+import { Card, Title, Image, Text, Badge, Group, Space, Flex } from "@mantine/core";
 import { Link } from "react-router-dom";
 import classes from '../styles/About.module.css';
 import najma from "../assets/images/Najma.jpeg";
@@ -9,12 +9,11 @@ const AboutTeamPage = () => {
     return (
         <>  <Title fw={500}> The team</Title>
             <Space h="xl" />
-            <Container className={classes.aboutContainer}>
+            <Flex className={classes.aboutContainr}>
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
-                        <Image
+                        <Image className={classes.cardImage}
                             src={santi}
-                            h="auto"
                             alt="Santi"
                         />
                     </Card.Section>
@@ -28,10 +27,8 @@ const AboutTeamPage = () => {
 
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
-                        <Image
+                        <Image  className={classes.cardImage}
                             src={najma}
-                            h="auto"
-                            padding="sm"
                             alt="Najma"
                         />
                     </Card.Section>
@@ -46,11 +43,9 @@ const AboutTeamPage = () => {
 
                 <Card shadow="sm" padding="lg" radius="md" withBorder>
                     <Card.Section>
-                        <Image
+                        <Image className={classes.cardImage}
                             src={omid}
-                            h="auto"
-                            padding="sm"
-                            alt="Najma"
+                            alt="Omid"
                         />
                     </Card.Section>
                     <Group mt="md" mb="xs">
@@ -59,7 +54,7 @@ const AboutTeamPage = () => {
                     </Group>
                     <Text>I am a doctoral researcher in the field of engineering from Iran. Currently, I am attending the Ironhack bootcamp to develop my skills and transition into a full-stack developer role. With a solid foundation in engineering and a passion for technology, I am excited to combine my research expertise with new programming and development skills. </Text>
                 </Card>
-            </Container>
+            </Flex>
         </>);
 }
 

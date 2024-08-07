@@ -1,0 +1,33 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+.form {
+display: flex;
+flex-direction: column;
+}
+
+.input,
+.textarea {
+  margin-bottom: 1rem;
+}
+
+.textarea {
+    resize: vertical;
+  }
+
+.buttonGroup {
+margin-top: 1rem;
+display: flex;
+justify-content: center;
+}
+
+.successMessage {
+text-align: center;
+margin-top: 1rem;
+}
+  

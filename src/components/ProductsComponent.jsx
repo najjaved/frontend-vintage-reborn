@@ -78,9 +78,9 @@ const ProductsComponent = ({ onEdit }) => {
               {product.description}
             </Text>
             <Space h="xl" />
-            <Text weight={700} size="lg" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
+            <Text weight={300} size="md" align='left' h="xl" c="teal.4"> Price:  {product.price}€</Text>
             <Group className={classes.buttonsGroup}>
-              <Button variant="light" color="blue" component={Link} to={`/products/${product._id}`}>
+              <Button variant="light" color="blue" radius="lg" component={Link} to={`/products/${product._id}`}>
                 View Details
               </Button>
 

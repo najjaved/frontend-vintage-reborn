@@ -21,6 +21,7 @@
   border-radius: 25px;
   margin-bottom: 2rem;
   padding: 1rem;
+  position: relative;
 }
 
 .product .description {
@@ -38,5 +39,12 @@
 }
   
 button:hover {
+  cursor: pointer;
+}
+
+.heartIcon {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
   cursor: pointer;
 }

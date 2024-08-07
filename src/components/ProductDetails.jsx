@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Card, Image, Text, Badge, Group, Space, Button } from '@mantine/core';
+import { Card, Image, Text, Badge, Group, Space, Button, AspectRatio, ActionIcon } from '@mantine/core';
 import classes from '../styles/Products.module.css';
+import { IconHeart } from '@tabler/icons-react';
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -39,7 +40,9 @@ const ProductDetails = () => {
   return (
     product && (
       <Card className= {classes.product}>
-        <Image src={product.images} alt={product.name} w= '300' h ='300' className= {classes.productImage}/>
+        <AspectRatio ratio={1 / 1}>
+         <Image src={product.images} alt={product.name} h ='300' w= 'auto' fit="contain" className= {classes.productImage}/>
+        </AspectRatio>
         <Group position="apart" style={{ marginBottom: 5, marginTop: 10 }}>
           <Text weight={500}>{product.name}</Text>
           <Badge color="pink" variant="light">
@@ -52,6 +55,14 @@ const ProductDetails = () => {
         
         <Text weight={500} size="lg" align = "left">Price: {product.price}</Text>
         <Button variant="subtle" color="cyan" radius="lg" component={Link} to='/products' > Back </Button>
+        <ActionIcon className= {classes.heartIcon}
+          variant="gradient"
+          size="lg"
+          aria-label="Gradient action icon"
+          gradient={{ from: 'pink', to: 'cyan', deg: 64 }}
+        >
+          <IconHeart />
+        </ActionIcon>
 
       </Card>
     )

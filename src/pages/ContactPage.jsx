@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, TextInput, Textarea, Button, Group, Text, Space, Title } from '@mantine/core';
+import { Container, TextInput, Textarea, Button, Group, Text, Space, Title, Modal  } from '@mantine/core';
 import classes from '../styles/ContactPage.module.css';
 
 const ContactPage = () => {
@@ -10,6 +10,7 @@ const ContactPage = () => {
       });
     
       const [formStatus, setFormStatus] = useState('');
+      const [opened, setOpened] = useState(false);
     
       const handleChange = (event) => {
         const { name, value } =event.target;
@@ -21,8 +22,15 @@ const ContactPage = () => {
         // toDo: Handle the form submission, i.e., sending data to our server
         console.log('Form submitted:', formData);
         setFormStatus('Thank you for your message! We will get back to you soon.');
+        setOpened(true);
         setFormData({ name: '', email: '', message: '' });
       };
+
+      const closeModal = () => {
+        setOpened(false);
+      };
+
+      const maxLength = 300; // limit message length
     
       return (
         <Container className={classes.container}>
@@ -58,19 +66,26 @@ const ContactPage = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
+              maxLength={maxLength}
               required
               className={classes.textarea}
             />
+            <Text size="sm" align="right" className={classes.charCount}>
+                {formData.message.length}/{maxLength} characters
+            </Text>
             <Space h="md" />
             <Group position="center" className={classes.buttonGroup}>
               <Button type="submit">Send Message</Button>
             </Group>
           </form>
-          {formStatus && (
-            <Text className={classes.successMessage}>
-              {formStatus}
-            </Text>
-          )}
+          <Modal
+            opened={opened}
+            onClose={closeModal}
+            title="Success"
+          >
+            <Text>{formStatus}</Text>
+            <Button onClick={closeModal}>Close</Button>
+          </Modal>
         </Container>
       );
 }

@@ -7,8 +7,8 @@
   }
 
 .form {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .input,
@@ -20,14 +20,20 @@ flex-direction: column;
     resize: vertical;
   }
 
+.charCount {
+    margin-bottom: 15px;
+    color: #888;
+}
+  
+
 .buttonGroup {
-margin-top: 1rem;
-display: flex;
-justify-content: center;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .successMessage {
-text-align: center;
-margin-top: 1rem;
+    text-align: center;
+    margin-top: 1rem;
 }
   

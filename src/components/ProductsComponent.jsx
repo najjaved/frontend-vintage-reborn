@@ -89,7 +89,7 @@ const ProductsComponent = ({ onEdit }) => {
               <Button variant="filled" radius="lg" onClick={() => addToCart(product)} >
                 Add to Cart {
                   calculateItemsQuantity(cartItems, product) > 0 && <> [{calculateItemsQuantity(cartItems, product)}] </>}
-              </Button>
+              </Button> 
 
                           
               {isAuthenticated? (

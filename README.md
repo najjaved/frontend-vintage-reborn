@@ -2,7 +2,7 @@
 
 ## Description
 
-Vintage Reborn is a web application where users can buy or sell used items, similar to eBay Kleinanzeigen in Germany.
+Vintage Reborn is a first version of full-stack web application developed with the MERN stack, inspired from 'eBay Kleinanzeigen' in Germany. It is a web-store with key features such as user authentication, adding or browsing existing product listings, shopping, etc. Technologies used: JavaScript (ES6), Node.js , HTML & CSS , React , Mantine UI, Express.js, MongoDB.
 
 ## Overview
 
@@ -20,28 +20,30 @@ Vintage Reborn allows users to browse, buy, and sell used items. Users can easil
 ## Technologies Used
 
 - **Frontend:** React, Mantine UI
-- **Backend:** Node.js, Express
+- **Backend:** Node.js, Express.js
 - **Database:** MongoDB, MongoDB Atlas
 
 ## User Stories
 
--  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
--  **Signup:** As an anon I can sign up in the platform so that I can start saving favorite restaurants
--  **Login:** As a user I can login to the platform so that I can see my favorite restaurants
+-  **404:** As an user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+-  **Signup:** As a user, I can sign up in the platform so that I can start selling or purchasing products
+-  **Login:** As a user I can login to the platform so that I can browse through products listings, add a products(s) to or make a purchase
 -  **Logout:** As a user I can logout from the platform so no one else can use it
--  **Add Restaurants** As a user I can add a restaurant so that I can share it with the community
--  **List Restaurants** As a user I want to see the restaurants so that I can choose one to eat
--  **Search Restaurants** As a user I want to search restaurants by name so that I know if it´s already in the platform
--  **Add to favorites** As a user I want to add a restaurant to favorite so that I can save the restaurants that I liked the most
--  **See my favorites** As a user I want to see my favorite restaurantes so that I can see the ones I liked the most
+-  **Add Products** As a user I can add a product for selling
+-  **Search Restaurants** As a user I can search for a product in a listing 
+-  **Add to favorites** As a user I want to mark a product as favorite so that I can save it for later
+
 
 ## Backlog
 
-User profile:
-- see other users profile sand their favorites
-
-Geo Location:
-- see restaurants in a map
+- Adding product(s) to wishlist functionality 
+- Allow third Party sign-in using Google, Github
+- Add Captcha for security
+- Add payment option (stripe integration)
+- Drag & Drop feature for product images
+- integrate chatbot for customer support
+- styling improve
+- refactoring
   
 # Client
 
@@ -50,69 +52,78 @@ Geo Location:
 - / - Homepage
 - /auth/signup - Signup form
 - /auth/login - Login form
-- /restaurants - restaurant list
-- /restaurants/create - create a restaurant
-- /restaurants/:id - restaurant detail
-- /profile/me - my details and favorite restaurants
+- /products - products list
+- /products/add - add a new product
+- /products/:productId - product details
+- /profile/profileId - user profile details, order history, favourites list
 - 404
 
 ## Pages
 
 - Home Page (public)
-- Sign in Page (anon only)
-- Log in Page (anon only)
-- Restaurants List Page (public only)
-- Restaurant Create (user only)
-- Restaurant Detail Page (public only)
-- My Profile Page (user only)
+- Products List Page (public)
+- Product Details Page (public)
+- Sign in Page (member only)
+- Log in Page (member only)
+- Product Add (member only)
+- Product Edit (member with specific user ID only)
+- Product Delete (member with specific user ID only)
+- My Profile Page (member only)
 - 404 Page (public)
 
 ## Components
 
-- Restaurant Card component
-  - Input: restaurant: any
-  - Output: favorite(restaurantId: string, on: boolean)
-- Search component
-  - Output: change(terms: string)
-
-## IO
+- Product Card component
+- Search bar component
 
 
-## Services
-
-- Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.logout()
-  - auth.me()
-  - auth.getUser() // synchronous
-- Restaurant Service
-  - restaurant.list()
-  - restaurant.create(data)
-  - restaurant.detail(id)
-  - restaurant.addFavorite(id)
-  - restaurant.removeFavorite(id)   
 
 # Server
 
 ## Models
 
-User model
+Users model
 
 ```
-username - String // required
-email - String // required & unique
-password - String // required
-favorites - [ObjectID<Restaurant>]
+username - String // required & unique
+passwordHash - String // required
+email - String // required
+address- String // required
+phone- Number 
+role- String(enum)
 ```
 
-Restaurant model
+Products model
 
 ```
-owner - ObjectID<User> // required
 name - String // required
-phone - String
-address - String
+category - String // required
+description - String
+price - Number// required
+discount - Number
+stock - Number// required
+images - String// required
+createdBy - String// required
+```
+
+Orders model
+
+```
+userId - ObjectId // required
+firstName - String // required
+lastName - String // required
+streetHouseNumber - String // required
+city - String // required
+zipCode - Number// required
+orderItems - array// required
+status - String // required
+```
+
+Products model
+
+```
+userId - ObjectId // required
+Items - array// required
 ```
 
 ## API Endpoints/Backend Routes
@@ -129,18 +140,15 @@ address - String
     - password
 - POST /auth/logout
   - body: (empty)
-- POST /user/me/favorite
-  - body:
-    - restaurantId
-- DELETE /user/me/favorite/:restaurantId
+- DELETE /profile/profileId/favorite/:productId
   - body: (empty)
-- GET /restaurant
-- POST /restaurant
+- GET /product
+- POST /product
   - body:
     - name
     - phone
     - address
-- GET /restaurant/:id
+- GET /product/:productId
 
 ## Contributions
 

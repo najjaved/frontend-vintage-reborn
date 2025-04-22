@@ -226,6 +226,6 @@ MONGO_URI='you B~E Atlas link `here'
 
 ### Deployed project 
 [Deploy Link](https://vintagereborn.netlify.app/)
-
+!toDo: Backend coonection broken, adaptible IO no more availble
 ### Slides 
 [Slides Link](https://docs.google.com/presentation/d/1QBcI9fcvncTGKwVIlt5JIw8SraWJVCgZ/edit#slide=id.p2)

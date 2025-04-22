@@ -225,7 +225,8 @@ MONGO_URI='you B~E Atlas link `here'
 [Server repository Link](https://github.com/najjaved/backend-vintage-reborn)
 
 ### Deployed project 
-[Deploy Link](https://vintagereborn.netlify.app/)
-!toDo: Backend coonection broken, adaptible IO no more availble
+[Frontend Deployment Link](https://vintagereborn.netlify.app/)
+
+!toDo: Backend connection has broken, adaptible IO no more availble
 ### Slides 
 [Slides Link](https://docs.google.com/presentation/d/1QBcI9fcvncTGKwVIlt5JIw8SraWJVCgZ/edit#slide=id.p2)
